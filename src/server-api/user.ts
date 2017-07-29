@@ -1,17 +1,17 @@
 import * as express from 'express';
 import {readFileSync, writeFileSync} from 'fs';
-import {join} from 'path';
 import {createGUID} from './common/index';
+import {join} from 'path';
 
 const filePath = join(__dirname, './data/users.db.json');
 
 class User {
-  id: string = createGUID();
+  userId: string = createGUID();
   firstName: string;
   lastName: string;
-  gender: string;
+  isMale: boolean;
   email: string;
-  phoneNumber?: string;
+  phoneNumber: string;
 
   constructor(data) {
     Object.assign(this, data); // copies every property of data to this
@@ -22,7 +22,7 @@ class User {
   }
 
   static getUser(id: string): User {
-    return this.getAllUsers().find((u) => u.id === id);
+    return this.getAllUsers().find((u) => u.userId === id);
   }
 
   static createUser(data) {
@@ -39,14 +39,14 @@ class User {
 
   static deleteUser (id: string) {
     const users = this.getAllUsers();
-    const userIndex = users.findIndex(u => u.id === id);
+    const userIndex = users.findIndex(u => u.userId === id);
     users.splice(userIndex, 1);
     this.saveAllUsers(users);
   }
 
   static updateUser (data) {
     const users = this.getAllUsers();
-    const userIndex = users.findIndex(u => u.id === data.id);
+    const userIndex = users.findIndex(u => u.userId === data.id);
     users.splice(userIndex, 1, data);
     this.saveAllUsers(users);
   }

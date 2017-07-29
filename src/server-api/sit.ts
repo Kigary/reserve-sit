@@ -6,23 +6,24 @@ import {join} from 'path';
 const filePath = join(__dirname, './data/sit.db.json');
 
 class Sit {
-  id: string = createGUID();
-  seat: number;
-  organization: string;
-  // free: boolean;
+  sitId: string = createGUID();
+  branchId: string;
+  numOfSeats: number;
+  reserved: boolean;
+  paid: boolean;
 
-  static getAllSit(): Sit[] {
+  static getAllSits(): Sit[] {
     return JSON.parse(readFileSync(filePath).toString());
   }
   static getSit(id: string): Sit {
-    return this.getAllSit().find(u => u.id === id);
+    return this.getAllSits().find(s => s.sitId === id);
   }
 }
 
 export const SitRouter = express.Router();
 
 SitRouter.get('/sit-list', (req, res) => {
-  res.json(Sit.getAllSit());
+  res.json(Sit.getAllSits());
 });
 
 SitRouter.get('/:id', (req, res) => {
