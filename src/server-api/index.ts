@@ -4,5 +4,5 @@ import {SitRouter} from './sit';
 
 export const ApiRouter = express.Router();
 
-ApiRouter.use('/users', UserRouter);
+ApiRouter.use('/user', UserRouter);
 ApiRouter.use('/sit', SitRouter);
