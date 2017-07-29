@@ -6,12 +6,17 @@ import { AppServerModuleNgFactory } from '../dist/ngfactory/src/app/app.server.m
 import * as express from 'express';
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import {ApiRouter} from './server-api/index';
+import * as bodyParser from 'body-parser';
 
 const PORT = 4000;
 
 enableProdMode();
 
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 const  template = readFileSync(join(__dirname, '..', 'dist', 'index.html')).toString();
 
@@ -25,11 +30,13 @@ app.engine('html', (_, options, callback) => {
 app.set('view engine', 'html');
 app.set('views', 'src');
 
+app.use('/api', ApiRouter);
+
 app.get('*.*', express.static(join(__dirname, '..', 'dist')));
 
 app.get('*', (req, res) => {
   res.render('index', { req });
 });
 app.listen(PORT, function () {
-  console.log('Example app listening on port 3000!');
+  console.log(`listening on http://localhost:${PORT}!`);
 });
