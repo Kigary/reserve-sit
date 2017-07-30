@@ -6,10 +6,11 @@ import {join} from 'path';
 const filePath = join(__dirname, './data/sit.db.json');
 
 class Order {
-  orderId: string = createGUID();
-  userId: string;
-  sitId: string;
+  orderID: string = createGUID();
+  userID: string;
+  sitID: string;
   orderDate: Date;
+  expireDate: Date;
   createdAt: Date;
   lastModifiedAt: Date;
 
@@ -17,7 +18,7 @@ class Order {
     return JSON.parse(readFileSync(filePath).toString());
   }
   static getOrder(id: string): Order {
-    return this.getAllOrders().find(o => o.orderId === id);
+    return this.getAllOrders().find(o => o.orderID === id);
   }
 }
 

@@ -6,17 +6,19 @@ import {join} from 'path';
 const filePath = join(__dirname, './data/sit.db.json');
 
 class Sit {
-  sitId: string = createGUID();
-  branchId: string;
+  sitID: string = createGUID();
+  orgID: string;
   numOfSeats: number;
   reserved: boolean;
+  cost: number;
   paid: boolean;
+  parentOrgID: string;
 
   static getAllSits(): Sit[] {
     return JSON.parse(readFileSync(filePath).toString());
   }
   static getSit(id: string): Sit {
-    return this.getAllSits().find(s => s.sitId === id);
+    return this.getAllSits().find(s => s.sitID === id);
   }
 }
 

@@ -1,10 +1,13 @@
 [
   {
-    "userId": "bb4b2bd5-ff26-ab6f-37dc-0b6d778a75fe",
+    "userID": "bb4b2bd5-ff26-ab6f-37dc-0b6d778a75fe",
+    "role": "user",
+    "login": "vzgo.asa",
+    "password": "pass1234",
+    "email": "vzgo@mail.ru",
+    "phoneNumber": "099 99 99 99",
     "firstName": "Vzgo",
     "lastName": "Asatryan",
-    "email": "vzgo@mail.ru",
-    "isMale": "true",
-    "phoneNumber": "phoneNumber"
+    "gender": "male"
   }
 ]

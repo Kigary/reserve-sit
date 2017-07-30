@@ -6,12 +6,15 @@ import {join} from 'path';
 const filePath = join(__dirname, './data/users.db.json');
 
 class User {
-  userId: string = createGUID();
-  firstName: string;
-  lastName: string;
-  isMale: boolean;
+  userID: string = createGUID();
+  role: string;
+  login: string;
+  password: string;
   email: string;
   phoneNumber: string;
+  firstName: string;
+  lastName: string;
+  gender: string;
 
   constructor(data) {
     Object.assign(this, data); // copies every property of data to this
@@ -22,7 +25,7 @@ class User {
   }
 
   static getUser(id: string): User {
-    return this.getAllUsers().find((u) => u.userId === id);
+    return this.getAllUsers().find((u) => u.userID === id);
   }
 
   static createUser(data) {
@@ -39,14 +42,14 @@ class User {
 
   static deleteUser (id: string) {
     const users = this.getAllUsers();
-    const userIndex = users.findIndex(u => u.userId === id);
+    const userIndex = users.findIndex(u => u.userID === id);
     users.splice(userIndex, 1);
     this.saveAllUsers(users);
   }
 
   static updateUser (data) {
     const users = this.getAllUsers();
-    const userIndex = users.findIndex(u => u.userId === data.id);
+    const userIndex = users.findIndex(u => u.userID === data.id);
     users.splice(userIndex, 1, data);
     this.saveAllUsers(users);
   }

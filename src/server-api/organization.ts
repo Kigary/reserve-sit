@@ -6,25 +6,30 @@ import {join} from 'path';
 const filePath = join(__dirname, './data/sit.db.json');
 
 class Organization {
-  organizationId: string = createGUID();
+  orgID: string = createGUID();
+  parentOrgID: string;
   name: string;
-  hotLine: string;
+  country: string;
+  city: string;
+  address: string;
+  phone: string;
+  fax: string;
   email: string;
 
-  static getAllOrganizations(): Organization[] {
+  static getAllOrgs(): Organization[] {
     return JSON.parse(readFileSync(filePath).toString());
   }
-  static getOrganization(id: string): Organization {
-    return this.getAllOrganizations().find(org => org.organizationId === id);
+  static getOrg(id: string): Organization {
+    return this.getAllOrgs().find(org => org.orgID === id);
   }
 }
 
-export const OrganizationRouter = express.Router();
+export const OrgRouter = express.Router();
 
-OrganizationRouter.get('/organization-list', (req, res) => {
-  res.json(Organization.getAllOrganizations());
+OrgRouter.get('/org-list', (req, res) => {
+  res.json(Organization.getAllOrgs());
 });
 
-OrganizationRouter.get('/:id', (req, res) => {
-  res.json(Organization.getOrganization(req.params.id));
+OrgRouter.get('/:id', (req, res) => {
+  res.json(Organization.getOrg(req.params.id));
 });
