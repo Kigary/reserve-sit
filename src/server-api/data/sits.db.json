@@ -6,6 +6,6 @@
     "reserved": true,
     "cost": 1000,
     "paid": false,
-    "parentOrgID": "a8cbb195-4997-e897-72d0-0035d7b52cbe"
+    "parentOrgID": null
   }
 ]

@@ -9,10 +9,10 @@ class Order {
   orderID: string = createGUID();
   userID: string;
   sitID: string;
-  orderDate: Date;
-  expireDate: Date;
-  createdAt: Date;
-  lastModifiedAt: Date;
+  orderDate: string;
+  expireDate: string;
+  createdAt: string;
+  lastModifiedAt: string;
 
   static getAllOrders(): Order[] {
     return JSON.parse(readFileSync(filePath).toString());

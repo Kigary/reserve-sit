@@ -7,14 +7,14 @@ const filePath = join(__dirname, './data/sit.db.json');
 
 class Organization {
   orgID: string = createGUID();
-  parentOrgID: string;
+  parentOrgID?: string;
   name: string;
   country: string;
   city: string;
   address: string;
   phone: string;
-  fax: string;
-  email: string;
+  fax?: string;
+  email?: string;
 
   static getAllOrgs(): Organization[] {
     return JSON.parse(readFileSync(filePath).toString());

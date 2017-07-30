@@ -12,7 +12,7 @@ class Sit {
   reserved: boolean;
   cost: number;
   paid: boolean;
-  parentOrgID: string;
+  parentOrgID?: string;
 
   static getAllSits(): Sit[] {
     return JSON.parse(readFileSync(filePath).toString());
