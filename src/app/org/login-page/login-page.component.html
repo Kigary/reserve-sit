@@ -1,3 +1,20 @@
-<p>
-  login-page works!
-</p>
+<form (ngSubmit)="onSubmit()" #myform="ngForm">
+  <md-toolbar class="mat-primary">
+    <h2 class="mat-h2">Login</h2>
+  </md-toolbar>
+  <div class="content" fxLayout="column">
+    <md-input-container>
+      <input mdInput type="email" placeholder="EmailAddress" ([ngModel])="email" required>
+    </md-input-container>
+    <md-input-container>
+      <input mdInput type="password" placeholder="password" ([ngModel])="password" required>
+    </md-input-container>
+    <div fxLayout="row">
+      <button type="submit" class="mat-raised-button mat-primary" >Login</button>
+      <div fxFlex="60"></div>
+      <button md-button class="mat-primary">Registration</button>
+    </div>
+  </div>
+</form>
+
+

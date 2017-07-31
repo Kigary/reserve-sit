@@ -1,21 +1,21 @@
 import {NgModule} from '@angular/core';
-import { OrgRoutingModule} from './org-routing.module';
+import {OrgRoutingModule} from './org-routing.module';
+import {LoginModule} from './login/login.module';
+import {LoginPageModule} from './login-page/login-page.module';
 
-
-
-import {LoginComponent} from './login/login.component';
-import {CreateAcounteComponent} from './create-acounte/create-acounte.component';
-import {LoginPageComponent} from './login-page/login-page.component';
+import {RegisterAcounteComponent} from './register-acounte/register-acounte.component';
 import {SitsComponent} from './sits/sits.component';
 
 
 @NgModule({
-  imports: [OrgRoutingModule],
+  imports: [
+    OrgRoutingModule,
+    LoginModule,
+    LoginPageModule,
+  ],
   exports: [],
   declarations: [
-    LoginComponent,
-    CreateAcounteComponent,
-    LoginPageComponent,
+    RegisterAcounteComponent,
     SitsComponent
   ],
   providers: [],

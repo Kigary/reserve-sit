@@ -4,7 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { OrgModule} from './org/org.module';
-import { MdCheckboxModule } from '@angular/material';
+import { AppMaterialModule } from './app-material.module';
+
 import { AppComponent } from './app.component';
 
 
@@ -19,7 +20,7 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     FlexLayoutModule,
     AppRoutingModule,
-    MdCheckboxModule,
+    AppMaterialModule,
     OrgModule
   ],
   providers: [],
