@@ -3,7 +3,7 @@ import {readFileSync, writeFileSync} from 'fs';
 import {createGUID} from './common/index';
 import {join} from 'path';
 
-const filePath = join(__dirname, './data/org.db.json');
+const filePath = join(__dirname, './data/orgs.db.json');
 
 class Organization {
   orgID: string = createGUID();
