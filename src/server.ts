@@ -6,7 +6,7 @@ import * as bodyParser from 'body-parser';
 
 import {ApiRouter} from './server-api/';
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4400;
 
 const app = express();
 
