@@ -3,23 +3,21 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MdInputModule} from '@angular/material';
 import {MdToolbarModule} from '@angular/material';
 import {MdButtonModule} from '@angular/material';
-import {LoginPageComponent} from './login-page.component';
-import {FormsModule} from '@angular/forms';
+
 
 @NgModule({
   imports: [
+    FlexLayoutModule,
     MdInputModule,
     MdToolbarModule,
-    MdButtonModule,
-    FlexLayoutModule,
-    FormsModule
+    MdButtonModule
   ],
   exports: [
+    FlexLayoutModule,
     MdInputModule,
-    MdToolbarModule
+    MdToolbarModule,
+    MdButtonModule
   ],
-  declarations: [LoginPageComponent],
-  providers: [],
 })
-export class LoginPageModule {
+export class OrgMaterialModule {
 }
