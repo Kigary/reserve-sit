@@ -1,19 +1,1 @@
-:host {
-  display: flex;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  justify-content: center;
-}
 
-form {
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
-  max-width: 100%;
-  width: 500px;
-}
-
-button {
-  overflow: hidden;
-}
-
-.content {
-  padding: 20px;
-}

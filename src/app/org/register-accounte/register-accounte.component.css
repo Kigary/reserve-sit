@@ -4,7 +4,7 @@
   justify-content: center;
 }
 
-.login-form{
+.reg-form{
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
   max-width: 100%;
   width: 500px;
@@ -14,6 +14,6 @@ button {
   overflow: hidden;
 }
 
-form md-input-container, form div {
+form md-input-container, form .mat-grid-tile-footer {
   padding: 15px;
 }

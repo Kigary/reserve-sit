@@ -1,3 +1,18 @@
-<p>
-  <a>Login </a>
-</p>
+<div class = 'login-form'>
+  <md-toolbar class="mat-primary">
+    <h2 class="mat-h2">Login</h2>
+  </md-toolbar>
+  <form (ngSubmit)="onSubmit()" #myform="ngForm" fxLayout="column">
+    <md-input-container>
+        <input mdInput type="email" placeholder="Email" ([ngModel])="user.email">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput type="password" placeholder="password" ([ngModel])="user.password">
+      </md-input-container>
+      <div fxLayout="row">
+        <button type="submit"  class=" mat-raised-button mat-primary">Login</button>
+        <div fxFlex="60"></div>
+        <button md-button class="mat-primary" routerLink = "register">Registration</button>
+      </div>
+  </form>
+</div>

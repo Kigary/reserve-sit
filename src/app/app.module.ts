@@ -5,10 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { OrgModule} from './org/org.module';
 import { AppMaterialModule } from './app-material.module';
-
 import { AppComponent } from './app.component';
 
-
+import {CountriesService} from './services/countries/countries.service';
 
 
 @NgModule({
@@ -21,9 +20,11 @@ import { AppComponent } from './app.component';
     FlexLayoutModule,
     AppRoutingModule,
     AppMaterialModule,
-    OrgModule
+    OrgModule,
   ],
-  providers: [],
+  providers: [
+    CountriesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

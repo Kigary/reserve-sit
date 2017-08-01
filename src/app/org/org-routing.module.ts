@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 
-import {RegisterAcounteComponent} from './register-acounte/register-acounte.component';
-import {LoginPageComponent} from './login-page/login-page.component';
+import {RegisterAcounteComponent} from './register-accounte/register-accounte.component';
+import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
       {
         path: 'login',
         children: [
-          {path: '', component: LoginPageComponent},
+          {path: '', component: LoginComponent},
           {path: 'register', component: RegisterAcounteComponent}
         ]
       },

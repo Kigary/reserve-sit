@@ -3,20 +3,22 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MdInputModule} from '@angular/material';
 import {MdToolbarModule} from '@angular/material';
 import {MdButtonModule} from '@angular/material';
-
+import {MdSelectModule} from '@angular/material';
 
 @NgModule({
   imports: [
     FlexLayoutModule,
     MdInputModule,
     MdToolbarModule,
-    MdButtonModule
+    MdButtonModule,
+    MdSelectModule,
   ],
   exports: [
     FlexLayoutModule,
     MdInputModule,
     MdToolbarModule,
-    MdButtonModule
+    MdButtonModule,
+    MdSelectModule
   ],
 })
 export class OrgMaterialModule {
