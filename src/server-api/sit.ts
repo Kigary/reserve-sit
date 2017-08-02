@@ -1,6 +1,6 @@
 import * as express from 'express';
-import {readFileSync, writeFileSync} from 'fs';
 import {createGUID} from './common/index';
+import {readFileSync} from 'fs';
 import {join} from 'path';
 
 const filePath = join(__dirname, './data/sits.db.json');
