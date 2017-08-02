@@ -9,6 +9,7 @@ import {RegisterAcounteComponent} from './register-accounte/register-accounte.co
 import {SitsComponent} from './sits/sits.component';
 import {LoginPageComponent} from './login-page/login-page.component';
 import {LoginComponent} from './login/login.component';
+import {SitsService} from '../services/sits/sits.service';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import {LoginComponent} from './login/login.component';
     RegisterAcounteComponent,
     SitsComponent
   ],
-  providers: [],
+  providers: [SitsService],
 })
 export class OrgModule {
 }
