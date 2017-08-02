@@ -8,10 +8,12 @@ const filePath = join(__dirname, './data/sits.db.json');
 class Sit {
   sitID: string = createGUID();
   orgID: string;
+  sitName: string;
   numOfSeats: number;
   reserved: boolean;
   cost: number;
   paid: boolean;
+  image: string;
   parentOrgID?: string;
 
   static getAllSits(): Sit[] {

@@ -37,11 +37,13 @@ export class SitsService {
         {
           sitID: createGUID(),
           orgID: fields[0],
-          numOfSits: +fields[1],
-          reserved: fields[2] === 'true',
-          cost: +fields[3],
-          paid: fields[4] === 'true',
-          parentOrgID: fields[5]
+          sitName: fields[1],
+          numOfSits: +fields[2],
+          reserved: fields[3] === 'true',
+          cost: +fields[4],
+          paid: fields[5] === 'true',
+          image: fields[6],
+          parentOrgID: fields[7]
         }))
       .catch(() => Observable.throw('error'));
   }

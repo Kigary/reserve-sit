@@ -1,0 +1,46 @@
+* {
+  font-family: Roboto, serif;
+}
+h2, h3 {
+  font-weight: 700;
+}
+div {
+  width: 1000px;
+}
+md-card {
+  width: 100%;
+  height: 100%;
+}
+img[md-card-image] {
+  margin: 0;
+}
+.imgCtr {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  width: calc(100% + 48px);
+  height: 200px;
+  margin-left: -24px
+}
+.addSit {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+md-card > .material-icons {
+  font-size: 100px;
+}
+md-card-header {
+  margin: 0;
+}
+md-card-title {
+  margin: 16px 0;
+}
+.sitProps {
+  margin-top: 20px;
+  text-align: center;
+}
+md-card:hover {
+  opacity: 0.8;
+}

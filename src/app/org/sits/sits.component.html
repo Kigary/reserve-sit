@@ -23,12 +23,53 @@
   &lt;!&ndash;<button (click)="gotoDetail()">View Details</button>&ndash;&gt;
 </div>
 -->
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<h2>ParentOrgName</h2>
+<h3>OrgName</h3>
 
 <div>
-  <md-grid-list cols="4" rowHeight="300px">
-    <md-grid-tile
-        *ngFor="let sit of sits">
-      {{sit.sitID}}
-    </md-grid-tile>
-  </md-grid-list>
+  <md-tab-group>
+    <md-tab label="All Sits">
+      <md-grid-list cols="4" gutterSize="10px" rowHeight="350px">
+        <md-grid-tile
+            *ngFor="let sit of sits">
+          <md-card
+              [style.background]="sit.reserved? 'salmon':'darkseagreen'">
+            <md-card-header>
+              <md-card-title>
+                Seats: {{sit.numOfSeats}}
+              </md-card-title>
+            </md-card-header>
+            <div class="imgCtr">
+              <img md-card-image [src]="'data:image/'+sit.image"/>
+            </div>
+            <md-card-content class="sitProps">
+              <md-grid-list cols="2" rowHeight="30px">
+                <md-grid-tile>
+                  <strong>{{sit.reserved? '':'Not'}} Reserved</strong>
+                </md-grid-tile>
+                <md-grid-tile>
+                  Cost: {{sit.cost}}
+                </md-grid-tile>
+                <md-grid-tile></md-grid-tile>
+                <md-grid-tile>
+                  {{sit.reserved? (sit.paid? 'Paid':'Not Paid'):''}}
+                </md-grid-tile>
+              </md-grid-list>
+            </md-card-content>
+          </md-card>
+        </md-grid-tile>
+        <md-grid-tile>
+          <md-card class="addSit" [style.background]="'lightblue'">
+            <span class="material-icons">add</span>
+          </md-card>
+        </md-grid-tile>
+      </md-grid-list>
+    </md-tab>
+    <md-tab label="Reserved Sits">
+
+    </md-tab>
+  </md-tab-group>
 </div>
