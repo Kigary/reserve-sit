@@ -1,50 +1,62 @@
-<div class='reg-form'>
+<md-toolbar class="mat-primary">
+  <h2>Registration</h2>
+</md-toolbar>
+<form [formGroup] = "regForm" fxLayout="column" (ngSubmit) = "onSubmit(regForm)">
+  <md-input-container>
+    <input mdInput  placeholder="Name" formControlName = "name" required>
+    <md-error *ngIf="regForm.get('name').hasError('required')">
+      Name is <strong>required</strong>
+    </md-error>
+  </md-input-container>
 
-  <md-toolbar class="mat-primary">
-    <h2 class="mat-h2">Registration</h2>
-  </md-toolbar>
+  <md-input-container>
+    <input mdInput  placeholder="Address" formControlName = "address" required>
+    <md-error *ngIf="regForm.get('address').hasError('required')">
+      Address is <strong>required</strong>
+    </md-error>
+  </md-input-container>
 
-  <form #myform="ngForm" fxLayout="column">
-
+  <div>
     <md-input-container>
-      <input mdInput type="text" placeholder="Name" required>
+      <input mdInput  placeholder="City" formControlName = "city" required>
+      <md-error *ngIf="regForm.get('city').hasError('required')">
+        City is <strong>required</strong>
+      </md-error>
     </md-input-container>
 
-    <md-input-container>
-      <input mdInput type="text" placeholder="Address" required>
-    </md-input-container>
+    <md-select placeholder="Country" formControlName = "country" required>
+      <md-option *ngFor="let country of countries" [value]="country.name">
+        {{country.name}}
+      </md-option>
+    </md-select>
+  </div>
 
-    <div>
-      <md-input-container>
-        <input mdInput type="text" placeholder="City" required>
-      </md-input-container>
-      <md-select placeholder="Country" [(ngModel)]="countryID" name="country" required>
-        <md-option>Armenia</md-option>
-        <md-option *ngFor="let country of countries" [value]="country.countryID">
-          {{country.name}}
-        </md-option>
-      </md-select>
-    </div>
+  <md-input-container>
+    <input mdInput  placeholder="Email" formControlName = "email">
+    <md-error *ngIf="regForm.get('email').hasError('pattern')">
+      Please enter a valid email
+    </md-error>
+  </md-input-container>
 
-    <md-input-container>
-      <input mdInput type="email" placeholder="Email">
-    </md-input-container>
+  <md-input-container>
+    <input  mdInput placeholder="Phone Number" formControlName = "pNumber" required>
+    <md-error *ngIf="regForm.get('pNumber').hasError('required')">
+      Number is <strong>required</strong>
+    </md-error>
+    <md-error *ngIf="regForm.get('pNumber').hasError('pattern')">
+      Namber isn't valid
+    </md-error>
+  </md-input-container>
 
-    <md-input-container>
-      <input type="text" mdInput placeholder="Phone Number" required>
-    </md-input-container>
+  <md-input-container>
+    <input  mdInput placeholder="Fax Number" formControlName = "fNumber">
+  </md-input-container>
 
-    <md-input-container>
-      <input type="text" mdInput placeholder="Fax Number">
-    </md-input-container>
+  <div fxLayout="row" class="mat-grid-tile-footer">
+    <button class=" mat-raised-button mat-primary" routerLink="/org/login">Cancel</button>
+    <div fxFlex="2"></div>
+    <button md-button class="mat-raised-button mat-primary" [disabled] = "!regForm.valid">Submit</button>
+  </div>
+</form>
 
-    <div fxLayout="row" class="mat-grid-tile-footer">
-      <button class=" mat-raised-button mat-primary" routerLink = "/org/login">Cancel</button>
-      <div fxFlex="2"></div>
-      <button md-button class="mat-raised-button mat-primary" disabled>Submit</button>
-    </div>
-
-  </form>
-
-</div>
 
