@@ -4,10 +4,10 @@
   </md-toolbar>
   <form (ngSubmit)="onSubmit()" #myform="ngForm" fxLayout="column">
     <md-input-container>
-        <input mdInput type="email" placeholder="Email" ([ngModel])="user.email">
+        <input mdInput type="email" placeholder="Email" [(ngModel)]="user.email" name = "email">
       </md-input-container>
       <md-input-container>
-        <input mdInput type="password" placeholder="password" ([ngModel])="user.password">
+        <input mdInput type="password" placeholder="password" [(ngModel)]="user.password" name="password">
       </md-input-container>
       <div fxLayout="row">
         <button type="submit"  class=" mat-raised-button mat-primary">Login</button>
