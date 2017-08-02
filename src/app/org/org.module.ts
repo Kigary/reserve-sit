@@ -4,6 +4,7 @@ import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {OrgMaterialModule} from './org-material.module';
 import {HttpClientModule} from '@angular/common/http';
+import {ReactiveFormsModule} from '@angular/forms';
 
 import {RegisterAcounteComponent} from './register-accounte/register-accounte.component';
 import {SitsComponent} from './sits/sits.component';
@@ -17,7 +18,8 @@ import {SitsService} from '../services/sits/sits.service';
     FormsModule,
     OrgMaterialModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   exports: [],
   declarations: [

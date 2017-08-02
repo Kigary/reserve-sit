@@ -1,19 +1,12 @@
 :host  {
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
   display: flex;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  flex-direction: column;
   justify-content: center;
+  max-width: 500px;
+  margin:30px auto;
 }
-
-.reg-form{
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
-  max-width: 100%;
-  width: 500px;
-}
-
-button {
-  overflow: hidden;
-}
-
-form md-input-container, form .mat-grid-tile-footer {
+form md-input-container ,.mat-grid-tile-footer{
   padding: 15px;
 }
