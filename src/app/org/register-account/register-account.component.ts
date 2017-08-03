@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {CountriesService} from '../../services/countries/countries.service';
-import {FormGroup, Validators, FormBuilder} from '@angular/forms';
+import {FormGroup, Validators, FormBuilder, FormControl} from '@angular/forms';
 import {EMAIL_REGEX} from '../login/login.component';
 import {Country} from '../../defines/country';
 
 @Component({
   selector: 'app-register-acounte',
-  templateUrl: './register-accounte.component.html',
-  styleUrls: ['./register-accounte.component.css'],
+  templateUrl: './register-account.component.html',
+  styleUrls: ['./register-account.component.css'],
 })
 export class RegisterAcounteComponent implements OnInit {
   countries: Country [];
@@ -27,15 +27,20 @@ export class RegisterAcounteComponent implements OnInit {
   formBuild() {
     this.regForm = this.fb.group({
       email: ['', [Validators.pattern(EMAIL_REGEX)]],
-      name: ['', Validators.required],
-      country: ['Armenia'],
-      address: ['', Validators.required],
-      city: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(15)]],
+      name: ['', [Validators.required]],
+      country: ['Armenia', []],
+      address: ['', [Validators.required]],
+      city: ['', [Validators.required]],
       pNumber: ['', [Validators.required, Validators.pattern(/^\d*$/)]],
-      fNumber: ['']
+      fNumber: ['', []]
     });
   }
 
-  onSubmit() {
+  OrgRegister() {
+  }
+
+  ErrorStateMatcher(control: FormControl): boolean {
+    return control.invalid && (control.dirty || control.touched);
   }
 }

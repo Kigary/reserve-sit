@@ -6,7 +6,7 @@ import {OrgMaterialModule} from './org-material.module';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 
-import {RegisterAcounteComponent} from './register-accounte/register-accounte.component';
+import {RegisterAcounteComponent} from './register-account/register-account.component';
 import {SitsComponent} from './sits/sits.component';
 import {LoginPageComponent} from './login-page/login-page.component';
 import {LoginComponent} from './login/login.component';

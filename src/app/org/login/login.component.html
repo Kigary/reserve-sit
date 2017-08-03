@@ -1,10 +1,10 @@
 <md-toolbar class="mat-primary">
   <h2>Login</h2>
 </md-toolbar>
-<form (ngSubmit)="onSubmit(loginForm)" [formGroup]="loginForm" fxLayout="column">
+<form (ngSubmit)="Login(loginForm)" [formGroup]="loginForm" fxLayout="column">
   <md-input-container>
     <input mdInput placeholder="Email"
-           formControlName="email">
+           formControlName="email" [errorStateMatcher]="ErrorStateMatcher">
     <md-error *ngIf="loginForm.get('email').hasError('required')">
       Email is <strong>required</strong>
     </md-error>
@@ -13,18 +13,19 @@
     </md-error>
   </md-input-container>
   <md-input-container>
-    <input mdInput type="password" placeholder="Password" formControlName="password">
+    <input mdInput type="password" placeholder="Password"
+           formControlName="password" [errorStateMatcher]="ErrorStateMatcher">
     <md-error *ngIf="loginForm.get('password').hasError('required')">
       Password is <strong>required</strong>
     </md-error>
-    <md-error *ngIf="loginForm.get('password').hasError('maxlength')">
-      Password maxlength <strong>15</strong>
+    <md-error *ngIf="loginForm.get('password').hasError('minlength')">
+      Password minlength <strong>15</strong>
     </md-error>
   </md-input-container>
   <div fxLayout="row">
-    <button type="submit" class=" mat-raised-button mat-primary" [disabled]='!loginForm.valid'>Login</button>
+    <button class=" mat-raised-button mat-primary" [disabled]='!loginForm.valid'>Login</button>
     <div fxFlex="60"></div>
     <button md-button class="mat-primary" routerLink="register">Registration</button>
   </div>
-</form>
 
+</form>
