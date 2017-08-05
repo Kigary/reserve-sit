@@ -1,0 +1,29 @@
+<md-card>
+  <md-card-header>
+    <div class="mat-card-header-text">
+      <md-card-title>
+        <strong>{{sit.sitName}}</strong>
+      </md-card-title>
+      <md-card-subtitle>
+        Seats: {{sit.numOfSeats}}
+      </md-card-subtitle>
+    </div>
+  </md-card-header>
+  <div class="imgCtr">
+    <img md-card-image [src]="'data:image/'+sit.image"/>
+  </div>
+  <md-card-content class="sitProps">
+    <md-grid-list cols="2" rowHeight="30px">
+      <md-grid-tile>
+        <strong>{{sit.reserved? '':'Not'}} Reserved</strong>
+      </md-grid-tile>
+      <md-grid-tile>
+        Cost: {{sit.cost}}
+      </md-grid-tile>
+      <md-grid-tile></md-grid-tile>
+      <md-grid-tile>
+        {{sit.reserved? (sit.paid? 'Paid':'Not Paid'):''}}
+      </md-grid-tile>
+    </md-grid-list>
+  </md-card-content>
+</md-card>

@@ -7,7 +7,7 @@ import { OrgModule} from './org/org.module';
 import { AppMaterialModule } from './app-material.module';
 import { AppComponent } from './app.component';
 
-import {CountriesService} from './services/countries/countries.service';
+import {CountryService} from './org/services/country/country.service'; //  don't forget to change afterwards
 
 
 @NgModule({
@@ -23,7 +23,7 @@ import {CountriesService} from './services/countries/countries.service';
     OrgModule,
   ],
   providers: [
-    CountriesService
+    CountryService,
   ],
   bootstrap: [AppComponent]
 })

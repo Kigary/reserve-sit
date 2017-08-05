@@ -1,0 +1,6 @@
+<div class="placeholder" [ngStyle]="{'background-image': 'url(' + value + ')'}"></div>
+<label>
+  <input type="file" (change)="onChange($event)">
+  <span class="message">Drag and drop a file here or click</span>
+  <span class="file-icon"><i class="material-icons">add_a_photo</i></span>
+</label>

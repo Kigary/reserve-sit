@@ -10,7 +10,10 @@ import {RegisterAcounteComponent} from './register-account/register-account.comp
 import {SitsComponent} from './sits/sits.component';
 import {LoginPageComponent} from './login-page/login-page.component';
 import {LoginComponent} from './login/login.component';
-import {SitsService} from '../services/sits/sits.service';
+import {SitService} from './services/sit/sit.service';
+import { SitDialogComponent } from './sit-dialog/sit-dialog.component';
+import { ImageUploadComponent } from './image-upload/image-upload.component';
+import { SitComponent } from './sit/sit.component';
 
 @NgModule({
   imports: [
@@ -19,16 +22,20 @@ import {SitsService} from '../services/sits/sits.service';
     OrgMaterialModule,
     HttpClientModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: [],
   declarations: [
     LoginPageComponent,
     LoginComponent,
     RegisterAcounteComponent,
-    SitsComponent
+    SitsComponent,
+    SitDialogComponent,
+    ImageUploadComponent,
+    SitComponent,
   ],
-  providers: [SitsService],
+  providers: [SitService],
+  entryComponents: [SitDialogComponent]
 })
 export class OrgModule {
 }

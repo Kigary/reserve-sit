@@ -1,24 +1,24 @@
 import {Component, OnInit} from '@angular/core';
-import {CountriesService} from '../../services/countries/countries.service';
+import {CountryService} from '../services/country/country.service';
 import {FormGroup, Validators, FormBuilder, FormControl} from '@angular/forms';
 import {EMAIL_REGEX} from '../login/login.component';
-import {Country} from '../../defines/country';
+import {ICountry} from '../../defines/ICountry';
 
 @Component({
-  selector: 'app-register-acounte',
+  selector: 'org-register-account',
   templateUrl: './register-account.component.html',
   styleUrls: ['./register-account.component.css'],
 })
 export class RegisterAcounteComponent implements OnInit {
-  countries: Country [];
+  countries: ICountry [];
   regForm: FormGroup;
 
-  constructor(private CountriesService: CountriesService,
+  constructor(private CountryService: CountryService,
               private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this.CountriesService.getAllCounties()
+    this.CountryService.getAllCounties()
       .subscribe((data) => this.countries = data);
 
     this.formBuild();
