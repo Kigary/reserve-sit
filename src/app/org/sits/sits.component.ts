@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { Router } from '@angular/router';
 import { Sit } from '../../defines/sit';
-import { SitsService } from '../../services/sits/sits.service';
+import { SitsService } from '../services/sits/sits.service';
 
 @Component({
   selector: 'app-sits',

@@ -10,3 +10,13 @@
 form md-input-container, form div {
   padding: 15px;
 }
+.footer{
+  position: relative;
+}
+md-spinner {
+  width: 19px;
+  height: 35px;
+  margin: 0;
+  position: absolute;
+  left: 115px;
+}

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {createGUID} from '../../../server-api/common/index';
+import {createGUID} from '../../../../server-api/common/index';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { Sit } from '../../defines/sit';
+import { Sit } from '../../../defines/sit';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 

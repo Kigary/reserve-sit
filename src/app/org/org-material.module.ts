@@ -8,6 +8,7 @@ import {MdListModule} from '@angular/material';
 import {MdGridListModule} from '@angular/material';
 import {MdTabsModule} from '@angular/material';
 import {MdCardModule} from '@angular/material';
+import {MdProgressSpinnerModule} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import {MdCardModule} from '@angular/material';
     MdGridListModule,
     MdTabsModule,
     MdCardModule,
+    MdProgressSpinnerModule
   ],
   exports: [
     FlexLayoutModule,
@@ -31,6 +33,7 @@ import {MdCardModule} from '@angular/material';
     MdGridListModule,
     MdTabsModule,
     MdCardModule,
+    MdProgressSpinnerModule
   ],
 })
 export class OrgMaterialModule {

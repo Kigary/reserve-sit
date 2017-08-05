@@ -10,3 +10,8 @@
 form md-input-container ,.mat-grid-tile-footer{
   padding: 15px;
 }
+md-spinner {
+  width: 19px;
+  height: 35px;
+  padding-left: 15px;
+}

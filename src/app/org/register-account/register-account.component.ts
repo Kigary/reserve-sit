@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {CountriesService} from '../../services/countries/countries.service';
 import {FormGroup, Validators, FormBuilder, FormControl} from '@angular/forms';
+import {OrgService} from '../services/org/org.service';
 import {EMAIL_REGEX} from '../login/login.component';
 import {Country} from '../../defines/country';
+import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-register-acounte',
@@ -12,35 +13,42 @@ import {Country} from '../../defines/country';
 export class RegisterAcounteComponent implements OnInit {
   countries: Country [];
   regForm: FormGroup;
-
-  constructor(private CountriesService: CountriesService,
-              private fb: FormBuilder) {
+  isSubmit: boolean;
+  constructor(private fb: FormBuilder,
+              private OrgService: OrgService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.CountriesService.getAllCounties()
-      .subscribe((data) => this.countries = data);
 
+    this.activatedRoute.data.forEach((data) => this.countries = data.countries);
     this.formBuild();
   }
 
   formBuild() {
     this.regForm = this.fb.group({
-      email: ['', [Validators.pattern(EMAIL_REGEX)]],
+      login: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(15)]],
-      name: ['', [Validators.required]],
+      orgName: ['', [Validators.required]],
+      email: ['', [Validators.pattern(EMAIL_REGEX)]],
       country: ['Armenia', []],
       address: ['', [Validators.required]],
       city: ['', [Validators.required]],
-      pNumber: ['', [Validators.required, Validators.pattern(/^\d*$/)]],
-      fNumber: ['', []]
+      phone: ['', [Validators.required, Validators.pattern(/^\d*$/)]],
+      fax: ['', []]
     });
   }
 
-  OrgRegister() {
+  orgRegister(data) {
+    this.isSubmit = true;
+    this.OrgService.createOrg(data.value).subscribe(() => {
+        this.router.navigate(['org/auth/login']);
+      },
+        (error) => console.log(error.message));
   }
 
-  ErrorStateMatcher(control: FormControl): boolean {
+  errorStateMatcher(control: FormControl): boolean {
     return control.invalid && (control.dirty || control.touched);
   }
 }

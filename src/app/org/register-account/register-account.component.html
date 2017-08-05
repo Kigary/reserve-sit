@@ -1,18 +1,24 @@
 <md-toolbar class="mat-primary">
-  <h2>Registration</h2>
+  <h2>Organization Registration</h2>
 </md-toolbar>
-<form [formGroup]="regForm" fxLayout="column" (ngSubmit)="OrgRegister(regForm)">
+<form [formGroup]="regForm" fxLayout="column">
+  <md-input-container>
+    <input mdInput placeholder="Login"
+           formControlName="login" [errorStateMatcher]="errorStateMatcher">
+    <md-error *ngIf="regForm.get('login').hasError('required')">
+      Login is <strong>required</strong>
+    </md-error>
+  </md-input-container>
   <md-input-container>
     <input mdInput placeholder="Organization Name"
-           formControlName="name" [errorStateMatcher]="ErrorStateMatcher" required>
-    <md-error *ngIf="regForm.get('name').hasError('required')">
+           formControlName="orgName" [errorStateMatcher]="errorStateMatcher" required>
+    <md-error *ngIf="regForm.get('orgName').hasError('required')">
       Organization is <strong>required</strong>
     </md-error>
   </md-input-container>
-
   <md-input-container>
     <input mdInput placeholder="Address"
-           formControlName="address" [errorStateMatcher]="ErrorStateMatcher" required>
+           formControlName="address" [errorStateMatcher]="errorStateMatcher" required>
     <md-error *ngIf="regForm.get('address').hasError('required')">
       Address is <strong>required</strong>
     </md-error>
@@ -21,13 +27,13 @@
   <div>
     <md-input-container>
       <input mdInput placeholder="City" formControlName="city"
-             [errorStateMatcher]="ErrorStateMatcher" required>
+             [errorStateMatcher]="errorStateMatcher" required>
       <md-error *ngIf="regForm.get('city').hasError('required')">
         City is <strong>required</strong>
       </md-error>
     </md-input-container>
 
-    <md-select placeholder="Country" formControlName="country" required>
+    <md-select placeholder="Country" formControlName="country">
       <md-option *ngFor="let country of countries" [value]="country.name">
         {{country.name}}
       </md-option>
@@ -37,31 +43,31 @@
 
   <md-input-container>
     <input mdInput placeholder="Email" formControlName="email"
-           [errorStateMatcher]="ErrorStateMatcher">
+           [errorStateMatcher]="errorStateMatcher">
     <md-error *ngIf="regForm.get('email').hasError('pattern')">
       Please enter a valid email
     </md-error>
   </md-input-container>
   <div>
     <md-input-container>
-      <input mdInput placeholder="Phone Number" formControlName="pNumber"
-             [errorStateMatcher]="ErrorStateMatcher" required>
-      <md-error *ngIf="regForm.get('pNumber').hasError('required')">
+      <input mdInput placeholder="Phone Number" formControlName="phone"
+             [errorStateMatcher]="errorStateMatcher" required>
+      <md-error *ngIf="regForm.get('phone').hasError('required')">
         Number is <strong>required</strong>
       </md-error>
 
-      <md-error *ngIf="regForm.get('pNumber').hasError('pattern')">
+      <md-error *ngIf="regForm.get('phone').hasError('pattern')">
         Namber isn't valid
       </md-error>
     </md-input-container>
 
     <md-input-container>
-      <input mdInput placeholder="Fax Number" formControlName="fNumber">
+      <input mdInput placeholder="Fax Number" formControlName="fax">
     </md-input-container>
   </div>
   <md-input-container>
     <input mdInput type="password" placeholder="Password"
-           formControlName="password" [errorStateMatcher]="ErrorStateMatcher" required>
+           formControlName="password" [errorStateMatcher]="errorStateMatcher" required>
     <md-error *ngIf="regForm.get('password').hasError('required')">
       Password is <strong>required</strong>
     </md-error>
@@ -70,9 +76,12 @@
     </md-error>
   </md-input-container>
   <div fxLayout="row" class="mat-grid-tile-footer">
-    <button class=" mat-raised-button mat-primary" routerLink="/org/login">Cancel</button>
+    <button class=" mat-raised-button mat-primary" routerLink="../login">Cancel</button>
     <div fxFlex="2"></div>
-    <button md-button class="mat-raised-button mat-primary" [disabled]="!regForm.valid">Submit</button>
+    <button (click)="orgRegister(regForm)" md-button class="mat-raised-button mat-primary" [disabled]="!regForm.valid">
+      Submit
+    </button>
+    <md-spinner *ngIf="isSubmit"></md-spinner>
   </div>
 </form>
 

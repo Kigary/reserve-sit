@@ -1,20 +1,17 @@
 <md-toolbar class="mat-primary">
-  <h2>Login</h2>
+  <h2>Organization Login</h2>
 </md-toolbar>
-<form (ngSubmit)="Login(loginForm)" [formGroup]="loginForm" fxLayout="column">
+<form  [formGroup]="loginForm" fxLayout="column">
   <md-input-container>
-    <input mdInput placeholder="Email"
-           formControlName="email" [errorStateMatcher]="ErrorStateMatcher">
-    <md-error *ngIf="loginForm.get('email').hasError('required')">
-      Email is <strong>required</strong>
-    </md-error>
-    <md-error *ngIf="loginForm.get('email').hasError('pattern')">
-      Please enter a valid email
+    <input mdInput placeholder="Login"
+           formControlName="login" [errorStateMatcher]="errorStateMatcher">
+    <md-error *ngIf="loginForm.get('login').hasError('required')">
+      Login is <strong>required</strong>
     </md-error>
   </md-input-container>
   <md-input-container>
     <input mdInput type="password" placeholder="Password"
-           formControlName="password" [errorStateMatcher]="ErrorStateMatcher">
+           formControlName="password" [errorStateMatcher]="errorStateMatcher">
     <md-error *ngIf="loginForm.get('password').hasError('required')">
       Password is <strong>required</strong>
     </md-error>
@@ -22,10 +19,10 @@
       Password minlength <strong>15</strong>
     </md-error>
   </md-input-container>
-  <div fxLayout="row">
-    <button class=" mat-raised-button mat-primary" [disabled]='!loginForm.valid'>Login</button>
+  <div fxLayout="row" class = "footer">
+    <button (click)="login(loginForm)" class=" mat-raised-button mat-primary" [disabled]='!loginForm.valid'>Login</button>
+    <md-spinner *ngIf="sentLogin"></md-spinner>
     <div fxFlex="60"></div>
-    <button md-button class="mat-primary" routerLink="register">Registration</button>
+    <button md-button class="mat-primary" routerLink="../register">Registration</button>
   </div>
-
 </form>

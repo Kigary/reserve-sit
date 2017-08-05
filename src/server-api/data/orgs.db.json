@@ -2,6 +2,9 @@
   {
     "orgID": "57614132-0eea-4078-2508-72347fdd791d",
     "parentOrgID": null,
+    "login": "login",
+    "password": "password",
+    "orgName": "Tashir Pizza",
     "country": "Armenia",
     "city": "Yerevan",
     "address": "Movses Khorenatsu St., 33 Building",

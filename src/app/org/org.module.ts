@@ -10,7 +10,12 @@ import {RegisterAcounteComponent} from './register-account/register-account.comp
 import {SitsComponent} from './sits/sits.component';
 import {LoginPageComponent} from './login-page/login-page.component';
 import {LoginComponent} from './login/login.component';
-import {SitsService} from '../services/sits/sits.service';
+
+import {SitsService} from './services/sits/sits.service';
+import {OrgService} from './services/org/org.service';
+import {CountriesResolve} from './services/country/country.resolve';
+import {AuthService} from './services/auth/auth.service';
+import {AuthGuard} from './auth.guard';
 
 @NgModule({
   imports: [
@@ -28,7 +33,13 @@ import {SitsService} from '../services/sits/sits.service';
     RegisterAcounteComponent,
     SitsComponent
   ],
-  providers: [SitsService],
+  providers: [
+    SitsService,
+    OrgService,
+    CountriesResolve,
+    AuthService,
+    AuthGuard
+  ],
 })
 export class OrgModule {
 }
