@@ -5,15 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { OrgModule} from './org/org.module';
 import { AppMaterialModule } from './app-material.module';
-import { AppComponent } from './app.component';
+import {HomeModule} from './home/home.module';
 
+import { AppComponent } from './app.component';
 import {CountryService} from './org/services/country/country.service';
+
+
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,6 +25,7 @@ import {CountryService} from './org/services/country/country.service';
     AppRoutingModule,
     AppMaterialModule,
     OrgModule,
+    HomeModule
   ],
   providers: [
     CountryService
