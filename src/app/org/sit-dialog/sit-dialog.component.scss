@@ -1,0 +1,25 @@
+md-input-container {
+  width: 100%;
+}
+.image {
+  border: 2px solid lightblue;
+  margin: 0;
+  padding: 32px 0;
+  position: relative;
+}
+org-image-upload {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  opacity: 0.5;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+md-progress-bar {
+  opacity: 0;
+
+  &.progress-started {
+   opacity: 1;
+ }
+}

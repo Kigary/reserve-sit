@@ -1,14 +1,10 @@
 import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {MdInputModule} from '@angular/material';
-import {MdToolbarModule} from '@angular/material';
-import {MdButtonModule} from '@angular/material';
-import {MdSelectModule} from '@angular/material';
-import {MdListModule} from '@angular/material';
-import {MdGridListModule} from '@angular/material';
-import {MdTabsModule} from '@angular/material';
-import {MdCardModule} from '@angular/material';
-import {MdProgressSpinnerModule} from '@angular/material';
+import { MdInputModule, MdToolbarModule, MdButtonModule, MdSelectModule,
+         MdListModule, MdGridListModule,  MdTabsModule, MdCardModule,
+         MdDialogModule, MdCheckboxModule, MdProgressSpinnerModule} from '@angular/material';
+
+
 
 @NgModule({
   imports: [
@@ -21,7 +17,9 @@ import {MdProgressSpinnerModule} from '@angular/material';
     MdGridListModule,
     MdTabsModule,
     MdCardModule,
-    MdProgressSpinnerModule
+    MdProgressSpinnerModule,
+    MdDialogModule,
+    MdCheckboxModule,
   ],
   exports: [
     FlexLayoutModule,
@@ -33,7 +31,9 @@ import {MdProgressSpinnerModule} from '@angular/material';
     MdGridListModule,
     MdTabsModule,
     MdCardModule,
-    MdProgressSpinnerModule
+    MdProgressSpinnerModule,
+    MdDialogModule,
+    MdCheckboxModule,
   ],
 })
 export class OrgMaterialModule {

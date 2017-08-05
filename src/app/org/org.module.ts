@@ -10,12 +10,17 @@ import {RegisterAcounteComponent} from './register-account/register-account.comp
 import {SitsComponent} from './sits/sits.component';
 import {LoginPageComponent} from './login-page/login-page.component';
 import {LoginComponent} from './login/login.component';
+import { SitDialogComponent } from './sit-dialog/sit-dialog.component';
+import { ImageUploadComponent } from './image-upload/image-upload.component';
+import { SitComponent } from './sit/sit.component';
 
-import {SitsService} from './services/sits/sits.service';
+import {SitService} from './services/sit/sit.service';
 import {OrgService} from './services/org/org.service';
 import {CountriesResolve} from './services/country/country.resolve';
 import {AuthService} from './services/auth/auth.service';
 import {AuthGuard} from './auth.guard';
+
+
 
 @NgModule({
   imports: [
@@ -24,22 +29,27 @@ import {AuthGuard} from './auth.guard';
     OrgMaterialModule,
     HttpClientModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: [],
   declarations: [
     LoginPageComponent,
     LoginComponent,
     RegisterAcounteComponent,
-    SitsComponent
+    SitsComponent,
+    SitDialogComponent,
+    ImageUploadComponent,
+    SitComponent,
   ],
   providers: [
-    SitsService,
+    SitService,
     OrgService,
     CountriesResolve,
     AuthService,
     AuthGuard
   ],
+
+  entryComponents: [SitDialogComponent]
 })
 export class OrgModule {
 }

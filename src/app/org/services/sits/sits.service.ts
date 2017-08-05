@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {createGUID} from '../../../../server-api/common/index';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { Sit } from '../../../defines/sit';
+import { ISit } from '../../../defines/ISit';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
@@ -13,13 +13,13 @@ export class SitsService {
 
   constructor(private http: HttpClient) { }
 
-  getAllSits(): Observable<Sit[]> {
+  getAllSits(): Observable<ISit[]> {
     return this.http.get(this.sitsUrl)
       .catch(() => Observable.throw('error'));
   }
 
 
-  getSit(id: string): Observable<Sit> {
+  getSit(id: string): Observable<ISit> {
     const url = `${this.sitsUrl}/${id}`;
     return this.http.get(url)
       .catch(() => Observable.throw('error'));
@@ -31,7 +31,7 @@ export class SitsService {
       .catch(() => Observable.throw('error'));
   }
 
-  create(...fields: string[]): Observable<Sit> {
+  create(...fields: string[]): Observable<ISit> {
     return this.http
       .post(this.sitsUrl, JSON.stringify(
         {
@@ -48,7 +48,7 @@ export class SitsService {
       .catch(() => Observable.throw('error'));
   }
 
-  update(sit: Sit): Observable<Sit> {
+  update(sit: ISit): Observable<ISit> {
     const url = `${this.sitsUrl}/${sit.sitID}`;
     return this.http
       .put(url, JSON.stringify(sit))

@@ -15,7 +15,6 @@ export class AuthService {
   }
 
   logOut () {
-    return this.http.get('api/org/logout').delay(2000)
-      .catch((error) => Observable.throw(error));
+
   }
 }

@@ -1,0 +1,42 @@
+md-card {
+  background-color: #26A69A;
+  height: 100%;
+}
+img[md-card-image] {
+  margin: 0;
+  width: 100%;
+}
+.imgCtr {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  width: calc(100% + 48px);
+  height: 200px;
+  margin-left: -24px
+}
+md-card > .material-icons {
+  font-size: 100px;
+}
+md-card-header {
+  margin: 0;
+  display: inline;
+}
+md-card-title {
+  margin: 0 0 16px 0;
+}
+.sitProps {
+  margin-top: 20px;
+  text-align: center;
+}
+md-card:hover {
+  opacity: 0.8;
+}
+md-card-subtitle {
+  float: right;
+}
+.mat-card-header-text {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}

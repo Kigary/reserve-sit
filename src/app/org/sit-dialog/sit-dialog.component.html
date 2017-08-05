@@ -1,0 +1,32 @@
+<h1 md-dialog-title>New Sit</h1>
+
+<md-dialog-content>
+  <form>
+    <md-input-container>
+      <input mdInput placeholder="Seat Name"
+          [(ngModel)]="sit.sitName"/>
+    </md-input-container>
+    <br/>
+    <md-input-container>
+      <input mdInput placeholder="Quantity of seats"
+          [(ngModel)]="sit.numOfSeats"/>
+    </md-input-container>
+    <br/>
+    <org-image-upload></org-image-upload>
+    <br/>
+    <md-checkbox [(ngModel)]="sit.reserved">
+      Reserved
+    </md-checkbox>
+    <br/>
+    <md-checkbox [(ngModel)]="sit.paid">
+      Paid
+    </md-checkbox>
+  </form>
+</md-dialog-content>
+
+<md-dialog-actions>
+  <button md-button (click)="saveSit(sit)">Save</button>
+  <button md-button [md-dialog-close]="null">Cancel</button>
+</md-dialog-actions>
+
+<md-progress-bar mode="indeterminate" [class.progress-started]="inProgress"></md-progress-bar>

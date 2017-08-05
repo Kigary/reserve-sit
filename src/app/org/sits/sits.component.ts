@@ -1,56 +1,49 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Sit } from '../../defines/sit';
-import { SitsService } from '../services/sits/sits.service';
+
+import { ISit } from '../../defines/ISit';
+import { SitService } from '../services/sit/sit.service';
+import {SitDialogComponent} from '../sit-dialog/sit-dialog.component';
+import {MdDialog} from '@angular/material';
+
 
 @Component({
-  selector: 'app-sits',
+  selector: 'org-sits',
   templateUrl: './sits.component.html',
   styleUrls: [
     './sits.component.css'
   ]
 })
 export class SitsComponent implements OnInit {
-  sits: Sit[];
-  selectedSit: Sit;
+  sits: ISit[];
 
   constructor(
-    private sitService: SitsService,
-    private router: Router) { }
+    private sitService: SitService,
+    private router: Router,
+    public dialog: MdDialog) { }
 
   getAllSits(): void {
     this.sitService
       .getAllSits()
-      .subscribe(sits => this.sits = sits);
+      .subscribe(sits => this.sits = sits as ISit[]);
   }
 
-  add(...fields: string[]): void {
-    if (!fields[0]) { return; }
-    this.sitService.create(...fields)
-      .subscribe(sit => {
-        this.sits.push(sit);
-        this.selectedSit = null;
-      });
+  addSit() {
+    const dialogRef = this.dialog.open(SitDialogComponent, {
+      data: {}
+    });
   }
 
-  delete(sit: Sit): void {
-    this.sitService
-      .delete(sit.sitID)
-      .subscribe(() => {
-        this.sits = this.sits.filter(s => s !== sit);
-        if (this.selectedSit === sit) { this.selectedSit = null; }
-      });
+  deleteSit(sit) {
+    const index = this.sits.indexOf(sit);
+    this.sits.splice(index, 1);
+  }
+
+  saveSit(sit) {
+    this.sits.splice(0, 0, sit);
   }
 
   ngOnInit(): void {
     this.getAllSits();
   }
-
-  onSelect(sit: Sit): void {
-    this.selectedSit = sit;
-  }
-
-  /*gotoDetail(): void {
-    this.router.navigate(['/detail', this.selectedSit.sitID]);
-  }*/
 }
