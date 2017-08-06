@@ -46,7 +46,7 @@ export class RegisterAcounteComponent implements OnInit {
   orgRegister(data) {
     this.isSubmit = true;
     this.OrgService.createOrg(data.value).subscribe(() => {
-        this.router.navigate(['org/auth/login']);
+        this.router.navigate(['org/account/login']);
       },
       (error) => console.log(error.message));
   }

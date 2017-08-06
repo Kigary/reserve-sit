@@ -7,23 +7,23 @@ import {SitsComponent} from './sits/sits.component';
 import {LoginPageComponent} from './login-page/login-page.component';
 
 import {CountriesResolve} from './services/country/country.resolve';
-import {AuthGuard} from './auth.guard';
+import {AccountGuard} from './guards/account.guard';
 
 const routes: Routes = [
   {
     path: 'org',
+    canActivateChild: [AccountGuard],
     children: [
       {
-        path: 'auth',
+        path: 'account',
         component: LoginPageComponent,
         children: [
           {
             path: 'login',
             component: LoginComponent,
-            //canActivate: [LoginGuard]
           },
           {
-            path: 'register',
+            path: 'create',
             component: RegisterAcounteComponent,
             resolve: {
               countries: CountriesResolve
@@ -39,11 +39,10 @@ const routes: Routes = [
       {
         path: 'sits',
         component: SitsComponent,
-        canActivate: [AuthGuard]
       },
       {
         path: '',
-        redirectTo: 'auth',
+        redirectTo: 'account',
         pathMatch: 'full'
       }
     ],

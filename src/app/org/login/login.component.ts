@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, Validators, FormBuilder, FormControl} from '@angular/forms';
-import {AuthService} from '../services/auth/auth.service';
+import {AccountService} from '../services/auth/account.service';
 import {Router} from '@angular/router';
 
 export const EMAIL_REGEX = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
@@ -16,12 +16,12 @@ export class LoginComponent implements OnInit {
   storage: Storage;
 
   constructor(private fb: FormBuilder,
-              private AuthService: AuthService,
+              private accountService: AccountService,
               private router: Router) {
   }
 
   ngOnInit() {
-    this.storage = localStorage;
+    this.storage = sessionStorage;
     this.formBuild();
   }
 
@@ -34,9 +34,9 @@ export class LoginComponent implements OnInit {
 
   login(data) {
     this.sentLogin = true;
-    this.AuthService.login(data.value).subscribe(() => {
+    this.accountService.login(data.value).subscribe(() => {
         this.storage.orgLogin = 'true';
-        this.router.navigate(['/org/sits']);
+        this.router.navigate(['org/sits']);
       },
       (error) => {
         this.sentLogin = false;
