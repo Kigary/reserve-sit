@@ -1,8 +1,11 @@
 :host  {
+  display: flex;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  justify-content: center;
   margin:30px auto;
   background-color:rgb(255,255,255);
+  width: 500px;
 }
 form md-input-container, form div {
   padding: 15px;
@@ -17,6 +20,4 @@ md-spinner {
   position: absolute;
   left: 115px;
 }
-md-toolbar {
-  width: 450px;
-}
+

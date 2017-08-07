@@ -7,7 +7,6 @@ const filePath = join(__dirname, './data/users.db.json');
 
 class User {
   userID: string = createGUID();
-  role: string;
   login: string;
   password: string;
   email: string;

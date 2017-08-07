@@ -12,4 +12,6 @@ html, body
   font: inherit;
   vertical-align: baseline;
 }
-
+body {
+  background-color: #fafafa;
+}
