@@ -2,20 +2,15 @@
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
   font-family: Roboto, "Helvetica Neue", sans-serif;
   margin:30px auto;
-  background-color:rgb(255,255,255);
+  background-color: rgb(255,255,255);
 }
-form md-input-container, form div {
+form md-input-container ,.mat-grid-tile-footer{
   padding: 15px;
-}
-.footer{
-  position: relative;
 }
 md-spinner {
   width: 19px;
   height: 35px;
-  margin: 0;
-  position: absolute;
-  left: 115px;
+  padding-left: 15px;
 }
 md-toolbar {
   width: 450px;

@@ -4,7 +4,8 @@
 <form [formGroup]="regForm" fxLayout="column">
   <md-input-container>
     <input mdInput placeholder="Login"
-           formControlName="login" [errorStateMatcher]="errorStateMatcher">
+           formControlName="login" [errorStateMatcher]="errorStateMatcher"
+    required>
     <md-error *ngIf="regForm.get('login').hasError('required')">
       Login is <strong>required</strong>
     </md-error>

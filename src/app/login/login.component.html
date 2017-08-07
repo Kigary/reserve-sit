@@ -1,8 +1,8 @@
-<md-toolbar class="mat-primary">
- Organization Login
+<md-toolbar class="mat-primary" fxLayoutAlign="center center" >
+    Reserve Sit
 </md-toolbar>
 <form [formGroup]="loginForm"
-      fxLayout="column">
+      fxLayout="column" >
   <md-input-container>
     <input mdInput placeholder="Login"
            formControlName="login"
@@ -27,7 +27,7 @@
     <button (click)="login(loginForm)"
             class=" mat-raised-button mat-primary"
             [disabled]='!loginForm.valid'>
-      Login
+      Sign In
     </button>
     <md-spinner *ngIf="sentLogin"></md-spinner>
     <div fxFlex="60"></div>

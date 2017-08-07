@@ -1,0 +1,67 @@
+<md-toolbar class="mat-primary">
+  Sign Up
+</md-toolbar>
+<form [formGroup]="regForm"
+      fxLayout="column">
+  <md-input-container>
+    <input mdInput placeholder="Login"
+           formControlName="login"
+           [errorStateMatcher]="errorStateMatcher">
+    <md-error *ngIf="regForm.get('login').hasError('required')">
+      Login is <strong>required</strong>
+    </md-error>
+  </md-input-container>
+  <md-input-container>
+    <input mdInput placeholder="FirstName"
+           formControlName="FirstName"
+           [errorStateMatcher]="errorStateMatcher">
+  </md-input-container>
+  <md-input-container >
+    <input mdInput placeholder="LastName"
+           formControlName="LastName"
+           [errorStateMatcher]="errorStateMatcher">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput placeholder="Email"
+           formControlName="email"
+           [errorStateMatcher]="errorStateMatcher">
+    <md-error *ngIf="regForm.get('email').hasError('pattern')">
+      Please enter a valid email
+    </md-error>
+  </md-input-container>
+  <md-input-container>
+      <input mdInput placeholder="Phone Number"
+             formControlName="phone"
+             [errorStateMatcher]="errorStateMatcher"
+             required>
+      <md-error *ngIf="regForm.get('phone').hasError('required')">
+        Number is <strong>required</strong>
+      </md-error>
+
+      <md-error *ngIf="regForm.get('phone').hasError('pattern')">
+        Namber isn't valid
+      </md-error>
+    </md-input-container>
+  <md-input-container>
+    <input mdInput type="password"
+           placeholder="Password"
+           formControlName="password"
+           [errorStateMatcher]="errorStateMatcher"
+           required>
+    <md-error *ngIf="regForm.get('password').hasError('required')">
+      Password is <strong>required</strong>
+    </md-error>
+  </md-input-container>
+  <div fxLayout="row" class="mat-grid-tile-footer">
+    <button class=" mat-raised-button mat-primary"
+            routerLink="../login">Cancel
+    </button>
+    <div fxFlex="2"></div>
+    <button (click)="UserRegister(regForm)"
+            md-button class="mat-raised-button mat-primary"
+            [disabled]="!regForm.valid">
+      Sign Up
+    </button>
+    <md-spinner *ngIf="isSubmit"></md-spinner>
+  </div>
+</form>

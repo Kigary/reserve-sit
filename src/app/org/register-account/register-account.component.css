@@ -1,11 +1,8 @@
 :host  {
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
-  display: flex;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  flex-direction: column;
-  justify-content: center;
-  max-width: 500px;
   margin:30px auto;
+  background-color: rgba(255,255,255,255);
 }
 form md-input-container ,.mat-grid-tile-footer{
   padding: 15px;
@@ -14,4 +11,7 @@ md-spinner {
   width: 19px;
   height: 35px;
   padding-left: 15px;
+}
+md-toolbar {
+  width: 450px;
 }
