@@ -4,7 +4,8 @@ md-card {
 }
 img[md-card-image] {
   margin: 0;
-  width: 100%;
+  max-height: 100%;
+  max-width: 100%;
 }
 .imgCtr {
   background-color: white;
@@ -26,7 +27,6 @@ md-card-title {
 }
 .sitProps {
   margin-top: 20px;
-  text-align: center;
 }
 md-card:hover {
   opacity: 0.8;
@@ -38,5 +38,10 @@ md-card-subtitle {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
+}
+md-card-actions {
+  display: flex;
+  justify-content: space-around;
   align-items: flex-end;
 }

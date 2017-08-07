@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ISit } from '../../../defines/ISit';
 
 @Injectable()
 export class SitService {
-  sitList: ISit[];
 
   constructor(private http: HttpClient) { }
 
@@ -15,7 +13,7 @@ export class SitService {
     return this.http.delete(`api/sit/${sitID}`);
   }
   createSit(data) {
-    return this.http.post(`/api/sit/`, data);
+    return this.http.post(`/api/sit/sit-list`, data);
   }
   updateSit(data) {
     return this.http.post(`/api/sit/${data.sitID}`, data);

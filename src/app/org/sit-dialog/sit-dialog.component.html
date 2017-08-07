@@ -4,23 +4,30 @@
   <form>
     <md-input-container>
       <input mdInput placeholder="Seat Name"
-          [(ngModel)]="sit.sitName"/>
+          [(ngModel)]="sit.sitName"
+          name="sitName"/>
     </md-input-container>
     <br/>
     <md-input-container>
       <input mdInput placeholder="Quantity of seats"
-          [(ngModel)]="sit.numOfSeats"/>
+          [(ngModel)]="sit.numOfSeats"
+          name="numOfSeats"/>
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Cost"
+          [(ngModel)]="sit.cost"
+          name="cost"/>
     </md-input-container>
     <br/>
-    <org-image-upload></org-image-upload>
-    <br/>
-    <md-checkbox [(ngModel)]="sit.reserved">
+    <md-checkbox [(ngModel)]="sit.reserved" name="reserved">
       Reserved
     </md-checkbox>
     <br/>
-    <md-checkbox [(ngModel)]="sit.paid">
+    <md-checkbox [(ngModel)]="sit.paid" name="paid">
       Paid
     </md-checkbox>
+    <br/><br/>
+    <org-image-upload [(ngModel)]="sit.image" [ngModelOptions]="{standalone: true}" ngDefaultControl></org-image-upload>
   </form>
 </md-dialog-content>
 
@@ -29,4 +36,4 @@
   <button md-button [md-dialog-close]="null">Cancel</button>
 </md-dialog-actions>
 
-<md-progress-bar mode="indeterminate" [class.progress-started]="inProgress"></md-progress-bar>
+<!--<md-progress-bar mode="indeterminate" [class.progress-started]="inProgress"></md-progress-bar>-->

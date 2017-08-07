@@ -13,7 +13,7 @@ export class SitDialogComponent implements OnInit {
   inProgress = false;
 
   @Input()
-  sit;
+  sit: ISit;
 
   constructor(
     @Inject(MD_DIALOG_DATA) data: ISit,
@@ -25,6 +25,7 @@ export class SitDialogComponent implements OnInit {
   saveSit(data) {
     const obs = data.sitID ? this.sitService.updateSit(data) : this.sitService.createSit(data);
     this.inProgress = true;
+    data.image = data.image.slice(11);
     obs.subscribe(sit => this.dialogRef.close(sit));
   }
 

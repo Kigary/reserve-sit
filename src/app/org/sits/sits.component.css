@@ -2,7 +2,7 @@ h2, h3 {
   font-weight: 700;
 }
 div {
-  width: 1000px;
+  width: 1100px;
 }
 md-grid-tile {
   display: inline-flex;
@@ -41,4 +41,8 @@ md-grid-tile:hover {
   outline: none;
   opacity: 0.8;
   font-size: 120px;
+}
+org-sit {
+  min-height: 100%;
+  min-width: 100%;
 }

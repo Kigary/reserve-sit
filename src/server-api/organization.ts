@@ -6,7 +6,7 @@ import {join} from 'path';
 
 const filePath = join(__dirname, './data/orgs.db.json');
 
-class Organization {
+export class Organization {
   static loggedInOrg: Organization = null;
 
   orgID: string = createGUID();
