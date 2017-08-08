@@ -19,9 +19,6 @@
     <md-error *ngIf="loginForm.get('password').hasError('required')">
       Password is <strong>required</strong>
     </md-error>
-    <md-error *ngIf="loginForm.get('password').hasError('minlength')">
-      Password minlength <strong>15</strong>
-    </md-error>
   </md-input-container>
   <div fxLayout="row" class="footer">
     <button (click)="login(loginForm)"

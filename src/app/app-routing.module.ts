@@ -4,10 +4,11 @@ import {UserLoginPageComponent} from './login-page/login-page.component';
 import {UserLoginComponent} from './login/login.component';
 import {UserRegistreAccountComponent} from './create-account/create-account.component';
 
+
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'org',
+    redirectTo: 'home',
     pathMatch: 'full'
 
   },

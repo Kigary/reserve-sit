@@ -9,5 +9,15 @@
     "firstName": "Vzgo",
     "lastName": "Asatryan",
     "gender": "male"
+  },
+  {
+    "userID": "a3cbac26-5eeb-7b8a-abdf-1d1cdaf38e03",
+    "login": "informm109",
+    "firstName": "Artur",
+    "lastName": "dad",
+    "email": "adad@mail.ru",
+    "phone": "121212",
+    "gender": "male",
+    "password": "111111111111111"
   }
 ]

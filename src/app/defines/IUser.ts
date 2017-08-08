@@ -1,4 +1,9 @@
 export class IUser {
-  email: string;
-  password: string;
+  firstName: string;
+  lastName: string;
+  login: string;
+  address: string;
+  email?: string;
+  phone?: string;
+  gender?: string;
 }

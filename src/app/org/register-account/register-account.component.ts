@@ -2,11 +2,12 @@ import {Component, OnInit} from '@angular/core';
 
 import {FormGroup, Validators, FormBuilder, FormControl} from '@angular/forms';
 import {OrgService} from '../services/org/org.service';
-import {EMAIL_REGEX} from '../login/login.component';
+
 
 import {Router, ActivatedRoute} from '@angular/router';
 import {ICountry} from '../../defines/ICountry';
 
+export const EMAIL_REGEX = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 
 @Component({
   selector: 'org-register-account',

@@ -6,25 +6,25 @@
   <md-input-container>
     <input mdInput placeholder="Login"
            formControlName="login"
-           [errorStateMatcher]="errorStateMatcher">
+           [errorStateMatcher]="errorStateMatcher" required>
     <md-error *ngIf="regForm.get('login').hasError('required')">
       Login is <strong>required</strong>
     </md-error>
   </md-input-container>
   <md-input-container>
     <input mdInput placeholder="FirstName"
-           formControlName="FirstName"
-           [errorStateMatcher]="errorStateMatcher">
+           formControlName="firstName"
+           [errorStateMatcher]="errorStateMatcher" required>
   </md-input-container>
   <md-input-container >
     <input mdInput placeholder="LastName"
-           formControlName="LastName"
-           [errorStateMatcher]="errorStateMatcher">
+           formControlName="lastName"
+           [errorStateMatcher]="errorStateMatcher" required>
   </md-input-container>
   <md-input-container>
     <input mdInput placeholder="Email"
            formControlName="email"
-           [errorStateMatcher]="errorStateMatcher">
+           [errorStateMatcher]="errorStateMatcher" required>
     <md-error *ngIf="regForm.get('email').hasError('pattern')">
       Please enter a valid email
     </md-error>
@@ -42,6 +42,11 @@
         Namber isn't valid
       </md-error>
     </md-input-container>
+  <md-radio-group formControlName="gender" >Gender
+    <md-radio-button *ngFor="let gender of genders" [value]="gender" color="primary">
+      {{gender}}
+    </md-radio-button>
+  </md-radio-group>
   <md-input-container>
     <input mdInput type="password"
            placeholder="Password"

@@ -1,6 +1,8 @@
-<button md-button [mdMenuTriggerFor]="user">Menu</button>
-<md-menu #user="mdMenu" xPosition="before" yPosition="below" [overlapTrigger]="false">
+<button md-button [mdMenuTriggerFor]="menu" *ngIf="user">
+  {{user.firstName}}
+</button>
+<md-menu #menu="mdMenu" xPosition="before" yPosition="below"
+         [overlapTrigger]="false" >
   <button md-menu-item>Orders</button>
-  <button md-menu-item>Sign Out</button>
+  <button md-menu-item (click)="signOut()">Sign Out</button>
 </md-menu>
-

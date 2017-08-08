@@ -4,7 +4,7 @@
   margin:30px auto;
   background-color: rgb(255,255,255);
 }
-form md-input-container ,.mat-grid-tile-footer{
+form md-input-container ,.mat-grid-tile-footer, md-radio-group{
   padding: 15px;
 }
 md-spinner {
@@ -14,4 +14,11 @@ md-spinner {
 }
 md-toolbar {
   width: 450px;
+}
+md-radio-group{
+
+}
+md-radio-button {
+
+  margin-left: 20px;
 }

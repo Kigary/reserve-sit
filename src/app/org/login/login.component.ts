@@ -3,8 +3,6 @@ import {FormGroup, Validators, FormBuilder, FormControl} from '@angular/forms';
 import {AccountService} from '../services/auth/account.service';
 import {Router} from '@angular/router';
 
-export const EMAIL_REGEX = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
-
 @Component({
   selector: 'org-login',
   templateUrl: './login.component.html',
@@ -28,7 +26,7 @@ export class LoginComponent implements OnInit {
   formBuild() {
     this.loginForm = this.fb.group({
       login: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(15)]]
+      password: ['', [Validators.required]]
     });
   }
 

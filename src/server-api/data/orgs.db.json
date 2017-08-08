@@ -4,37 +4,12 @@
     "parentOrgID": null,
     "login": "login",
     "password": "password",
-    "orgName": "Tashir Pizza",
+    "name": "Tashir Pizza",
     "country": "Armenia",
     "city": "Yerevan",
     "address": "Movses Khorenatsu St., 33 Building",
-    "name": "Tashir Pizza",
     "phone": "098 51 00 24",
     "email": "info@tashirgroup.am",
     "fax": "(+374 10) 51 11 08"
-  },
-  {
-    "orgID": "4cc82489-fa52-2db3-0c99-2586c703935a",
-    "login": "kigary",
-    "password": "Blackreaper73pass",
-    "orgName": "Tashir",
-    "email": "",
-    "country": "Armenia",
-    "address": "Somewhere over the rainbow",
-    "city": "Yerevan",
-    "phone": "098692007",
-    "fax": ""
-  },
-  {
-    "orgID": "880b4704-59c6-8872-260f-f50fbf47480e",
-    "login": "kigary",
-    "password": "sq1sq1sq1sq1sq1",
-    "orgName": "SQ1",
-    "email": "",
-    "country": "Armenia",
-    "address": "Abovyan 1/3",
-    "city": "Yerevan",
-    "phone": "000000000",
-    "fax": ""
   }
 ]
