@@ -1,11 +1,12 @@
 import * as express from 'express';
-import {readFileSync} from 'fs';
-import {join} from 'path';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
 
 const  filePath = join(__dirname, './data/countries.db.json');
 
 class Country {
-  countryId: string;
+  countryID: string;
   name: string;
 
   static getAllCountries(): Country[] {

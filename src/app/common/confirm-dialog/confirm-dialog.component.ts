@@ -1,5 +1,6 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MdDialog, MD_DIALOG_DATA} from '@angular/material';
+import { Component, Inject } from '@angular/core';
+import { MD_DIALOG_DATA } from '@angular/material';
+
 
 export interface IConfirmDialogOptions {
   msg: string;
@@ -10,6 +11,7 @@ export interface IConfirmDialogOptions {
   templateUrl: './confirm-dialog.component.html',
   styleUrls: ['./confirm-dialog.component.scss']
 })
+
 export class ConfirmDialogComponent {
   constructor(@Inject(MD_DIALOG_DATA) public data: IConfirmDialogOptions) { }
 }

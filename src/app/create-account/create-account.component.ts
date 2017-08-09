@@ -1,16 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {FormGroup, Validators, FormBuilder, FormControl} from '@angular/forms';
-import {UserService} from '../services/user.service';
-import {EMAIL_REGEX} from '../org/register-account/register-account.component';
-import {IGender} from '../defines/IGender';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
+import { UserService } from '../services/user.service';
+import { EMAIL_REGEX } from '../org/register-account/register-account.component';
+import { IGender } from '../defines/IGender';
+import { Router } from '@angular/router';
+
 
 @Component({
-  selector: 'app-registre-account',
+  selector: 'app-register-account',
   templateUrl: './create-account.component.html',
   styleUrls: ['./create-account.component.css']
 })
-export class UserRegistreAccountComponent implements OnInit {
+
+export class UserRegisterAccountComponent implements OnInit {
   regForm: FormGroup;
   isSubmit: boolean;
   genders: IGender[] = ['Male', 'Female'];
@@ -18,10 +20,6 @@ export class UserRegistreAccountComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private userService: UserService,
               private router: Router) {
-  }
-
-  ngOnInit() {
-    this.formBuild();
   }
 
   formBuild() {
@@ -46,5 +44,9 @@ export class UserRegistreAccountComponent implements OnInit {
 
   errorStateMatcher(control: FormControl): boolean {
     return control.invalid && (control.dirty || control.touched);
+  }
+
+  ngOnInit() {
+    this.formBuild();
   }
 }

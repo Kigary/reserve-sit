@@ -10,11 +10,12 @@ export class AccountService {
   constructor(private http: HttpClient) { }
 
   login (data) {
-    return this.http.post('api/org/login', data).delay(2000)
+    return this.http.post('api/org/login', data).delay(1000)
       .catch((error) => Observable.throw(error));
   }
 
   logOut () {
-
+    return this.http.get('api/org/logout').delay(1000)
+      .catch((error) => Observable.throw(error));
   }
 }

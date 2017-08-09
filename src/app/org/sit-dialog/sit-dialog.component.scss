@@ -5,10 +5,7 @@ md-dialog-content {
 md-input-container {
   width: 100%;
 }
-md-progress-bar {
-  opacity: 0;
-
-  &.progress-started {
-   opacity: 1;
- }
+md-spinner {
+  width: 35px;
+  height: 35px;
 }

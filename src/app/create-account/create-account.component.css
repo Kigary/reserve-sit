@@ -3,22 +3,17 @@
   width: 450px;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-
 form md-input-container, md-radio-group {
   padding: 5px;
 }
-
-.mat-grid-tile-footer {
-  padding-bottom: 10px;
+md-radio-button {
+  margin-left: 20px;
 }
-
 md-spinner {
-  width: 19px;
   height: 35px;
+  width: 19px;
   padding-left: 15px;
 }
-
-md-radio-button {
-
-  margin-left: 20px;
+.mat-grid-tile-footer {
+  padding-bottom: 10px;
 }

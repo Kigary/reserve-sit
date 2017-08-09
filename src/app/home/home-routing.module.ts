@@ -1,10 +1,9 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
-import {HomeComponent} from './home.component';
-import {UserRegistreAccountComponent} from '../create-account/create-account.component';
-import {UserLoginComponent} from '../login/login.component';
-
+import { HomeComponent } from './home.component';
+import { UserRegisterAccountComponent } from '../create-account/create-account.component';
+import { UserLoginComponent } from '../login/login.component';
 
 
 const routes: Routes = [
@@ -19,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'create',
-    component: UserRegistreAccountComponent,
+    component: UserRegisterAccountComponent,
     outlet: 'account'
   }
 ];
@@ -28,7 +27,7 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class HomeRoutingModule {
-}
+
+export class HomeRoutingModule { }
 
 export const routedComponents = [HomeRoutingModule];

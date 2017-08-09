@@ -1,8 +1,17 @@
-h2, h3 {
+.container {
+  width: 100%;
+  background-color: #ECEFF1;
+  color: #455A64;
+  margin: 0;
+}
+h2{
   font-weight: 700;
+  margin: 0;
+  padding: 20px 0;
 }
 div {
-  width: 1100px;
+  width: 1000px;
+  margin: 20px 0 0 20px;
 }
 md-grid-tile {
   display: inline-flex;
@@ -12,37 +21,32 @@ md-grid-tile {
 }
 md-icon {
   font-family: 'Material Icons', serif;
-  font-size: 100px;
+  font-size: 30px;
 }
 md-grid-tile {
-  outline: 1px solid #26A69A;
+  outline: 1px solid #CFD8DC;
 }
 md-grid-tile:hover {
-  outline: 2px solid #269b8f;
-}
-.addSit {
-  outline: none;
-}
-.addSit md-card {
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  outline: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.addSit md-card button {
-  cursor: pointer;
-  width: 100%;
-  height: 100%;
-}
-.addSit:hover, .addSit:hover md-icon {
-  outline: none;
-  opacity: 0.8;
-  font-size: 120px;
+  outline: 2px solid #B0BEC5;
 }
 org-sit {
-  min-height: 100%;
-  min-width: 100%;
+  height: 100%;
+  width: 100%;
+}
+.addSit {
+  background-color: #78909C;
+  color: white;
+  float: right;
+  font-size: 36px;
+}
+md-toolbar {
+  background-color: #78909C;
+}
+.orgName {
+  font-size: 20px;
+  max-width: 200px;
+  min-width: 150px !important;
+}
+md-toolbar button {
+  color: #ECEFF1;
 }

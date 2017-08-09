@@ -1,8 +1,5 @@
-/**
- * Created by voska_000 on 02.08.2017.
- */
 import { NgModule } from '@angular/core';
-import {MdButtonModule, MdDialogModule} from '@angular/material';
+import { MdButtonModule, MdDialogModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -14,5 +11,5 @@ import {MdButtonModule, MdDialogModule} from '@angular/material';
     MdDialogModule
   ]
 })
-export class AppCommonMaterialModule {
-}
+
+export class AppCommonMaterialModule { }

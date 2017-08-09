@@ -13,7 +13,7 @@ export class SitService {
     return this.http.delete(`api/sit/${sitID}`);
   }
   createSit(data) {
-    return this.http.post(`/api/sit/sit-list`, data);
+    return this.http.post(`/api/sit/`, data);
   }
   updateSit(data) {
     return this.http.post(`/api/sit/${data.sitID}`, data);

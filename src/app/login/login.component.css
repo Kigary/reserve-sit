@@ -1,20 +1,20 @@
 :host  {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  width:400px;
   height: auto;
+  width: 400px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 form md-input-container, form div {
   padding: 5px;
 }
-.footer{
-  position: relative;
-}
 md-spinner {
-  width: 19px;
   height: 35px;
-  margin: 0;
+  width: 19px;
   position: absolute;
   left: 100px;
+  margin: 0;
+}
+.footer{
+  position: relative;
 }
 
 

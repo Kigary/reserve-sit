@@ -1,22 +1,21 @@
 <h1 md-dialog-title>New Sit</h1>
 
 <md-dialog-content>
-  <form>
     <md-input-container>
       <input mdInput placeholder="Seat Name"
           [(ngModel)]="sit.sitName"
-          name="sitName"/>
+          name="sitName" required/>
     </md-input-container>
     <br/>
     <md-input-container>
-      <input mdInput placeholder="Quantity of seats"
-          [(ngModel)]="sit.numOfSeats"
-          name="numOfSeats"/>
+      <input mdInput type="number" min="0" max="1000"
+             placeholder="Quantity of seats" [(ngModel)]="sit.numOfSeats"
+             name="numOfSeats" required/>
     </md-input-container>
     <md-input-container>
-      <input mdInput placeholder="Cost"
-          [(ngModel)]="sit.cost"
-          name="cost"/>
+      <input mdInput type="number" min="0"
+             placeholder="Cost" [(ngModel)]="sit.cost"
+             name="cost" required/>
     </md-input-container>
     <br/>
     <md-checkbox [(ngModel)]="sit.reserved" name="reserved">
@@ -28,11 +27,11 @@
     </md-checkbox>
     <br/><br/>
     <org-image-upload [(ngModel)]="sit.image" [ngModelOptions]="{standalone: true}" ngDefaultControl></org-image-upload>
-  </form>
 </md-dialog-content>
 
 <md-dialog-actions>
-  <button md-button (click)="saveSit(sit)">Save</button>
+  <md-spinner *ngIf="inProgress"></md-spinner>
+  <button md-button (click)="saveSit(sit)" [disabled]="">Save</button>
   <button md-button [md-dialog-close]="null">Cancel</button>
 </md-dialog-actions>
 

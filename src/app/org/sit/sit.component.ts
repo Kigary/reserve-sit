@@ -13,7 +13,7 @@ import {ConfirmDialogComponent, IConfirmDialogOptions} from '../../common/confir
 })
 export class SitComponent implements OnInit {
   @Output()
-  delete = new EventEmitter<ISit>();
+  del = new EventEmitter<ISit>();
 
   @Input()
   sit: ISit;
@@ -25,25 +25,20 @@ export class SitComponent implements OnInit {
     const dialogRef = this.dialog.open(SitDialogComponent, {
       data: clone(this.sit)
     });
-    dialogRef.afterClosed().subscribe(result => {
-      if (!result) {
-        return;
-      }
-      Object.assign(this.sit, result);
-    });
+    dialogRef.afterClosed().subscribe(result => result && Object.assign(this.sit, result));
   }
 
   deleteSit() {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        msg: 'Are you sure?'
+        msg: 'Really bro?'
       } as IConfirmDialogOptions
     });
     dialogRef.afterClosed().subscribe(result => {
       if (!result) {
         return;
       }
-      this.sitService.deleteSit(this.sit.sitID).subscribe(() => this.delete.emit(this.sit));
+      this.sitService.deleteSit(this.sit.sitID).subscribe(() => this.del.emit(this.sit));
     });
   }
 

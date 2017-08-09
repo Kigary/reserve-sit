@@ -2,7 +2,8 @@ import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { MdInputModule, MdToolbarModule, MdButtonModule, MdSelectModule,
          MdListModule, MdGridListModule,  MdTabsModule, MdCardModule,
-         MdDialogModule, MdCheckboxModule, MdProgressSpinnerModule} from '@angular/material';
+         MdDialogModule, MdCheckboxModule, MdProgressSpinnerModule,
+         MdTooltipModule } from '@angular/material';
 
 
 
@@ -20,6 +21,7 @@ import { MdInputModule, MdToolbarModule, MdButtonModule, MdSelectModule,
     MdProgressSpinnerModule,
     MdDialogModule,
     MdCheckboxModule,
+    MdTooltipModule
   ],
   exports: [
     FlexLayoutModule,
@@ -34,6 +36,7 @@ import { MdInputModule, MdToolbarModule, MdButtonModule, MdSelectModule,
     MdProgressSpinnerModule,
     MdDialogModule,
     MdCheckboxModule,
+    MdTooltipModule
   ],
 })
 export class OrgMaterialModule {

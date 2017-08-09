@@ -1,8 +1,8 @@
 import * as express from 'express';
-import {readFileSync, writeFileSync} from 'fs';
-import {createGUID} from './common/index';
-import {LoginData} from './defines/loginData';
-import {join} from 'path';
+import { readFileSync, writeFileSync } from 'fs';
+import { createGUID } from './common/index';
+import { LoginData } from './defines/loginData';
+import { join } from 'path';
 
 const filePath = join(__dirname, './data/orgs.db.json');
 
@@ -10,7 +10,6 @@ export class Organization {
   static loggedInOrg: Organization = null;
 
   orgID: string = createGUID();
-  parentOrgID?: string | null;
   name: string;
   login: string;
   password: string;
@@ -20,6 +19,7 @@ export class Organization {
   phone: string;
   fax?: string;
   email?: string;
+  parentOrgID?: string | null;
 
   constructor(data) {
     Object.assign(this, data);
@@ -82,8 +82,13 @@ OrgRouter.get('/org-list', (req, res) => {
   res.json(Organization.getAllOrgs());
 });
 
-OrgRouter.get('/:id', (req, res) => {
-  res.json(Organization.getOrg(req.params.id));
+OrgRouter.get('/logged-org', (req, res) => {
+  res.json(Organization.loggedInOrg);
+});
+
+OrgRouter.get('/logout', (req, res) => {
+  Organization.logOut();
+  return res.status(200).end();
 });
 
 OrgRouter.post('/', (req, res) => {
@@ -96,6 +101,7 @@ OrgRouter.post('/', (req, res) => {
   Organization.createOrg(req.body);
   res.status(200).end();
 });
+
 OrgRouter.post('/login', (req, res) => {
   const org = Organization.login(req.body);
   if (!org) {
@@ -104,7 +110,7 @@ OrgRouter.post('/login', (req, res) => {
   Organization.loggedInOrg = org;
   return res.status(200).send({success: 'ok'});
 });
-OrgRouter.get('/logout', (req, res) => {
-  Organization.logOut();
-  return res.status(200).end();
+
+OrgRouter.get('/:id', (req, res) => {
+  res.json(Organization.getOrg(req.params.id));
 });

@@ -1,33 +1,45 @@
-<md-card>
-  <md-card-header>
-    <div class="mat-card-header-text">
-      <md-card-title>
-        <strong>{{sit.sitName}}</strong>
-      </md-card-title>
-      <md-card-subtitle>
-        Seats: {{sit.numOfSeats}}
-      </md-card-subtitle>
-    </div>
-  </md-card-header>
-  <div class="imgCtr">
-    <img md-card-image [src]="'data:image/'+sit.image"/>
-  </div>
-  <md-card-content class="sitProps">
-    <md-grid-list cols="2" rowHeight="30px">
+<md-card fxLayout="row">
+  <md-card-content>
+    <md-grid-list cols="2" rowHeight="40px">
       <md-grid-tile>
-        <strong>{{sit.reserved? '':'Not'}} Reserved</strong>
+        <md-card-title>
+          <strong>{{sit.sitName}}</strong>
+        </md-card-title>
       </md-grid-tile>
       <md-grid-tile>
-        Cost: {{sit.cost}}
+        <span>
+          Seats: {{sit.numOfSeats}}
+        </span>
+      </md-grid-tile>
+      <md-grid-tile></md-grid-tile>
+      <md-grid-tile></md-grid-tile>
+      <md-grid-tile>
+        <span>
+          <strong>{{sit.reserved? 'R':'Not r'}}eserved</strong>
+        </span>
+      </md-grid-tile>
+      <md-grid-tile>
+        <span>
+          Cost: {{sit.cost}}
+        </span>
       </md-grid-tile>
       <md-grid-tile></md-grid-tile>
       <md-grid-tile>
-        {{sit.reserved? (sit.paid? 'Paid':'Not Paid'):''}}
+        <span>
+          {{sit.reserved? (sit.paid? 'Paid':'Not Paid'):''}}
+        </span>
       </md-grid-tile>
     </md-grid-list>
   </md-card-content>
-  <md-card-actions>
-    <button md-button (click)="editSit()">Edit</button>
-    <button md-button (click)="deleteSit()">Delete</button>
-  </md-card-actions>
+  <md-card-content fxLayout="column">
+    <div class="imgCtr">
+      <img [src]="sit.image"/>
+    </div>
+    <md-card-actions fxLayout="row">
+      <button md-button class="edit" (click)="editSit()">Edit</button>
+      <button md-button class="delete" (click)="deleteSit()">
+        <md-icon>clear</md-icon>
+      </button>
+    </md-card-actions>
+  </md-card-content>
 </md-card>

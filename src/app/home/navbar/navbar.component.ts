@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {MdDialog} from '@angular/material';
-import {UserLoginPageComponent} from '../../login-page/login-page.component';
+import { MdDialog } from '@angular/material';
+import { UserLoginPageComponent } from '../../login-page/login-page.component';
 
 
 @Component({
@@ -8,17 +8,16 @@ import {UserLoginPageComponent} from '../../login-page/login-page.component';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+
 export class NavbarComponent implements OnInit {
   isUserLogged = sessionStorage.userLogin;
 
-  constructor(public dialog: MdDialog) {
-  }
-
-  ngOnInit() {
-  }
+  constructor(public dialog: MdDialog) { }
 
   openLoginDialog() {
     const ref = this.dialog.open(UserLoginPageComponent);
     ref.afterClosed().subscribe((result) => this.isUserLogged = sessionStorage.userLogin);
   }
+
+  ngOnInit() { }
 }

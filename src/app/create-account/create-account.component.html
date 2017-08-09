@@ -46,12 +46,11 @@
     <md-error *ngIf="regForm.get('phone').hasError('required')">
       Number is <strong>required</strong>
     </md-error>
-
     <md-error *ngIf="regForm.get('phone').hasError('pattern')">
-      Namber isn't valid
+      Number is not valid
     </md-error>
   </md-input-container>
-  <md-radio-group formControlName="gender">Gender
+  <md-radio-group>Gender
     <md-radio-button *ngFor="let gender of genders" [value]="gender" color="primary">
       {{gender}}
     </md-radio-button>
@@ -66,7 +65,7 @@
       Password is <strong>required</strong>
     </md-error>
     <md-error *ngIf="regForm.get('password').hasError('minlength')">
-      Password minlength <strong>15</strong>
+      Password must be at least <strong>15</strong> characters
     </md-error>
   </md-input-container>
   <div fxLayout="row" class="mat-grid-tile-footer">

@@ -29,7 +29,7 @@ import {AccountGuard} from './guards/account.guard';
     OrgMaterialModule,
     HttpClientModule,
     CommonModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   exports: [],
   declarations: [

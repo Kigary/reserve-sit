@@ -1,12 +1,13 @@
-import * as express from 'express';
-import {readFileSync, writeFileSync} from 'fs';
-import {createGUID} from './common/index';
-import {join} from 'path';
+ import * as express from 'express';
+import { readFileSync, writeFileSync } from 'fs';
+import { createGUID } from './common/index';
+import { join } from 'path';
 
 const filePath = join(__dirname, './data/users.db.json');
 
 class User {
   static loggedInUser: User = null;
+
   userID: string = createGUID();
   login: string;
   password: string;
@@ -17,7 +18,7 @@ class User {
   gender: string;
 
   constructor(data) {
-    Object.assign(this, data); // copies every property of data to this
+    Object.assign(this, data);
   }
 
   static getAllUsers (): User[] {

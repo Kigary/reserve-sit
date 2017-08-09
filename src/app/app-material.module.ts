@@ -1,11 +1,9 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 
 
 @NgModule({
-  imports: [
-     ],
-  exports: [
+  imports: [],
+  exports: []
+})
 
-  ]})
-export class AppMaterialModule {
-}
+export class AppMaterialModule { }
