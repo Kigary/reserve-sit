@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormGroup, Validators, FormBuilder, FormControl} from '@angular/forms';
 import {UserService} from '../services/user.service';
 import {EMAIL_REGEX} from '../org/register-account/register-account.component';
@@ -13,7 +13,8 @@ import {Router} from '@angular/router';
 export class UserRegistreAccountComponent implements OnInit {
   regForm: FormGroup;
   isSubmit: boolean;
-  genders: IGender[] = ['male', 'female'];
+  genders: IGender[] = ['Male', 'Female'];
+
   constructor(private fb: FormBuilder,
               private userService: UserService,
               private router: Router) {
@@ -28,17 +29,17 @@ export class UserRegistreAccountComponent implements OnInit {
       login: ['', [Validators.required]],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      email: ['', [Validators.pattern(EMAIL_REGEX)]],
+      email: ['', [Validators.pattern(EMAIL_REGEX), Validators.required]],
       phone: ['', [Validators.required, Validators.pattern(/^\d*$/)]],
-      gender: ['male'],
+      gender: ['Male'],
       password: ['', [Validators.required, Validators.minLength(15)]]
     });
   }
 
-  UserRegister(data) {
+  UserRegister() {
     this.isSubmit = true;
-    this.userService.createUser(data.value).subscribe(() => {
-        this.router.navigate(['account/login']);
+    this.userService.createUser(this.regForm.value).subscribe(() => {
+        this.router.navigate(['', {outlets: {'account': 'login'}}]);
       },
       (error) => console.log(error.message));
   }

@@ -79,7 +79,7 @@
   <div fxLayout="row" class="mat-grid-tile-footer">
     <button class=" mat-raised-button mat-primary" routerLink="../login">Cancel</button>
     <div fxFlex="2"></div>
-    <button (click)="orgRegister(regForm)" md-button class="mat-raised-button mat-primary" [disabled]="!regForm.valid">
+    <button (click)="orgRegister()" md-button class="mat-raised-button mat-primary" [disabled]="!regForm.valid">
       Submit
     </button>
     <md-spinner *ngIf="isSubmit"></md-spinner>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {MdDialog} from '@angular/material';
+import {UserLoginPageComponent} from '../../login-page/login-page.component';
+
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   isUserLogged = sessionStorage.userLogin;
-  constructor() { }
+
+  constructor(public dialog: MdDialog) {
+  }
 
   ngOnInit() {
   }
 
+  openLoginDialog() {
+    const ref = this.dialog.open(UserLoginPageComponent);
+    ref.afterClosed().subscribe((result) => this.isUserLogged = sessionStorage.userLogin);
+  }
 }

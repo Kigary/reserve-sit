@@ -1,5 +1,5 @@
-<md-toolbar class="mat-primary" fxLayoutAlign="center center" >
-    Reserve Sit
+<md-toolbar class="mat-primary"  >
+    Sign In
 </md-toolbar>
 <form [formGroup]="loginForm"
       fxLayout="column" >
@@ -29,8 +29,9 @@
     <md-spinner *ngIf="sentLogin"></md-spinner>
     <div fxFlex="60"></div>
     <button md-button class="mat-primary"
-            routerLink="../create">
+            [routerLink]="['', {outlets: {'account': 'create'}}]">
       Sign Up
     </button>
   </div>
 </form>
+

@@ -30,9 +30,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login(data) {
+  login() {
     this.sentLogin = true;
-    this.accountService.login(data.value).subscribe(() => {
+    this.accountService.login(this.loginForm.value).subscribe(() => {
         this.storage.orgLogin = 'true';
         this.router.navigate(['org/sits']);
       },
