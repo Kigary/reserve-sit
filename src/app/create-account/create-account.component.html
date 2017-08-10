@@ -50,7 +50,7 @@
       Number is not valid
     </md-error>
   </md-input-container>
-  <md-radio-group>Gender
+  <md-radio-group formControlName="gender">Gender
     <md-radio-button *ngFor="let gender of genders" [value]="gender" color="primary">
       {{gender}}
     </md-radio-button>

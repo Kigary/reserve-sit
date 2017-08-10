@@ -1,0 +1,15 @@
+div {
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.83);
+  cursor: pointer;
+  height: 42px;
+  position: relative;
+  width: 42px;
+}
+span {
+  color: black;
+  font-size: 30px;
+  left: 11px;
+  position: absolute;
+  top: 5px;
+}

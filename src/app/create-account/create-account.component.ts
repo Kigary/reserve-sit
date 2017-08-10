@@ -29,7 +29,7 @@ export class UserRegisterAccountComponent implements OnInit {
       lastName: ['', [Validators.required]],
       email: ['', [Validators.pattern(EMAIL_REGEX), Validators.required]],
       phone: ['', [Validators.required, Validators.pattern(/^\d*$/)]],
-      gender: ['Male'],
+      gender: [''],
       password: ['', [Validators.required, Validators.minLength(15)]]
     });
   }

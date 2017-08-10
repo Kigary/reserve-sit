@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { IUser } from '../defines/IUser';
 import { AccountUserService } from '../services/auth.service';
-import { Router } from '@angular/router';
+
 import { UserService } from '../services/user.service';
 
 
 @Component({
-  moduleId: module.id,
   selector: 'app-user',
-  templateUrl: 'user.component.html'
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
 })
 
 export class UserComponent implements OnInit {
@@ -16,16 +16,16 @@ export class UserComponent implements OnInit {
 
   constructor(private userService: UserService,
               private accountUserService: AccountUserService,
-              private router: Router) {
+              ) {
   }
 
   signOut() {
-      this.accountUserService.logOut().subscribe(
-        () => {
-          sessionStorage.removeItem('userLogin');
-          location.reload();
-        }
-      );
+    this.accountUserService.logOut().subscribe(
+      () => {
+        sessionStorage.removeItem('userLogin');
+        location.reload();
+      }
+    );
   }
 
   ngOnInit() {

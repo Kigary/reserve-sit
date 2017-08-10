@@ -65,12 +65,12 @@ export class Organization {
     this.loggedInOrg = null;
   }
 
-  static isExistsOrgLogin({login}) {
+  static doesExistOrgLogin({login}) {
     const orgs = this.getOrgs();
     return orgs.find((org) => org.login === login);
   }
 
-  static isExistsOrgName ({name}) {
+  static doesExistOrgName ({name}) {
     const orgs = this.getOrgs();
     return orgs.find((org) => org.name === name);
   }
@@ -92,10 +92,10 @@ OrgRouter.get('/logout', (req, res) => {
 });
 
 OrgRouter.post('/', (req, res) => {
-  if (Organization.isExistsOrgLogin(req.body)) {
+  if (Organization.doesExistOrgLogin(req.body)) {
     return res.status(404).send({error: 'Login is registred'});
   }
-  if (Organization.isExistsOrgName(req.body)) {
+  if (Organization.doesExistOrgName(req.body)) {
     return res.status(404).send({error: 'Name is registred'});
   }
   Organization.createOrg(req.body);

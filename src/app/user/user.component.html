@@ -1,6 +1,6 @@
-<button md-button [mdMenuTriggerFor]="menu" *ngIf="user">
-  {{user.firstName}}
-</button>
+<div md-button [mdMenuTriggerFor]="menu" *ngIf="user">
+  <span>{{user.firstName[0].toUpperCase()}}</span>
+</div>
 <md-menu #menu="mdMenu" xPosition="before" yPosition="below"
          [overlapTrigger]="false" >
   <button md-menu-item>Orders</button>
