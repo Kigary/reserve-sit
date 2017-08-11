@@ -1,5 +1,8 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {UserRegisterAccountComponent} from './components/create-account/create-account.component';
+import {UserLoginComponent} from './components/login/login.component';
+import {HomeComponent} from './components/home/home.component';
 
 const routes: Routes = [
   {
@@ -10,6 +13,20 @@ const routes: Routes = [
   {
     path: 'org',
     loadChildren: 'app/org/org.module#OrgModule',
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+  },
+  {
+    path: 'login',
+    component: UserLoginComponent,
+    outlet: 'account'
+  },
+  {
+    path: 'create',
+    component: UserRegisterAccountComponent,
+    outlet: 'account'
   }
 ];
 
@@ -18,4 +35,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

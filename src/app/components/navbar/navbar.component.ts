@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MdDialog } from '@angular/material';
-import { UserLoginPageComponent } from '../../login-page/login-page.component';
+import { UserLoginPageComponent } from '../login-page/login-page.component';
 
 
 @Component({

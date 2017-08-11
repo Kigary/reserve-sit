@@ -1,36 +1,35 @@
-<md-toolbar class="mat-primary"  >
-    Sign In
-</md-toolbar>
-<form [formGroup]="loginForm"
-      fxLayout="column" >
+<md-toolbar class="mat-primary">Sign In</md-toolbar>
+<form [formGroup]="loginForm" fxLayout="column">
   <md-input-container>
     <input mdInput placeholder="Login"
            formControlName="login"
            [errorStateMatcher]="errorStateMatcher">
-    <md-error *ngIf="loginForm.get('login').hasError('required')">
-      Login is <strong>required</strong>
+    <md-error *ngIf="loginForm.get('login').hasError('required')"
+              [innerHTML]="'Login is <strong>required</strong>'">
     </md-error>
   </md-input-container>
+
   <md-input-container>
     <input mdInput type="password"
            placeholder="Password"
            formControlName="password"
            [errorStateMatcher]="errorStateMatcher">
-    <md-error *ngIf="loginForm.get('password').hasError('required')">
-      Password is <strong>required</strong>
+    <md-error *ngIf="loginForm.get('password').hasError('required')"
+              [innerHTML]="'Password is <strong>required</strong>'">
     </md-error>
   </md-input-container>
+
   <div fxLayout="row" class="footer">
     <button (click)="logIn()"
             class=" mat-raised-button mat-primary"
-            [disabled]='!loginForm.valid'>
-      Sign In
+            [disabled]='!loginForm.valid'
+            [innerText]="'Sign In'">
     </button>
     <md-spinner *ngIf="loading"></md-spinner>
     <div fxFlex="60"></div>
     <button md-button class="mat-primary"
-            [routerLink]="['', {outlets: {'account': 'create'}}]">
-      Sign Up
+            [routerLink]="['', {outlets: {'account': 'create'}}]"
+            [innerText]="'Sign Up'">
     </button>
   </div>
 </form>

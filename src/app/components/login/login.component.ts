@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AccountUserService } from '../services/auth.service';
+import { AccountUserService } from '../../services/auth.service';
 import { MdDialogRef } from '@angular/material';
 
 

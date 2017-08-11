@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
-import { UserService } from '../services/user.service';
-import { EMAIL_REGEX } from '../org/register-account/register-account.component';
-import { IGender } from '../defines/IGender';
+import { UserService } from '../../services/user.service';
+import { EMAIL_REGEX } from '../../org/register-account/register-account.component';
+import { IGender } from '../../defines/IGender';
 import { Router } from '@angular/router';
 
 
@@ -29,7 +29,7 @@ export class UserRegisterAccountComponent implements OnInit {
       lastName: ['', [Validators.required]],
       email: ['', [Validators.pattern(EMAIL_REGEX), Validators.required]],
       phone: ['', [Validators.required, Validators.pattern(/^\d*$/)]],
-      gender: [''],
+      gender: ['Male'],
       password: ['', [Validators.required, Validators.minLength(15)]]
     });
   }
