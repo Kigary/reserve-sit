@@ -9,9 +9,7 @@ export class AccountGuard implements CanActivateChild {
   }
 
   canActivateChild(childRout: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const isAccountPage = childRout.url[0].path === 'account' ||
-      childRout.parent.url[0].path === 'account';
-
+    const isAccountPage = childRout.url[0].path !== 'sits';
     if (sessionStorage.orgLogin) {
       return isAccountPage ? this.router.navigate(['org', 'sits']) && true : true;
     }

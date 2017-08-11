@@ -7,6 +7,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'org',
+    loadChildren: 'app/org/org.module#OrgModule',
+  }
 ];
 
 @NgModule({

@@ -21,12 +21,12 @@
     </md-error>
   </md-input-container>
   <div fxLayout="row" class="footer">
-    <button (click)="login(loginForm)"
+    <button (click)="logIn()"
             class=" mat-raised-button mat-primary"
             [disabled]='!loginForm.valid'>
       Sign In
     </button>
-    <md-spinner *ngIf="sentLogin"></md-spinner>
+    <md-spinner *ngIf="loading"></md-spinner>
     <div fxFlex="60"></div>
     <button md-button class="mat-primary"
             [routerLink]="['', {outlets: {'account': 'create'}}]">

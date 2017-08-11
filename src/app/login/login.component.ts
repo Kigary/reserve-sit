@@ -13,7 +13,7 @@ import { MdDialogRef } from '@angular/material';
 
 export class UserLoginComponent implements OnInit {
   loginForm: FormGroup;
-  sentLogin: boolean;
+  loading: boolean;
   storage: Storage;
 
   constructor(private fb: FormBuilder,
@@ -29,15 +29,15 @@ export class UserLoginComponent implements OnInit {
     });
   }
 
-  login() {
-    this.sentLogin = true;
-    this.accountUserService.login(this.loginForm.value).subscribe(() => {
+  logIn() {
+    this.loading = true;
+    this.accountUserService.logIn(this.loginForm.value).subscribe(() => {
         this.storage.userLogin = 'true';
         this.dialogRef.close();
         this.router.navigate(['/']);
       },
       (error) => {
-        this.sentLogin = false;
+        this.loading = false;
         this.formBuild();
       });
   }

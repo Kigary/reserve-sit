@@ -10,8 +10,8 @@ export class AccountUserService {
   constructor(private http: HttpClient) {
   }
 
-  login(data) {
-    return this.http.post('api/user/login', data).delay(2000)
+  logIn(data) {
+    return this.http.post('api/user/login', data).delay(1000)
       .catch((error) => Observable.throw(error));
   }
 

@@ -11,7 +11,7 @@ import {AccountGuard} from './guards/account.guard';
 
 const routes: Routes = [
   {
-    path: 'org',
+    path: '',
     canActivateChild: [AccountGuard],
     children: [
       {
@@ -38,7 +38,8 @@ const routes: Routes = [
       },
       {
         path: 'sits',
-        component: SitsComponent
+        component: SitsComponent,
+        pathMatch: 'full'
       },
       {
         path: '',

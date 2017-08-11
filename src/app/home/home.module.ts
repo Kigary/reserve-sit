@@ -9,7 +9,7 @@ import { UserComponent } from '../user/user.component';
 import { UserLoginPageComponent } from '../login-page/login-page.component';
 import { UserRegisterAccountComponent } from '../create-account/create-account.component';
 import { UserLoginComponent } from '../login/login.component';
-
+import {HttpClientModule} from '@angular/common/http';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -23,7 +23,8 @@ import { UserLoginComponent } from '../login/login.component';
     HomeRoutingModule,
     HomeMaterialModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   entryComponents: [UserLoginPageComponent],
   exports: [],
