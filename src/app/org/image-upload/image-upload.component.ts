@@ -1,19 +1,36 @@
 import {Component, EventEmitter, forwardRef, Input} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, FormControl} from '@angular/forms';
 
 const CONTROL_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => ImageUploadComponent),
-  multi: true // TODO
+  multi: true
+};
+
+const CONTROL_VALIDATORS = {
+  provide: NG_VALIDATORS,
+  useExisting: forwardRef(() => ImageUploadComponent),
+  multi: true
 };
 
 @Component({
   selector: 'org-image-upload',
   templateUrl: './image-upload.component.html',
   styleUrls: ['./image-upload.component.css'],
-  providers: [CONTROL_VALUE_ACCESSOR]
+  providers: [
+    CONTROL_VALUE_ACCESSOR,
+    CONTROL_VALIDATORS
+  ]
 })
-export class ImageUploadComponent implements ControlValueAccessor {
+
+export class ImageUploadComponent implements ControlValueAccessor, Validator {
+
+  validate(c: FormControl): {[key: string]: any} {
+    return c.value === null || c.value.length === 0 ? { "required" : true} : null;
+  }
+
+  registerOnValidatorChange(fn: () => void): void { }
+
   private _value: string;
 
   @Input()
@@ -31,7 +48,6 @@ export class ImageUploadComponent implements ControlValueAccessor {
 
   change = new EventEmitter<string>();
 
-  private _touched = false;
   touch = new EventEmitter();
 
   constructor() { }
@@ -62,14 +78,4 @@ export class ImageUploadComponent implements ControlValueAccessor {
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
-
-  onBlur() {
-    if (this._touched) {
-      return;
-    }
-
-    this._touched = true;
-    this.touch.emit();
-  }
-
 }

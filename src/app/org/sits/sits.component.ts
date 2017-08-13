@@ -29,8 +29,7 @@ export class SitsComponent implements OnInit {
     private authService: AccountService) { }
 
   getAllSits(): void {
-    this.sitService
-      .getAllSits()
+    this.sitService.getAllSits()
       .subscribe(sits => this.sits = sits as ISit[]);
   }
 
@@ -44,10 +43,6 @@ export class SitsComponent implements OnInit {
   deleteSit(sit) {
     const index = this.sits.indexOf(sit);
     this.sits.splice(index, 1);
-  }
-
-  saveSit(sit) {
-    this.sits.splice(0, 0, sit);
   }
 
   orgLogOut() {

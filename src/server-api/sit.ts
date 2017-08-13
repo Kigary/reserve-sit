@@ -27,9 +27,7 @@ export class Sit {
 
   static getAllSits(): Sit[] {
     const sits = this.getSits();
-    return sits.map((sit) => {
-      return sit;
-    });
+    return sits.filter(sit => sit.orgID === Organization.loggedInOrg.orgID);
   }
 
   static getSit(id: string): Sit {

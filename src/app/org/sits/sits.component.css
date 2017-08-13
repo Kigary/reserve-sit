@@ -1,7 +1,6 @@
 .container {
   width: 100%;
   background-color: #ECEFF1;
-  color: #455A64;
   margin: 0;
 }
 h2{
@@ -18,13 +17,11 @@ md-grid-tile {
   flex-direction: row;
   justify-content: space-around;
   align-content: stretch;
+  outline: 1px solid #CFD8DC;
 }
 md-icon {
   font-family: 'Material Icons', serif;
   font-size: 30px;
-}
-md-grid-tile {
-  outline: 1px solid #CFD8DC;
 }
 md-grid-tile:hover {
   outline: 2px solid #B0BEC5;
@@ -49,4 +46,7 @@ md-toolbar {
 }
 md-toolbar button {
   color: #ECEFF1;
+}
+.logOut {
+  margin: 0;
 }
