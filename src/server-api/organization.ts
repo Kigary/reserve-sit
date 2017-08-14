@@ -39,6 +39,12 @@ export class Organization {
     });
   }
 
+  static getOrg(id: string): Organization {
+    const org = this.getOrgs().find(o => o.orgID === id);
+    delete org.password;
+    return org;
+  }
+
   static createOrg(data) {
     const org = new Organization(data);
     const orgs = this.getOrgs();

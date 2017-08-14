@@ -33,6 +33,10 @@ export class Sit {
     return sits.filter(sit => sit.orgID === loggedOrgID);
   }
 
+  static getSit(id: string): Sit {
+    return this.getSits().find(s => s.sitID === id);
+  }
+
   static createSit(data, loggedOrgID) {
     data.parentOrgID = null;
     data.orgID = loggedOrgID;
