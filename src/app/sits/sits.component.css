@@ -1,0 +1,19 @@
+div {
+  width: 1100px;
+}
+md-grid-tile {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: stretch;
+}
+md-grid-tile {
+  outline: 1px solid #26A69A;
+}
+md-grid-tile:hover {
+  outline: 2px solid #269b8f;
+}
+app-sit {
+  min-height: 100%;
+  min-width: 100%;
+}

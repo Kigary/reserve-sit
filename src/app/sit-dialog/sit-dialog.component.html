@@ -1,0 +1,29 @@
+<h1 md-dialog-title>Sit Details</h1>
+
+<md-dialog-content>
+  <md-input-container>
+    <input mdInput placeholder="Organization" disabled
+           [value]="sit.orgID"/>
+  </md-input-container>
+  <br/>
+  <div class="imgCtr">
+    <img md-card-image [src]=sit.image />
+  </div>
+  <br/>
+  <md-input-container>
+    <input mdInput type="number" placeholder="Quantity of seats" disabled
+           [value]="sit.numOfSeats"/>
+  </md-input-container>
+  <md-input-container>
+    <input mdInput type="number" placeholder="Cost" disabled
+           [value]="sit.cost"/>
+  </md-input-container>
+  <br/>
+  <md-checkbox [checked]=sit.reserved disabled="disabled">
+    {{sit.reserved? '':'Not'}} Reserved
+  </md-checkbox>
+</md-dialog-content>
+
+<md-dialog-actions>
+  <button md-button [md-dialog-close]="null">Close</button>
+</md-dialog-actions>

@@ -62,12 +62,28 @@ export class Sit {
     this.saveAllSits(sits);
     return data;
   }
+
+  static reserveSit(id) {
+    const sits = this.getAllSits();
+    const currentSit = sits.find(s => s.sitID === id);
+    currentSit.reserved = !currentSit.reserved;
+    const sitIndex = sits.findIndex(s => s.sitID === id);
+    sits.splice(sitIndex, 1, currentSit);
+    this.saveAllSits(sits);
+    return currentSit;
+  }
 }
 
 export const SitRouter = express.Router();
 
 SitRouter.get('/sit-list', (req, res) => {
   res.json(Sit.getAllSits());
+});
+
+SitRouter.get('/:id', (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  res.json(Sit.reserveSit(id));
 });
 
 SitRouter.post('/', (req, res) => {

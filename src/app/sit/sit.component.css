@@ -1,0 +1,50 @@
+md-card {
+  background-color: #26A69A;
+  height: 100%;
+}
+img[md-card-image] {
+  margin: 0;
+  max-height: 100%;
+  max-width: 100%;
+}
+.imgCtr {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  max-width: calc(100% + 48px);
+  height: 200px;
+  margin-left: 0px;
+}
+md-card > .material-icons {
+  font-size: 100px;
+}
+md-card-header {
+  margin: 0;
+  display: inline;
+}
+md-card-title {
+  margin: 0 0 16px 0;
+}
+.sitProps {
+  margin-top: 20px;
+}
+md-card:hover {
+  opacity: 0.8;
+}
+md-card-subtitle {
+  float: right;
+}
+.mat-card-header-text {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+md-card-actions {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+button {
+  width: 86%;
+}

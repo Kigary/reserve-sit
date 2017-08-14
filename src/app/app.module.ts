@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppMaterialModule } from './app-material.module';
 import { AppCommonModule } from './common/common.module';
@@ -21,6 +21,10 @@ import { AccountUserService } from './services/auth.service';
 import { CapitalizePipe } from './pipe/capitalize.pipe';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderComponent } from './components/order/order.component';
+import { SitComponent } from './sit/sit.component';
+import { SitsComponent } from './sits/sits.component';
+import { SitService } from './services/sit/sit.service';
+import { SitDialogComponent } from './sit-dialog/sit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,10 @@ import { OrderComponent } from './components/order/order.component';
     UserLoginComponent,
     CapitalizePipe,
     OrdersComponent,
-    OrderComponent
+    OrderComponent,
+    SitComponent,
+    SitsComponent,
+    SitDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -42,13 +49,15 @@ import { OrderComponent } from './components/order/order.component';
     AppMaterialModule,
     AppCommonModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     UserService,
     AccountUserService,
+    SitService
   ],
-  entryComponents: [UserLoginPageComponent],
+  entryComponents: [UserLoginPageComponent, SitDialogComponent],
   bootstrap: [AppComponent]
 })
 
