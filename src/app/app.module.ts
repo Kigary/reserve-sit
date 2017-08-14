@@ -8,7 +8,6 @@ import { AppCommonModule } from './common/common.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 
-
 import { UserLoginComponent } from './components/login/login.component';
 import { UserLoginPageComponent } from './components/login-page/login-page.component';
 import { UserRegisterAccountComponent } from './components/create-account/create-account.component';
@@ -21,6 +20,8 @@ import { AccountUserService } from './services/auth.service';
 import { CapitalizePipe } from './pipe/capitalize.pipe';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderComponent } from './components/order/order.component';
+import { OrderService } from './services/order.service';
+import { OrderDialogComponent } from './components/order-dialog/order-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { OrderComponent } from './components/order/order.component';
     UserLoginComponent,
     CapitalizePipe,
     OrdersComponent,
-    OrderComponent
+    OrderComponent,
+    OrderDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -42,13 +44,17 @@ import { OrderComponent } from './components/order/order.component';
     AppMaterialModule,
     AppCommonModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     UserService,
     AccountUserService,
+    OrderService
   ],
-  entryComponents: [UserLoginPageComponent],
+  entryComponents: [
+    UserLoginPageComponent,
+    OrderDialogComponent
+  ],
   bootstrap: [AppComponent]
 })
 

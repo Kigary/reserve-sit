@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { IUser } from '../../defines/IUser';
 import { AccountUserService } from '../../services/auth.service';
 
-import { UserService } from '../../services/user.service';
 
 
 @Component({
@@ -12,25 +11,20 @@ import { UserService } from '../../services/user.service';
 })
 
 export class UserComponent implements OnInit {
+  @Input()
   user: IUser;
 
-  constructor(private userService: UserService,
-              private accountUserService: AccountUserService,
+  constructor(private accountUserService: AccountUserService
               ) {
   }
 
   signOut() {
     this.accountUserService.logOut().subscribe(
       () => {
-        sessionStorage.removeItem('userLogin');
         location.reload();
       }
     );
   }
 
-  ngOnInit() {
-    this.userService.getLoggedUser().subscribe((user) => {
-      this.user = user;
-    });
-  }
+  ngOnInit() { }
 }

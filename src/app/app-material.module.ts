@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MdButtonModule } from '@angular/material';
+import { MdButtonModule , MdListModule, MdIconModule, MdCardModule} from '@angular/material';
 import { MdToolbarModule, MdMenuModule, MdDialogModule, MdInputModule, MdRadioModule, MdProgressSpinnerModule } from '@angular/material';
 
 @NgModule({
@@ -12,7 +12,10 @@ import { MdToolbarModule, MdMenuModule, MdDialogModule, MdInputModule, MdRadioMo
     MdDialogModule,
     MdInputModule,
     MdRadioModule,
-    MdProgressSpinnerModule
+    MdProgressSpinnerModule,
+    MdListModule,
+    MdIconModule,
+    MdCardModule
   ],
   exports: [
     FlexLayoutModule,
@@ -22,7 +25,10 @@ import { MdToolbarModule, MdMenuModule, MdDialogModule, MdInputModule, MdRadioMo
     MdDialogModule,
     MdInputModule,
     MdRadioModule,
-    MdProgressSpinnerModule
+    MdProgressSpinnerModule,
+    MdListModule,
+    MdIconModule,
+    MdCardModule
   ],
 })
 

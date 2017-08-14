@@ -1,6 +1,7 @@
 [
   {
     "userID": "bb4b2bd5-ff26-ab6f-37dc-0b6d778a75fe",
+    "sessionKeys": [],
     "login": "vzgo.asa",
     "password": "pass1234",
     "email": "vzgo@mail.ru",
@@ -11,6 +12,9 @@
   },
   {
     "userID": "a3cbac26-5eeb-7b8a-abdf-1d1cdaf38e03",
+    "sessionKeys": [
+      "bb4b2bd5-ff26-ab6f-37dc-0b6d778a75fe"
+    ],
     "login": "informm109",
     "firstName": "Artur",
     "lastName": "dad",
@@ -19,4 +23,4 @@
     "gender": "male",
     "password": "111111111111111"
   }
- ]
+]
