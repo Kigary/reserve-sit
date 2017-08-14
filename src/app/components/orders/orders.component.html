@@ -1,3 +1,10 @@
-<p>
-  orders works!
-</p>
+<button md-button class="mat-raised-button mat-primary">
+  <md-icon>arrow_back</md-icon>
+  Back</button>
+
+<md-card *ngFor="let order of orders | async, let i=index">
+  <md-card-content>
+    <app-order [order]="order" [index]='i'>
+    </app-order>
+  </md-card-content>
+</md-card>

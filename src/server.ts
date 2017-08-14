@@ -3,6 +3,7 @@ import 'zone.js/dist/zone-node';
 import * as express from 'express';
 import {join} from 'path';
 import * as bodyParser from 'body-parser';
+import * as cookieParser from 'cookie-parser';
 
 import {ApiRouter} from './server-api/';
 
@@ -11,6 +12,7 @@ const PORT = process.env.PORT || 4400;
 const app = express();
 
 app.use(bodyParser.json({limit: '5mb'}));
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: false}));
 
 const dist = join(__dirname, '..', 'dist');

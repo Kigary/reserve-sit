@@ -16,4 +16,7 @@ export class OrgService {
   getLoggedOrg(): Observable<any> {
     return this.http.get('api/org/logged-org');
   }
+  isLoggedIn() {
+    return this.http.get('/api/org/is-logged-in') as Observable<boolean>;
+  }
 }
