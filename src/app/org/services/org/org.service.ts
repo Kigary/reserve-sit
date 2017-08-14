@@ -13,7 +13,11 @@ export class OrgService {
     return this.http.post('api/org/', data).delay(2000)
       .catch(() => Observable.throw('error'));
   }
+
   getLoggedOrg(): Observable<any> {
     return this.http.get('api/org/logged-org');
+  }
+  isLoggedIn() {
+    return this.http.get('/api/org/is-logged-in') as Observable<boolean>;
   }
 }

@@ -4,6 +4,7 @@ import {UserRegisterAccountComponent} from './components/create-account/create-a
 import {UserLoginComponent} from './components/login/login.component';
 import {HomeComponent} from './components/home/home.component';
 import {SitsComponent} from './sits/sits.component';
+import {OrdersComponent} from './components/orders/orders.component';
 
 const routes: Routes = [
   {
@@ -18,10 +19,16 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-  },
-  {
-    path: 'sits',
-    component: SitsComponent,
+    children : [
+      {
+        path : 'sits',
+        component: SitsComponent,
+      },
+      {
+        path: 'orders',
+        component : OrdersComponent
+      },
+    ]
   },
   {
     path: 'login',

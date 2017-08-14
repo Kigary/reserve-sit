@@ -1,13 +1,11 @@
- import * as express from 'express';
+import * as express from 'express';
 import { readFileSync, writeFileSync } from 'fs';
 import { createGUID } from './common/index';
 import { join } from 'path';
 
 const filePath = join(__dirname, './data/users.db.json');
 
-class User {
-  static loggedInUser: User = null;
-
+export class User {
   userID: string = createGUID();
   login: string;
   password: string;
@@ -16,7 +14,7 @@ class User {
   firstName: string;
   lastName: string;
   gender: string;
-
+  sessionKeys: string[] = [];
   constructor(data) {
     Object.assign(this, data);
   }
@@ -41,13 +39,6 @@ class User {
     writeFileSync(filePath, JSON.stringify(users, null, 2));
   }
 
-  static deleteUser (id: string) {
-    const users = this.getAllUsers();
-    const userIndex = users.findIndex(u => u.userID === id);
-    users.splice(userIndex, 1);
-    this.saveAllUsers(users);
-  }
-
   static updateUser (data) {
     const users = this.getAllUsers();
     const userIndex = users.findIndex(u => u.userID === data.id);
@@ -55,56 +46,81 @@ class User {
     this.saveAllUsers(users);
   }
   static login(data) {
-    const users = this.getAllUsers();
-    return users.find((user) => {
+    const userData = this.getAllUsers()
+      .find((user) => {
       return user.login === data.login && user.password === data.password;
     });
+    return User.dataToUser(userData);
   }
+  static dataToUser(data) {
+    return data && new User(data);
+  }
+  static getUserBySessionKey(sessionKey?: string) {
+    if (!sessionKey) {
+      return null;
+    }
 
+    const userData = this.getAllUsers().find(user => user.sessionKeys.includes(sessionKey));
+    return User.dataToUser(userData);
+  }
+  addSessionKey(sessionKey) {
+    this.sessionKeys.push(sessionKey);
+    User.updateUser(this);
+  }
+  removeSessionKey(sessionKey) {
+    const {sessionKeys} = this;
+    const ind = sessionKeys.indexOf(sessionKey);
+    sessionKeys.splice(ind, 1);
+
+    User.updateUser(this);
+  }
 }
 
 export const UserRouter = express.Router();
 
-UserRouter.get('/user-list', (req, res) => {
-  res.json(User.getAllUsers());
-});
+UserRouter.use(function (req, res, next) {
+   const sessionKey = req.cookies.sessionKey;
+   const loggedInUser = User.getUserBySessionKey(sessionKey);
+   req.loggedInUser = loggedInUser;
 
+   if(!loggedInUser) {
+     res.cookie('sessionKey', '');
+   }
+
+   next();
+ });
 UserRouter.get('/logged-user', (req, res) => {
-   res.json(User.loggedInUser);
+  if(req.loggedInUser) {
+    return res.json({
+      firstName: req.loggedInUser.firstName
+    });
+  }
+  res.end();
 });
 
 UserRouter.post('/login', (req, res) => {
   const user = User.login(req.body);
   if (!user) {
-    return res.status(404).send({error: 'Username or password is incorrect'});
+        return res.status(404).send({error: 'Username or password is incorrect'});
   }
-  User.loggedInUser = user;
-  return res.status(200).send({success: 'ok'});
+  const sessionKey = createGUID();
+  res.cookie('sessionKey', sessionKey, {maxAge: new Date(2024, 0, 1), httpOnly: true});
+  user.addSessionKey(sessionKey);
+  res.json({
+    firstName: user.firstName
+  });
 });
-UserRouter.get('/loggout', (req, res) => {
-  User.loggedInUser = null;
+UserRouter.get('/logout', (req, res) => {
+  const {sessionKey} = req.cookies;
+  const loggedInUser = req.loggedInUser;
+  loggedInUser && loggedInUser.removeSessionKey(sessionKey);
+  res.cookie('sessionKey', '');
   res.status(200).end();
-});
-
-UserRouter.get('/:id', (req, res) => {
-  res.json(User.getUser(req.params.id));
 });
 
 // create user
 UserRouter.post('/', (req, res) => {
   res.json(User.createUser(req.body));
-});
-// update user
-UserRouter.post('/:id', (req, res) => {
-  const data = req.body;
-  data.id = req.params.id;
-  res.json(User.updateUser(data));
-});
-
-// delete user
-UserRouter.delete('/:id', (req, res) => {
-  const id = req.params.id;
-  res.json(User.deleteUser(id));
 });
 
 

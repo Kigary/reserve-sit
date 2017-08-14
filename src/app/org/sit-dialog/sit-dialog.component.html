@@ -1,38 +1,40 @@
-<h1 md-dialog-title>New Sit</h1>
+<h1 md-dialog-title [innerText]="this.title"></h1>
 
-<md-dialog-content>
+<form [formGroup]="sitForm">
+  <md-dialog-content>
     <md-input-container>
       <input mdInput placeholder="Seat Name"
-          [(ngModel)]="sit.sitName"
-          name="sitName" required/>
+          required
+          formControlName="sitName"/>
     </md-input-container>
     <br/>
     <md-input-container>
-      <input mdInput type="number" min="0" max="1000"
-             placeholder="Quantity of seats" [(ngModel)]="sit.numOfSeats"
-             name="numOfSeats" required/>
+      <input mdInput type="number"
+             placeholder="Quantity of seats"
+             required
+             formControlName="numOfSeats"/>
     </md-input-container>
     <md-input-container>
-      <input mdInput type="number" min="0"
-             placeholder="Cost" [(ngModel)]="sit.cost"
-             name="cost" required/>
+      <input mdInput type="number"
+             placeholder="Cost"
+             required
+             formControlName="cost"/>
     </md-input-container>
     <br/>
-    <md-checkbox [(ngModel)]="sit.reserved" name="reserved">
+    <md-checkbox formControlName="reserved">
       Reserved
     </md-checkbox>
     <br/>
-    <md-checkbox [(ngModel)]="sit.paid" name="paid">
+    <md-checkbox formControlName="paid">
       Paid
     </md-checkbox>
     <br/><br/>
-    <org-image-upload [(ngModel)]="sit.image" [ngModelOptions]="{standalone: true}" ngDefaultControl></org-image-upload>
-</md-dialog-content>
+    <org-image-upload formControlName="image"></org-image-upload>
+  </md-dialog-content>
 
-<md-dialog-actions>
-  <md-spinner *ngIf="inProgress"></md-spinner>
-  <button md-button (click)="saveSit(sit)" [disabled]="">Save</button>
-  <button md-button [md-dialog-close]="null">Cancel</button>
-</md-dialog-actions>
-
-<!--<md-progress-bar mode="indeterminate" [class.progress-started]="inProgress"></md-progress-bar>-->
+  <md-dialog-actions>
+    <md-spinner *ngIf="inProgress"></md-spinner>
+    <button md-button (click)="saveSit()" [disabled]='!sitForm.valid'>Save</button>
+    <button md-button [md-dialog-close]="null">Cancel</button>
+  </md-dialog-actions>
+</form>

@@ -9,5 +9,5 @@ export interface IOrg {
   phone: string;
   fax?: string;
   email?: string;
-  parentOrgID?: string | null;
+  sessionKeys: string[];
 }

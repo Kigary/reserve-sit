@@ -8,7 +8,6 @@ import { AppCommonModule } from './common/common.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 
-
 import { UserLoginComponent } from './components/login/login.component';
 import { UserLoginPageComponent } from './components/login-page/login-page.component';
 import { UserRegisterAccountComponent } from './components/create-account/create-account.component';
@@ -21,6 +20,8 @@ import { AccountUserService } from './services/auth.service';
 import { CapitalizePipe } from './pipe/capitalize.pipe';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderComponent } from './components/order/order.component';
+import { OrderService } from './services/order.service';
+import { OrderDialogComponent } from './components/order-dialog/order-dialog.component';
 import { SitComponent } from './sit/sit.component';
 import { SitsComponent } from './sits/sits.component';
 import { SitService } from './services/sit/sit.service';
@@ -38,6 +39,8 @@ import { SitDialogComponent } from './sit-dialog/sit-dialog.component';
     CapitalizePipe,
     OrdersComponent,
     OrderComponent,
+    OrderDialogComponent
+    OrderComponent,
     SitComponent,
     SitsComponent,
     SitDialogComponent
@@ -50,14 +53,20 @@ import { SitDialogComponent } from './sit-dialog/sit-dialog.component';
     AppCommonModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     UserService,
     AccountUserService,
-    SitService
+    SitService,
+    OrderService
   ],
-  entryComponents: [UserLoginPageComponent, SitDialogComponent],
+  entryComponents: [
+    UserLoginPageComponent,
+    SitDialogComponent,
+    OrderDialogComponent
+  ],
   bootstrap: [AppComponent]
 })
 

@@ -7,5 +7,4 @@ export interface ISit {
   cost: number;
   paid: boolean;
   image: string;
-  parentOrgID?: string;
 }

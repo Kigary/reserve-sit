@@ -12,8 +12,8 @@
   </md-input-container>
   <md-input-container>
     <input mdInput placeholder="Organization Name"
-           formControlName="orgName" [errorStateMatcher]="errorStateMatcher" required>
-    <md-error *ngIf="regForm.get('orgName').hasError('required')">
+           formControlName="name" [errorStateMatcher]="errorStateMatcher" required>
+    <md-error *ngIf="regForm.get('name').hasError('required')">
       Organization is <strong>required</strong>
     </md-error>
   </md-input-container>

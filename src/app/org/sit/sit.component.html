@@ -1,33 +1,23 @@
 <md-card fxLayout="row">
   <md-card-content>
     <md-grid-list cols="2" rowHeight="40px">
-      <md-grid-tile>
-        <md-card-title>
-          <strong>{{sit.sitName}}</strong>
-        </md-card-title>
+      <md-grid-tile [rowspan]="2">
+        <md-card-title [innerText]="sit.sitName"></md-card-title>
+      </md-grid-tile>
+      <md-grid-tile [rowspan]="2">
+        <span [innerText]="'Seats: ' + sit.numOfSeats"></span>
       </md-grid-tile>
       <md-grid-tile>
         <span>
-          Seats: {{sit.numOfSeats}}
-        </span>
-      </md-grid-tile>
-      <md-grid-tile></md-grid-tile>
-      <md-grid-tile></md-grid-tile>
-      <md-grid-tile>
-        <span>
-          <strong>{{sit.reserved? 'R':'Not r'}}eserved</strong>
+          <strong [innerText]="sit.reserved ? 'Reserved':'Not reserved'"></strong>
         </span>
       </md-grid-tile>
       <md-grid-tile>
-        <span>
-          Cost: {{sit.cost}}
-        </span>
+        <span [innerText]="sit.cost ? (sit.cost|currency:'JPY':true):'Free'"></span>
       </md-grid-tile>
       <md-grid-tile></md-grid-tile>
       <md-grid-tile>
-        <span>
-          {{sit.reserved? (sit.paid? 'Paid':'Not Paid'):''}}
-        </span>
+        <span [innerText]="sit.reserved? (sit.paid? 'Paid':'Not Paid'):''"></span>
       </md-grid-tile>
     </md-grid-list>
   </md-card-content>

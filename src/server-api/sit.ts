@@ -2,7 +2,6 @@ import * as express from 'express';
 import { createGUID } from './common/index';
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
-import { Organization } from './organization';
 
 const filePath = join(__dirname, './data/sits.db.json');
 
@@ -15,7 +14,6 @@ export class Sit {
   cost: number;
   paid: boolean;
   image: string;
-  parentOrgID?: string;
 
   constructor(data) {
     Object.assign(this, data);
@@ -27,18 +25,21 @@ export class Sit {
 
   static getAllSits(): Sit[] {
     const sits = this.getSits();
-    return sits.map((sit) => {
-      return sit;
-    });
+    return sits.map(sit => sit);
+  }
+
+  static getAllSitsByOrg(loggedOrgID): Sit[] {
+    const sits = this.getSits();
+    return sits.filter(sit => sit.orgID === loggedOrgID);
   }
 
   static getSit(id: string): Sit {
     return this.getSits().find(s => s.sitID === id);
   }
 
-  static createSit(data) {
+  static createSit(data, loggedOrgID) {
     data.parentOrgID = null;
-    data.orgID = Organization.loggedInOrg.orgID;
+    data.orgID = loggedOrgID;
     const sit = new Sit(data);
     const sits = this.getSits();
     sits.unshift(sit);
@@ -80,6 +81,10 @@ SitRouter.get('/sit-list', (req, res) => {
   res.json(Sit.getAllSits());
 });
 
+SitRouter.get('/sit-list-org', (req, res) => {
+  res.json(Sit.getAllSitsByOrg(req.loggedInOrg.orgID));
+});
+
 SitRouter.get('/:id', (req, res) => {
   const id = req.params.id;
   console.log(id);
@@ -87,7 +92,7 @@ SitRouter.get('/:id', (req, res) => {
 });
 
 SitRouter.post('/', (req, res) => {
-  const sit = Sit.createSit(req.body);
+  const sit = Sit.createSit(req.body, req.loggedInOrg.orgID);
   res.status(200).send(sit);
 });
 

@@ -23,14 +23,12 @@ export class SitsComponent implements OnInit {
 
   constructor(
     private sitService: SitService,
-    private router: Router,
     public dialog: MdDialog,
     private orgService: OrgService,
-    private authService: AccountService) { }
+    private accountService: AccountService) { }
 
   getAllSits(): void {
-    this.sitService
-      .getAllSits()
+    this.sitService.getAllSits()
       .subscribe(sits => this.sits = sits as ISit[]);
   }
 
@@ -46,13 +44,8 @@ export class SitsComponent implements OnInit {
     this.sits.splice(index, 1);
   }
 
-  saveSit(sit) {
-    this.sits.splice(0, 0, sit);
-  }
-
   orgLogOut() {
-    this.authService.logOut().subscribe(() => {
-      sessionStorage.removeItem('orgLogin');
+    this.accountService.logOut().subscribe( () => {
       location.reload();
     });
   }

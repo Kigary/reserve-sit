@@ -1,4 +1,4 @@
-<div md-button [mdMenuTriggerFor]="menu" *ngIf="user">
+<div md-button [mdMenuTriggerFor]="menu" >
   <span [innerText] = "user.firstName[0] | capitalize"></span>
   <md-menu #menu="mdMenu" xPosition="before" yPosition="below"
            [overlapTrigger]="false" >

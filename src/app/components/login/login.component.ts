@@ -31,10 +31,8 @@ export class UserLoginComponent implements OnInit {
 
   logIn() {
     this.loading = true;
-    this.accountUserService.logIn(this.loginForm.value).subscribe(() => {
-        this.storage.userLogin = 'true';
-        this.dialogRef.close();
-        this.router.navigate(['/']);
+    this.accountUserService.logIn(this.loginForm.value).subscribe((data) => {
+        this.dialogRef.close(data);
       },
       (error) => {
         this.loading = false;

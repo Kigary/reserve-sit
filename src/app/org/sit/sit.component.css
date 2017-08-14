@@ -38,8 +38,14 @@ md-icon {
   font-size: 22px;
 }
 md-card-title {
+  font-weight: 700;
   width: 100%;
 }
 span {
   width: 100%;
+}
+md-grid-tile:nth-of-type(1) {
+  display: flex;
+  align-items: flex-start;
+  word-break: break-all;
 }

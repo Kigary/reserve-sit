@@ -1,3 +1,13 @@
-<p>
-  order works!
-</p>
+<md-list>
+  <md-list-item [innerText]="index+1"></md-list-item>
+  <md-list-item> <img md-card-image [src]="order.sitID.image"></md-list-item>
+  <md-list-item [innerText]="order.orgID.name"></md-list-item>
+  <md-list-item>
+    <md-input-container class="example-full-width">
+      <input mdInput type="text" [value]="order.orderDate | date : 'yMdjm'" disabled>
+    </md-input-container>
+  </md-list-item>
+  <md-list-item class = 'details'>
+    <button md-button class="mat-primary mat-raised-button" (click)="openDialog()">Details</button>
+  </md-list-item>
+</md-list>

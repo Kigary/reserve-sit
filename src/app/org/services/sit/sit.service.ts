@@ -7,7 +7,7 @@ export class SitService {
   constructor(private http: HttpClient) { }
 
   getAllSits() {
-    return this.http.get(`/api/sit/sit-list`);
+    return this.http.get(`/api/sit/sit-list-org`);
   }
   deleteSit(sitID) {
     return this.http.delete(`api/sit/${sitID}`);

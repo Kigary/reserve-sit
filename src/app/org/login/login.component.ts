@@ -11,7 +11,6 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   sentLogin: boolean;
-  storage: Storage;
 
   constructor(private fb: FormBuilder,
               private accountService: AccountService,
@@ -19,7 +18,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.storage = sessionStorage;
     this.formBuild();
   }
 
@@ -33,7 +31,6 @@ export class LoginComponent implements OnInit {
   login() {
     this.sentLogin = true;
     this.accountService.login(this.loginForm.value).subscribe(() => {
-        this.storage.orgLogin = 'true';
         this.router.navigate(['org/sits']);
       },
       (error) => {

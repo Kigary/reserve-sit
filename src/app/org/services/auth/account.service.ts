@@ -18,4 +18,9 @@ export class AccountService {
     return this.http.get('api/org/logout').delay(1000)
       .catch((error) => Observable.throw(error));
   }
+
+  isLoggedIn() {
+    return this.http.get('/api/org/is-logged-in') as Observable<boolean>;
+  }
+
 }

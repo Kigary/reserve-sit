@@ -1,10 +1,14 @@
 [
   {
     "orgID": "57614132-0eea-4078-2508-72347fdd791d",
-    "parentOrgID": null,
+    "sessionKeys": [
+      "a1f960b9-1912-4ce4-510d-29fc4b7904f7",
+      "d1abe035-f9c4-468d-430b-dad558fb45ca",
+      "350f6fa5-e166-3c9e-b24f-b57c1fb9b001"
+    ],
     "login": "login",
     "name": "Tashir Pizza",
-    "password": "passwordpassword",
+    "password": "password",
     "country": "Armenia",
     "city": "Yerevan",
     "address": "Movses Khorenatsu St., 33 Building",
@@ -13,17 +17,16 @@
     "fax": "(+374 10) 51 11 08"
   },
   {
-    "orgID": "57614132-0eeb-4078-2508-72347fdd791d",
-    "parentOrgID": null,
-    "login": "kigary",
-    "name": "SQ1",
+    "orgID": "34b55696-d604-b2c4-e451-ce27dedb5338",
+    "sessionKeys": [],
+    "login": "login2",
     "password": "passwordpassword",
+    "name": "SQ1",
+    "email": "",
     "country": "Armenia",
+    "address": "someAddress",
     "city": "Yerevan",
-    "address": "Abovyan St., 1/3 Building",
-    "phone": "077 00 00 00",
-    "email": "info@figaro.am",
+    "phone": "000000000",
     "fax": ""
   }
-
 ]
