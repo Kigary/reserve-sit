@@ -34,7 +34,7 @@ export class RegisterAcounteComponent implements OnInit {
     this.regForm = this.fb.group({
       login: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(15)]],
-      orgName: ['', [Validators.required]],
+      name: ['', [Validators.required]],
       email: ['', [Validators.pattern(EMAIL_REGEX)]],
       country: ['Armenia', []],
       address: ['', [Validators.required]],
