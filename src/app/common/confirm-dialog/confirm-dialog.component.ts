@@ -3,7 +3,10 @@ import { MD_DIALOG_DATA } from '@angular/material';
 
 
 export interface IConfirmDialogOptions {
+  title: string;
   msg: string;
+  confirm: string;
+  reject: string;
 }
 
 @Component({

@@ -11,4 +11,4 @@ ApiRouter.use('/user', UserRouter);
 ApiRouter.use('/org', OrgRouter);
 ApiRouter.use('/sit', SitRouter);
 ApiRouter.use('/country', CountryRouter);
-ApiRouter.use('/org/order', OrderRouter);
+ApiRouter.use('/order', OrderRouter);

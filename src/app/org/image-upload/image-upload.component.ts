@@ -25,12 +25,6 @@ const CONTROL_VALIDATORS = {
 
 export class ImageUploadComponent implements ControlValueAccessor, Validator {
 
-  validate(c: FormControl): {[key: string]: any} {
-    return c.value === null || c.value.length === 0 ? { "required" : true} : null;
-  }
-
-  registerOnValidatorChange(fn: () => void): void { }
-
   private _value: string;
 
   @Input()
@@ -66,16 +60,18 @@ export class ImageUploadComponent implements ControlValueAccessor, Validator {
   writeValue(value: string) {
     this.value = value;
   }
-
   registerOnChange(fn: any): void {
     this.change.subscribe(fn);
   }
-
   registerOnTouched(fn: any): void {
     this.touch.subscribe(fn);
   }
-
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
+
+  validate(c: FormControl): {[key: string]: any} {
+    return c.value === null || c.value.length === 0 ? { "required" : true} : null;
+  }
+  registerOnValidatorChange(fn: () => void): void { }
 }

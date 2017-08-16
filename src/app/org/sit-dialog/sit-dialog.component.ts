@@ -44,6 +44,7 @@ export class SitDialogComponent implements OnInit {
       paid: [{value: this.sit.paid, disabled: !this.editMode}],
       image: [this.sit.image, [Validators.required]]
     });
+    this.sitForm.get('paid')[this.sitForm.get('reserved').value?'enable':'disable']();
     this.sitForm.get('reserved').valueChanges.subscribe(val => {
       this.sitForm.get('paid')[val?'enable':'disable']();
       if(!val){

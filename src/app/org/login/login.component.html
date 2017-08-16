@@ -23,7 +23,8 @@
   <div fxLayout="row" class="footer">
     <button (click)="login()"
             class=" mat-raised-button mat-primary"
-            [disabled]='!loginForm.valid'>
+            [disabled]='!loginForm.valid'
+            autofocus>
       Login
     </button>
     <md-spinner *ngIf="sentLogin"></md-spinner>

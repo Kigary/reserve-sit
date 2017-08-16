@@ -7,6 +7,7 @@
           required
           formControlName="sitName"/>
     </md-input-container>
+    <org-image-upload formControlName="image"></org-image-upload>
     <br/>
     <md-input-container>
       <input mdInput type="number"
@@ -14,6 +15,7 @@
              required
              formControlName="numOfSeats"/>
     </md-input-container>
+    <br/>
     <md-input-container>
       <input mdInput type="number"
              placeholder="Cost"
@@ -28,13 +30,13 @@
     <md-checkbox formControlName="paid">
       Paid
     </md-checkbox>
-    <br/><br/>
-    <org-image-upload formControlName="image"></org-image-upload>
+    <br/><br/><br/><br/>
+    <span>* required fields</span>
   </md-dialog-content>
 
   <md-dialog-actions>
     <md-spinner *ngIf="inProgress"></md-spinner>
-    <button md-button (click)="saveSit()" [disabled]='!sitForm.valid'>Save</button>
+    <button md-raised-button (click)="saveSit()" [disabled]='!sitForm.valid'>Save</button>
     <button md-button [md-dialog-close]="null">Cancel</button>
   </md-dialog-actions>
 </form>
