@@ -15,39 +15,26 @@ import {
   MdCardModule
 } from '@angular/material';
 
+const materialModules = [
+  FlexLayoutModule,
+  MdButtonModule,
+  MdToolbarModule,
+  MdMenuModule,
+  MdDialogModule,
+  MdInputModule,
+  MdRadioModule,
+  MdProgressSpinnerModule,
+  MdGridListModule,
+  MdCheckboxModule,
+  MdProgressSpinnerModule,
+  MdListModule,
+  MdIconModule,
+  MdCardModule
+];
+
 @NgModule({
-  imports: [
-    FlexLayoutModule,
-    MdButtonModule,
-    MdToolbarModule,
-    MdMenuModule,
-    MdDialogModule,
-    MdInputModule,
-    MdRadioModule,
-    MdProgressSpinnerModule,
-    MdGridListModule,
-    MdCheckboxModule
-    MdProgressSpinnerModule,
-    MdListModule,
-    MdIconModule,
-    MdCardModule
-  ],
-  exports: [
-    FlexLayoutModule,
-    MdButtonModule,
-    MdToolbarModule,
-    MdMenuModule,
-    MdDialogModule,
-    MdInputModule,
-    MdRadioModule,
-    MdProgressSpinnerModule,
-    MdGridListModule,
-    MdCheckboxModule
-    MdProgressSpinnerModule,
-    MdListModule,
-    MdIconModule,
-    MdCardModule
-  ],
+  imports: materialModules,
+  exports: materialModules
 })
 
 export class AppMaterialModule { }

@@ -8,7 +8,6 @@ import {MD_DIALOG_DATA} from '@angular/material';
   styleUrls: ['./sit-dialog.component.css']
 })
 export class SitDialogComponent implements OnInit {
-  @Input()
   sit: ISit;
 
   constructor(

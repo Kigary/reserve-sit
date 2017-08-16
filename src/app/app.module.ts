@@ -39,7 +39,7 @@ import { SitDialogComponent } from './sit-dialog/sit-dialog.component';
     CapitalizePipe,
     OrdersComponent,
     OrderComponent,
-    OrderDialogComponent
+    OrderDialogComponent,
     OrderComponent,
     SitComponent,
     SitsComponent,
