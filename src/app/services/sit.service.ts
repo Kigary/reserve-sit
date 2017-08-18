@@ -1,0 +1,28 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { IFilterData } from '../defines/IFilterData';
+import { Observable } from 'rxjs/Observable';
+import { ISit } from '../defines/ISit';
+
+
+@Injectable()
+export class SitService {
+
+  constructor(private http: HttpClient) { }
+
+  reserveSit(sitID) {
+    return this.http.get(`/api/sit/${sitID}` );
+  }
+  getAllSits() {
+    return this.http.get('api/sit/sit-list');
+  }
+  filterSits(data: IFilterData): Observable<ISit[]> {
+    const query = Object.keys(data)
+      .map((key) => `${key}=${data[key]}`)
+      .join('&');
+    const params = new HttpParams({
+      fromString: query
+    });
+    return this.http.get('api/sit/sit-filter', {params});
+  }
+}

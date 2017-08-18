@@ -73,12 +73,35 @@ export class Sit {
     this.saveAllSits(sits);
     return currentSit;
   }
+
+  static applySearch(filterData) {
+    let sits = Sit.getAllSits();
+    if(!Object.keys(filterData).length) {
+      return sits;
+    }
+    if (filterData.orgID) {
+        sits = sits.filter((sit) => sit.orgID === filterData.orgID);
+    }
+    if (filterData.sits) {
+        sits = sits.filter((sit) => sit.numOfSeats >= +filterData.sits);
+    }
+    if (filterData.minPrice) {
+      sits = sits.filter((sit) => +filterData.minPrice <= sit.cost);
+    }
+    if (filterData.maxPrice) {
+      sits = sits.filter((sit) => +filterData.maxPrice >= sit.cost);
+    }
+    return sits;
+  }
 }
 
 export const SitRouter = express.Router();
 
 SitRouter.get('/sit-list', (req, res) => {
   res.json(Sit.getAllSits());
+});
+SitRouter.get('/sit-filter', (req, res) => {
+   res.json(Sit.applySearch(req.query));
 });
 
 SitRouter.get('/sit-list-org', (req, res) => {
@@ -92,6 +115,7 @@ SitRouter.get('/:id', (req, res) => {
 });
 
 SitRouter.post('/', (req, res) => {
+  console.log(req.body);
   const sit = Sit.createSit(req.body, req.loggedInOrg.orgID);
   res.status(200).send(sit);
 });
@@ -102,6 +126,7 @@ SitRouter.delete('/:id', (req, res) => {
 });
 
 SitRouter.post('/:id', (req, res) => {
+  console.log(req.body);
   const data = req.body;
   data.sitID = req.params.id;
   res.json(Sit.updateSit(data));

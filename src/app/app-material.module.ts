@@ -12,7 +12,9 @@ import {
   MdCheckboxModule,
   MdListModule,
   MdIconModule,
-  MdCardModule
+  MdCardModule,
+  MdSelectModule,
+  MdProgressBarModule
 } from '@angular/material';
 
 const materialModules = [
@@ -29,7 +31,9 @@ const materialModules = [
   MdProgressSpinnerModule,
   MdListModule,
   MdIconModule,
-  MdCardModule
+  MdCardModule,
+  MdSelectModule,
+  MdProgressBarModule
 ];
 
 @NgModule({

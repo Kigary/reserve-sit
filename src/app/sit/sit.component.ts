@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {ISit} from '../defines/ISit';
 import {MdDialog} from '@angular/material';
-import {SitService} from '../services/sit/sit.service';
+import {SitService} from '../services/sit.service';
 import {SitDialogComponent} from '../sit-dialog/sit-dialog.component';
 import {ConfirmDialogComponent, IConfirmDialogOptions} from '../common/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-sit',
   templateUrl: './sit.component.html',
-  styleUrls: ['./sit.component.css']
+  styleUrls: ['./sit.component.scss']
 })
 export class SitComponent implements OnInit {
 

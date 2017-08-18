@@ -9,7 +9,7 @@ import {ConfirmDialogComponent, IConfirmDialogOptions} from '../../common/confir
 @Component({
   selector: 'org-sit',
   templateUrl: './sit.component.html',
-  styleUrls: ['./sit.component.css']
+  styleUrls: ['./sit.component.scss']
 })
 export class SitComponent implements OnInit {
   @Output()

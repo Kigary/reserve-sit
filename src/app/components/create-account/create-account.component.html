@@ -1,5 +1,5 @@
 <md-toolbar class="mat-primary">Sign Up</md-toolbar>
-<form [formGroup]="regForm" fxLayout="column">
+<form [formGroup]="regForm" fxLayout="column" (ngSubmit)="UserRegister()">
 
   <md-input-container>
     <input mdInput placeholder="Login"
@@ -73,18 +73,21 @@
               [innerHTML]=" 'Password must be at least <strong>15</strong> characters'">
     </md-error>
   </md-input-container>
-
+  <div class="regError">
+    <md-error *ngIf="error" [innerText]="error"></md-error>
+  </div>
   <div fxLayout="row" class="mat-grid-tile-footer">
-    <button class=" mat-raised-button mat-primary"
+    <button type="button" class=" mat-raised-button mat-primary"
             [routerLink]="['', {outlets: {'account': 'login'}}]"
             [innerText]="'Sign In'">
     </button>
     <div fxFlex="2"></div>
-    <button (click)="UserRegister()"
+    <button type="submit"
             md-button class="mat-raised-button mat-primary"
             [disabled]="!regForm.valid"
             [innerText]="'Sign Up'">
     </button>
-    <md-spinner *ngIf="isSubmit"></md-spinner>
-  </div>
+    <md-spinner *ngIf="loading"></md-spinner>
+     </div>
 </form>
+

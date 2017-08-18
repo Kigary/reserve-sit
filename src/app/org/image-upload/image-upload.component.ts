@@ -16,7 +16,7 @@ const CONTROL_VALIDATORS = {
 @Component({
   selector: 'org-image-upload',
   templateUrl: './image-upload.component.html',
-  styleUrls: ['./image-upload.component.css'],
+  styleUrls: ['./image-upload.component.scss'],
   providers: [
     CONTROL_VALUE_ACCESSOR,
     CONTROL_VALIDATORS
@@ -71,7 +71,7 @@ export class ImageUploadComponent implements ControlValueAccessor, Validator {
   }
 
   validate(c: FormControl): {[key: string]: any} {
-    return c.value === null || c.value.length === 0 ? { "required" : true} : null;
+    return c.value === null || c.value.length === 0 ? { 'required' : true} : null;
   }
   registerOnValidatorChange(fn: () => void): void { }
 }

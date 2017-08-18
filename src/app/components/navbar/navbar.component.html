@@ -1,7 +1,7 @@
 <md-toolbar color="primary">
   <button md-button routerLink="/" [innerText]="'Reserve sit'"></button>
  <div fxFlex="flex" fxLayoutAlign="end" >
-   <button md-button="" (click)="openLoginDialog()"  *ngIf="!userLogged ;else elseLogged">
+   <button md-button="" (click)="openLoginDialog()"  *ngIf="!user ;else elseLogged">
      <md-icon>person_pin</md-icon>
      Sign In
    </button>

@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'org-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
@@ -15,10 +15,10 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private accountService: AccountService,
               private router: Router) {
+    this.formBuild();
   }
 
   ngOnInit() {
-    this.formBuild();
   }
 
   formBuild() {
@@ -43,5 +43,6 @@ export class LoginComponent implements OnInit {
   errorStateMatcher(control: FormControl): boolean {
     return control.invalid && (control.dirty || control.touched);
   }
+
 }
 

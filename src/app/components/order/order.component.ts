@@ -4,7 +4,7 @@ import {OrderDialogComponent} from '../order-dialog/order-dialog.component';
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.css']
+  styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
   @Input()
@@ -16,6 +16,8 @@ export class OrderComponent implements OnInit {
   ngOnInit() {
   }
   openDialog() {
-     this.dialog.open(OrderDialogComponent);
+     this.dialog.open(OrderDialogComponent , {
+       data: this.order
+     });
   }
 }
