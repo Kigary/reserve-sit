@@ -13,5 +13,27 @@ md-spinner {
   padding-left: 15px;
 }
 md-toolbar {
+  background-color: #78909C;
   width: 450px;
+}
+h2 {
+  color: #ECEFF1 !important;
+}
+* {
+  color: #263238;
+}
+button[md-raised-button] {
+  background-color: #78909C;
+  color: white;
+}
+div md-input-container, md-select {
+  width: 191px;
+}
+div:nth-of-type(1) {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+md-select {
+  padding: 15px;
 }

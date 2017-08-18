@@ -1,4 +1,4 @@
-<md-toolbar class="mat-primary">
+<md-toolbar>
   <h2>Organization Registration</h2>
 </md-toolbar>
 <form [formGroup]="regForm" fxLayout="column" (ngSubmit)="orgRegister()">
@@ -14,7 +14,7 @@
     <input mdInput placeholder="Organization Name"
            formControlName="name" [errorStateMatcher]="errorStateMatcher" required>
     <md-error *ngIf="regForm.get('name').hasError('required')">
-      Organization is <strong>required</strong>
+      Organization Name is <strong>required</strong>
     </md-error>
   </md-input-container>
   <md-input-container>
@@ -46,15 +46,15 @@
     <input mdInput placeholder="Email" formControlName="email"
            [errorStateMatcher]="errorStateMatcher">
     <md-error *ngIf="regForm.get('email').hasError('pattern')">
-      Please enter a valid email
+      Please enter a valid email address
     </md-error>
   </md-input-container>
   <div>
     <md-input-container>
-      <input mdInput placeholder="Phone Number" formControlName="phone"
+      <input mdInput placeholder="Phone" formControlName="phone"
              [errorStateMatcher]="errorStateMatcher" required>
       <md-error *ngIf="regForm.get('phone').hasError('required')">
-        Number is <strong>required</strong>
+        Phone number is <strong>required</strong>
       </md-error>
 
       <md-error *ngIf="regForm.get('phone').hasError('pattern')">
@@ -73,13 +73,13 @@
       Password is <strong>required</strong>
     </md-error>
     <md-error *ngIf="regForm.get('password').hasError('minlength')">
-      Password minlength <strong>15</strong>
+      Password must be at least <strong>15</strong> characters
     </md-error>
   </md-input-container>
   <div fxLayout="row" class="mat-grid-tile-footer">
-    <button type="button" class=" mat-raised-button mat-primary" routerLink="../login">Cancel</button>
-    <div fxFlex="2"></div>
-    <button type="submit" md-button class="mat-raised-button mat-primary" [disabled]="!regForm.valid">
+    <button type="button" md-button  routerLink="../login">Cancel</button>
+    <div fxFlex></div>
+    <button type="submit"  md-raised-button [disabled]="!regForm.valid">
       Submit
     </button>
     <md-spinner *ngIf="isSubmit"></md-spinner>

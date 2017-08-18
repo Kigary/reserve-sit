@@ -14,11 +14,11 @@ import { Router } from '@angular/router';
 })
 
 export class NavbarComponent {
-  user: IUser;
+  userLogged: IUser | null;
   constructor(public dialog: MdDialog,
               public router: Router,
               private accountUserService: AccountUserService) {
-    this.accountUserService.getLoggedUser().subscribe((user) => this.user = user);
+    this.accountUserService.getLoggedUser().subscribe((user) => this.userLogged = user);
   }
 
   openLoginDialog() {

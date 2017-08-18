@@ -38,8 +38,9 @@ export class Sit {
   }
 
   static createSit(data, loggedOrgID) {
-    data.parentOrgID = null;
     data.orgID = loggedOrgID;
+    data.reserved = false;
+    data.paid = false;
     const sit = new Sit(data);
     const sits = this.getSits();
     sits.unshift(sit);
@@ -126,7 +127,6 @@ SitRouter.delete('/:id', (req, res) => {
 });
 
 SitRouter.post('/:id', (req, res) => {
-  console.log(req.body);
   const data = req.body;
   data.sitID = req.params.id;
   res.json(Sit.updateSit(data));
