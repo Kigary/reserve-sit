@@ -1,5 +1,5 @@
-<md-toolbar class="mat-primary">
- Organization Login
+<md-toolbar>
+  <h2>Organization Login</h2>
 </md-toolbar>
 <form [formGroup]="loginForm"
       fxLayout="column">
@@ -21,15 +21,14 @@
     </md-error>
   </md-input-container>
   <div fxLayout="row" class="footer">
-    <button (click)="login()"
-            class=" mat-raised-button mat-primary"
+    <button md-raised-button (click)="login()"
             [disabled]='!loginForm.valid'
             autofocus>
       Login
     </button>
     <md-spinner *ngIf="sentLogin"></md-spinner>
     <div fxFlex="60"></div>
-    <button md-button class="mat-primary"
+    <button md-button
             routerLink="../create">
       Sign Up
     </button>

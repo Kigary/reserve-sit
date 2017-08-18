@@ -2,9 +2,13 @@
   <md-toolbar>
     <button md-button class="orgName">{{loggedOrg?.name}}</button>
     <div class="logOut" fxFlex="flex" fxLayoutAlign="end" >
-      <button md-button (click)="orgLogOut()">
-        Log out
+      <button md-icon-button [mdMenuTriggerFor]="menu">
+        <md-icon>menu</md-icon>
       </button>
+      <md-menu #menu xPosition="before" yPosition="below" [overlapTrigger]="false">
+        <button md-menu-item [innerText]="'Orders'"></button>
+        <button md-menu-item (click)="orgLogOut()" [innerText]="'Log out'"></button>
+      </md-menu>
     </div>
   </md-toolbar>
   <div>

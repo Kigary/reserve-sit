@@ -38,8 +38,9 @@ export class Sit {
   }
 
   static createSit(data, loggedOrgID) {
-    data.parentOrgID = null;
     data.orgID = loggedOrgID;
+    data.reserved = false;
+    data.paid = false;
     const sit = new Sit(data);
     const sits = this.getSits();
     sits.unshift(sit);

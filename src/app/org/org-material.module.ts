@@ -3,41 +3,29 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { MdInputModule, MdToolbarModule, MdButtonModule, MdSelectModule,
          MdListModule, MdGridListModule,  MdTabsModule, MdCardModule,
          MdDialogModule, MdCheckboxModule, MdProgressSpinnerModule,
-         MdTooltipModule } from '@angular/material';
+         MdTooltipModule, MdMenuModule } from '@angular/material';
 
 
+const mdModules = [
+  FlexLayoutModule,
+  MdInputModule,
+  MdToolbarModule,
+  MdButtonModule,
+  MdSelectModule,
+  MdListModule,
+  MdGridListModule,
+  MdTabsModule,
+  MdCardModule,
+  MdProgressSpinnerModule,
+  MdDialogModule,
+  MdCheckboxModule,
+  MdTooltipModule,
+  MdMenuModule
+];
 
 @NgModule({
-  imports: [
-    FlexLayoutModule,
-    MdInputModule,
-    MdToolbarModule,
-    MdButtonModule,
-    MdSelectModule,
-    MdListModule,
-    MdGridListModule,
-    MdTabsModule,
-    MdCardModule,
-    MdProgressSpinnerModule,
-    MdDialogModule,
-    MdCheckboxModule,
-    MdTooltipModule
-  ],
-  exports: [
-    FlexLayoutModule,
-    MdInputModule,
-    MdToolbarModule,
-    MdButtonModule,
-    MdSelectModule,
-    MdListModule,
-    MdGridListModule,
-    MdTabsModule,
-    MdCardModule,
-    MdProgressSpinnerModule,
-    MdDialogModule,
-    MdCheckboxModule,
-    MdTooltipModule
-  ],
+  imports: mdModules,
+  exports: mdModules
 })
-export class OrgMaterialModule {
-}
+
+export class OrgMaterialModule { }
