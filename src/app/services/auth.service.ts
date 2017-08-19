@@ -12,10 +12,7 @@ export class AccountUserService {
   private userSubject = new Subject<IUser>();
 
   constructor(private http: HttpClient) {
-    this.http.get('/api/user/logged-user')
-      .subscribe((loggedInUser: IUser) => {
-        this.userSubject.next(loggedInUser);
-      });
+    this.getLoggedUser();
   }
 
   logIn(data) {
@@ -32,6 +29,10 @@ export class AccountUserService {
   }
 
   getLoggedUser(): Observable<IUser> {
+    this.http.get('/api/user/logged-user')
+      .subscribe((loggedInUser: IUser) => {
+        this.userSubject.next(loggedInUser);
+      });
     return this.userSubject;
   }
 }

@@ -14,11 +14,6 @@ button {
   width: 120px;
   margin: 15px 15px 23px 15px;
   font-weight: 100;
-  &:hover {
-    letter-spacing: 1px;
-    background-color:#009688;
-    font-weight: 800;
-  }
 }
 .mat-raised-button {
   background-color: #26A69A;

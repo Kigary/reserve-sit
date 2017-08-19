@@ -16,10 +16,9 @@ import { SitComponent } from './sit/sit.component';
 
 import {SitService} from './services/sit/sit.service';
 import {OrgService} from './services/org/org.service';
-import {CountriesResolve} from './services/country/country.resolve';
 import {AccountService} from './services/auth/account.service';
-import {AccountGuard} from './guards/account.guard';
 import {CountryService} from './services/country/country.service';
+
 
 
 
@@ -46,9 +45,7 @@ import {CountryService} from './services/country/country.service';
     CountryService,
     SitService,
     OrgService,
-    CountriesResolve,
     AccountService,
-    AccountGuard
   ],
 
   entryComponents: [SitDialogComponent]

@@ -65,6 +65,7 @@ class Order {
       order.orgID = Organization.getOrg(order.orgID);
       order.sitID = Sit.getSit(order.sitID);
     });
+    console.log(order);
     return order;
   }
 
@@ -76,7 +77,7 @@ class Order {
 export const OrderRouter = express.Router();
 
 OrderRouter.use(function (req, res, next) {
-  const sessionKey = 'bb4b2bd5-ff26-ab6f-37dc-0b6d778a75fe'; //req.cookies.sessionKey;
+  const sessionKey = 'd577060d-0633-ae78-aba3-32d675540e9b';
   const {userID} = User.getUserBySessionKey(sessionKey) || {userID: null};
   if (!userID) {
     res.cookie('sessionKey', '');
@@ -87,7 +88,7 @@ OrderRouter.use(function (req, res, next) {
 });
 
 OrderRouter.get('/order-list', (req, res) => {
-  res.json(Order.getAllOrdersInfo(req.userID));
+   res.json(Order.getAllOrdersInfo(req.userID));
 });
 
 // create order

@@ -22,14 +22,16 @@
     "password": "111111111111111"
   },
   {
-    "userID": "1d1euaf3-8keb-72ta-a6uf-1d1tdafu8e63",
-    "sessionKeys": [],
-    "login": "login",
-    "firstName": "David",
-    "lastName": "h0v",
-    "email": "h0v@gmail.com",
-    "phone": "000222",
+    "userID": "a3cbac26-5eeb-7b8a-abdf-1d1cdaf38e03",
+    "sessionKeys": [
+      "7e4851ee-84b1-0af4-15f8-74749f9e18b1"
+    ],
+    "login": "informm109",
+    "firstName": "Artur",
+    "lastName": "dad",
+    "email": "adad@mail.ru",
+    "phone": "121212",
     "gender": "male",
-    "password": "pass"
+    "password": "111111111111111"
   }
 ]

@@ -7,6 +7,6 @@ export class OrderService {
   constructor(private http: HttpClient) { }
 
   getOrders() {
-    return this.http.get('api/org/order/order-list');
+    return this.http.get('api/order/order-list');
   }
 }

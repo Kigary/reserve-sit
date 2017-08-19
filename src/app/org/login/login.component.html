@@ -2,7 +2,7 @@
   <h2>Organization Login</h2>
 </md-toolbar>
 <form [formGroup]="loginForm"
-      fxLayout="column" (ngSubmit)="login()">
+      fxLayout="column" (ngSubmit)="login()" >
   <md-input-container>
     <input mdInput placeholder="Login"
            formControlName="login"
@@ -23,7 +23,7 @@
   <div fxLayout="row" class="footer">
     <button type="submit"
             md-raised-button
-            [disabled]='loginForm.invalid' autofocus>
+            [disabled]='loginForm.invalid' >
       Login
     </button>
     <md-spinner *ngIf="sentLogin"></md-spinner>

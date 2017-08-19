@@ -116,8 +116,7 @@ SitRouter.get('/:id', (req, res) => {
 });
 
 SitRouter.post('/', (req, res) => {
-  console.log(req.body);
-  const sit = Sit.createSit(req.body, req.loggedInOrg.orgID);
+   const sit = Sit.createSit(req.body, req.loggedInOrg.orgID);
   res.status(200).send(sit);
 });
 

@@ -28,8 +28,6 @@ import { CapitalizePipe } from './pipe/capitalize.pipe';
 import { OrderService } from './services/order.service';
 import { SitService } from './services/sit.service';
 import { OrgService } from './services/org.service';
-import { SitsResolveService } from './services/sits-resolve.service';
-import { OrgNamesResolveService } from './services/orgnames-resolve.service';
 
 @NgModule({
   declarations: [
@@ -67,8 +65,6 @@ import { OrgNamesResolveService } from './services/orgnames-resolve.service';
     SitService,
     OrderService,
     OrgService,
-    SitsResolveService,
-    OrgNamesResolveService,
   ],
   entryComponents: [
     UserLoginPageComponent,

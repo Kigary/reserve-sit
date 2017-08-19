@@ -10,6 +10,7 @@ import {NotFoundComponent} from './common/not-found/not-found.component';
 
 import { SitsResolveService } from './services/sits-resolve.service';
 import { OrgNamesResolveService } from './services/orgnames-resolve.service';
+import { OrderGuard } from './guard/order.guard';
 
 const routes: Routes = [
   {
@@ -35,7 +36,8 @@ const routes: Routes = [
       },
       {
         path: 'orders',
-        component : OrdersComponent
+        component : OrdersComponent,
+        canActivate: [OrderGuard]
       },
       {
         path: '',
@@ -66,7 +68,12 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    SitsResolveService,
+    OrgNamesResolveService,
+    OrderGuard
+  ]
 })
 
 export class AppRoutingModule {
