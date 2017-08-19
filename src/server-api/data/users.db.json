@@ -22,14 +22,14 @@
     "password": "111111111111111"
   },
   {
-    "userID": "a3cbac26-5eeb-7b8a-abdf-1d1cdaf38e03",
+    "userID": "1d1euaf3-8keb-72ta-a6uf-1d1tdafu8e63",
     "sessionKeys": [],
-    "login": "informm109",
-    "firstName": "Artur",
-    "lastName": "dad",
-    "email": "adad@mail.ru",
-    "phone": "121212",
+    "login": "login",
+    "firstName": "David",
+    "lastName": "h0v",
+    "email": "h0v@gmail.com",
+    "phone": "000222",
     "gender": "male",
-    "password": "111111111111111"
+    "password": "pass"
   }
 ]
