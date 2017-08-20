@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormGroup, Validators, FormBuilder, FormControl} from '@angular/forms';
 import {AccountService} from '../services/auth/account.service';
 import {Router} from '@angular/router';
@@ -6,19 +6,20 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'org-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit{
   loginForm: FormGroup;
   sentLogin: boolean;
 
   constructor(private fb: FormBuilder,
               private accountService: AccountService,
-              private router: Router) {
+              private router: Router,
+              ) {
+    this.formBuild();
   }
 
   ngOnInit() {
-    this.formBuild();
   }
 
   formBuild() {
@@ -43,5 +44,6 @@ export class LoginComponent implements OnInit {
   errorStateMatcher(control: FormControl): boolean {
     return control.invalid && (control.dirty || control.touched);
   }
+
 }
 

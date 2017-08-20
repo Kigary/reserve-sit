@@ -14,18 +14,20 @@ import { UserRegisterAccountComponent } from './components/create-account/create
 import { UserComponent } from './components/user/user.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
+import { OrderComponent } from './components/order/order.component';
+import { OrdersComponent } from './components/orders/orders.component';
+import { OrderDialogComponent } from './components/order-dialog/order-dialog.component';
+import { SitsComponent } from './sits/sits.component';
+import { SitComponent } from './sit/sit.component';
+import { SitDialogComponent } from './sit-dialog/sit-dialog.component';
+import { FilterComponent } from './components/filter/filter.component';
 
 import { UserService } from './services/user.service';
 import { AccountUserService } from './services/auth.service';
 import { CapitalizePipe } from './pipe/capitalize.pipe';
-import { OrdersComponent } from './components/orders/orders.component';
-import { OrderComponent } from './components/order/order.component';
 import { OrderService } from './services/order.service';
-import { OrderDialogComponent } from './components/order-dialog/order-dialog.component';
-import { SitComponent } from './sit/sit.component';
-import { SitsComponent } from './sits/sits.component';
-import { SitService } from './services/sit/sit.service';
-import { SitDialogComponent } from './sit-dialog/sit-dialog.component';
+import { SitService } from './services/sit.service';
+import { OrgService } from './services/org.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { SitDialogComponent } from './sit-dialog/sit-dialog.component';
     OrderComponent,
     SitComponent,
     SitsComponent,
-    SitDialogComponent
+    SitDialogComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { SitDialogComponent } from './sit-dialog/sit-dialog.component';
     UserService,
     AccountUserService,
     SitService,
-    OrderService
+    OrderService,
+    OrgService,
   ],
   entryComponents: [
     UserLoginPageComponent,

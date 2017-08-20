@@ -14,7 +14,7 @@ import {IOrg} from '../../defines/IOrg';
   selector: 'org-sits',
   templateUrl: './sits.component.html',
   styleUrls: [
-    './sits.component.css'
+    './sits.component.scss'
   ]
 })
 export class SitsComponent implements OnInit {

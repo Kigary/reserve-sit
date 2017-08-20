@@ -2,11 +2,11 @@
   <h2>Organization Login</h2>
 </md-toolbar>
 <form [formGroup]="loginForm"
-      fxLayout="column">
+      fxLayout="column" (ngSubmit)="login()" >
   <md-input-container>
     <input mdInput placeholder="Login"
            formControlName="login"
-           [errorStateMatcher]="errorStateMatcher">
+           [errorStateMatcher]="errorStateMatcher" autofocus>
     <md-error *ngIf="loginForm.get('login').hasError('required')">
       Login is <strong>required</strong>
     </md-error>
@@ -21,14 +21,14 @@
     </md-error>
   </md-input-container>
   <div fxLayout="row" class="footer">
-    <button md-raised-button (click)="login()"
-            [disabled]='!loginForm.valid'
-            autofocus>
+    <button type="submit"
+            md-raised-button
+            [disabled]='loginForm.invalid' >
       Login
     </button>
     <md-spinner *ngIf="sentLogin"></md-spinner>
     <div fxFlex="60"></div>
-    <button md-button
+    <button type="button" md-button
             routerLink="../create">
       Sign Up
     </button>

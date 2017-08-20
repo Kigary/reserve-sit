@@ -63,6 +63,10 @@ export class User {
     const userData = this.getAllUsers().find(user => user.sessionKeys.includes(sessionKey));
     return User.dataToUser(userData);
   }
+  static doesExistUserLogin({login}) {
+    const users = this.getAllUsers();
+    return users.find((user) => user.login === login);
+  }
   addSessionKey(sessionKey) {
     this.sessionKeys.push(sessionKey);
     User.updateUser(this);
@@ -78,33 +82,22 @@ export class User {
 
 export const UserRouter = express.Router();
 
-UserRouter.use(function (req, res, next) {
-   const sessionKey = req.cookies.sessionKey;
-   const loggedInUser = User.getUserBySessionKey(sessionKey);
-   req.loggedInUser = loggedInUser;
-
-   if(!loggedInUser) {
-     res.cookie('sessionKey', '');
-   }
-
-   next();
- });
 UserRouter.get('/logged-user', (req, res) => {
   if(req.loggedInUser) {
     return res.json({
       firstName: req.loggedInUser.firstName
     });
   }
-  res.end();
+  return res.json(null);
 });
 
 UserRouter.post('/login', (req, res) => {
   const user = User.login(req.body);
   if (!user) {
-        return res.status(404).send({error: 'Username or password is incorrect'});
+        return res.status(404).send({message: 'login or password is incorrect'});
   }
   const sessionKey = createGUID();
-  res.cookie('sessionKey', sessionKey, {maxAge: new Date(2024, 0, 1), httpOnly: true});
+  res.cookie('sessionUserKey', sessionKey, {maxAge: new Date(2024, 0, 1), httpOnly: true});
   user.addSessionKey(sessionKey);
   res.json({
     firstName: user.firstName
@@ -114,13 +107,16 @@ UserRouter.get('/logout', (req, res) => {
   const {sessionKey} = req.cookies;
   const loggedInUser = req.loggedInUser;
   loggedInUser && loggedInUser.removeSessionKey(sessionKey);
-  res.cookie('sessionKey', '');
+  res.cookie('sessionUserKey', '');
   res.status(200).end();
 });
 
 // create user
 UserRouter.post('/', (req, res) => {
-  res.json(User.createUser(req.body));
+  if (User.doesExistUserLogin(req.body)) {
+    return res.status(404).send({message: 'Login is registred'});
+  }
+  res.status(201).json(User.createUser(req.body));
 });
 
 

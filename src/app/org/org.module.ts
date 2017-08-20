@@ -16,9 +16,7 @@ import { SitComponent } from './sit/sit.component';
 
 import {SitService} from './services/sit/sit.service';
 import {OrgService} from './services/org/org.service';
-import {CountriesResolve} from './services/country/country.resolve';
 import {AccountService} from './services/auth/account.service';
-import {AccountGuard} from './guards/account.guard';
 import {CountryService} from './services/country/country.service';
 import { OrdersComponent } from './orders/orders.component';
 import { HomeComponent } from './home/home.component';
@@ -27,6 +25,7 @@ import { OrderResolverService } from './services/order/order-resolver.service';
 import { ArchiveComponent } from './archive/archive.component';
 import { ArchiveService } from './services/archive/archive.service';
 import { ArchiveResolverService } from './services/archive/archive-resolver.service';
+
 
 
 
@@ -56,9 +55,7 @@ import { ArchiveResolverService } from './services/archive/archive-resolver.serv
     CountryService,
     SitService,
     OrgService,
-    CountriesResolve,
     AccountService,
-    AccountGuard,
     OrderService,
     OrderResolverService,
     ArchiveService,

@@ -1,5 +1,5 @@
 <md-toolbar class="mat-primary">Sign In</md-toolbar>
-<form [formGroup]="loginForm" fxLayout="column">
+<form [formGroup]="loginForm" fxLayout="column" (ngSubmit)="logIn()">
   <md-input-container>
     <input mdInput placeholder="Login"
            formControlName="login"
@@ -20,17 +20,18 @@
   </md-input-container>
 
   <div fxLayout="row" class="footer">
-    <button (click)="logIn()"
+    <button type="submit"
             class=" mat-raised-button mat-primary"
             [disabled]='!loginForm.valid'
-            [innerText]="'Sign In'">
+            [innerText]="'Sign In'" >
     </button>
     <md-spinner *ngIf="loading"></md-spinner>
     <div fxFlex="60"></div>
-    <button md-button class="mat-primary"
+    <button type="button" md-button class="mat-primary"
             [routerLink]="['', {outlets: {'account': 'create'}}]"
             [innerText]="'Sign Up'">
     </button>
   </div>
+  <md-error *ngIf="error" [innerText]="error"></md-error>
 </form>
 

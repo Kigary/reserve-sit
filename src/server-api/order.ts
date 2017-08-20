@@ -32,10 +32,6 @@ export class Order {
     return JSON.parse(readFileSync(filePath).toString());
   }
 
-  static getOrder(orderID) {
-    return Order.getAllOrders().find(o => o.orderID === orderID);
-  }
-
   static getOrdersByOrg(loggedOrgID: string): Order[]{
     return Order.getAllOrders().filter(order => order.orgID === loggedOrgID)
       .map(data => new Order(data));
@@ -47,15 +43,6 @@ export class Order {
 
   static getArchivedOrders(loggedOrgID: string): Order[] {
     return Order.getOrdersByOrg(loggedOrgID).filter(order => order.releaseDate !== 'null');
-  }
-
-  static getAllOrdersInfo(userID: string) {
-    const order = Order.getAllOrdersUser(userID);
-    order.forEach((order) => {
-      order.orgID = Organization.getOrg(order.orgID);
-      order.sitID = Sit.getSit(order.sitID);
-    });
-    return order;
   }
 
   static saveAllOrders(ordersList) {
@@ -92,6 +79,20 @@ export class Order {
     return order;
   }
 
+  static getOrder(orderId) {
+    return Order.getAllOrders().find(o => o.orderId === orderId);
+  }
+
+  static getAllOrdersInfo(userID: string) {
+    const order = Order.getAllOrdersUser(userID);
+    order.forEach((order) => {
+      order.orgID = Organization.getOrg(order.orgID);
+      order.sitID = Sit.getSit(order.sitID);
+    });
+    console.log(order);
+    return order;
+  }
+
   static getAllOrdersUser(userID: string) {
     return Order.getAllOrders().filter(order => order.userID === userID);
   }
@@ -100,7 +101,7 @@ export class Order {
 export const OrderRouter = express.Router();
 
 OrderRouter.use(function (req, res, next) {
-  const sessionKey = 'bb4b2bd5-ff26-ab6f-37dc-0b6d778a75fe'; //req.cookies.sessionKey;
+  const sessionKey = 'd577060d-0633-ae78-aba3-32d675540e9b';
   const {userID} = User.getUserBySessionKey(sessionKey) || {userID: null};
   if (!userID) {
     res.cookie('sessionKey', '');
@@ -111,12 +112,8 @@ OrderRouter.use(function (req, res, next) {
 });
 
 OrderRouter.get('/order-list', (req, res) => {
-  res.json(Order.getAllOrdersInfo(req.userID));
+   res.json(Order.getAllOrdersInfo(req.userID));
 });
-
-// OrderRouter.get('/orders', (req, res) => {
-//   res.json(Order.getOrdersByOrg(req.loggedInOrg.orgID));
-// });
 
 // create order
 OrderRouter.post('/', (req, res) => {
@@ -134,3 +131,8 @@ OrderRouter.post('/:orderId', (req, res) => {
   data.orderId = req.prams.orderId;
   res.json(Order.updateOrder(data));
 });
+
+
+
+
+

@@ -1,6 +1,10 @@
 md-card {
-  background-color: #26A69A;
+  background-color: white;
   height: 100%;
+  outline: 1px solid #B2DFDB;
+}
+md-card:hover {
+  outline: 2px solid #80CBC4;
 }
 img[md-card-image] {
   margin: 0;
@@ -8,7 +12,6 @@ img[md-card-image] {
   max-width: 100%;
 }
 .imgCtr {
-  background-color: white;
   display: flex;
   align-items: center;
   max-width: calc(100% + 48px);

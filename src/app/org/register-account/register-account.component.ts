@@ -12,7 +12,7 @@ export const EMAIL_REGEX = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 @Component({
   selector: 'org-register-account',
   templateUrl: './register-account.component.html',
-  styleUrls: ['./register-account.component.css'],
+  styleUrls: ['./register-account.component.scss'],
 })
 export class RegisterAcounteComponent implements OnInit {
   countries: ICountry [];

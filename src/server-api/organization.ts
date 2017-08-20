@@ -96,6 +96,14 @@ export class Organization {
     return orgs.find((org) => org.name === name);
   }
 
+  static  getOrgNames() {
+    return this.getOrgs().map((org) => {
+      return {
+        orgID: org.orgID,
+        name: org.name
+      };
+    });
+  }
   addSessionKey(sessionKey) {
     this.sessionKeys.push(sessionKey);
     Organization.updateOrg(this);
@@ -134,7 +142,9 @@ OrgRouter.post('/login', (req, res) => {
 OrgRouter.get('/is-logged-in', (req, res) => {
   res.json(!!req.loggedInOrg);
 });
-
+OrgRouter.get('/org-names', (req, res) => {
+  res.json(Organization.getOrgNames());
+});
 OrgRouter.get('/logged-org', (req, res) => {
   const loggedInOrg = req.loggedInOrg;
   res.json(loggedInOrg);
@@ -164,10 +174,10 @@ OrgRouter.get('/org-list', (req, res) => {
 
 OrgRouter.post('/', (req, res) => {
   if (Organization.doesExistOrgLogin(req.body)) {
-    return res.status(404).send({error: 'Login is registred'});
+    return res.status(404).send({message: 'Login is registred'});
   }
   if (Organization.doesExistOrgName(req.body)) {
-    return res.status(404).send({error: 'Name is registred'});
+    return res.status(404).send({message: 'Name is registred'});
   }
   Organization.createOrg(req.body);
   res.status(200).end();

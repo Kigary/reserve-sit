@@ -1,7 +1,7 @@
 <md-toolbar>
   <h2>Organization Registration</h2>
 </md-toolbar>
-<form [formGroup]="regForm" fxLayout="column">
+<form [formGroup]="regForm" fxLayout="column" (ngSubmit)="orgRegister()">
   <md-input-container>
     <input mdInput placeholder="Login"
            formControlName="login" [errorStateMatcher]="errorStateMatcher"
@@ -77,9 +77,9 @@
     </md-error>
   </md-input-container>
   <div fxLayout="row" class="mat-grid-tile-footer">
-    <button md-button routerLink="../login">Cancel</button>
+    <button type="button" md-button  routerLink="../login">Cancel</button>
     <div fxFlex></div>
-    <button md-raised-button (click)="orgRegister()" [disabled]="!regForm.valid">
+    <button type="submit"  md-raised-button [disabled]="!regForm.valid">
       Submit
     </button>
     <md-spinner *ngIf="isSubmit"></md-spinner>

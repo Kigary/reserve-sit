@@ -7,7 +7,7 @@ import { AccountUserService } from '../../services/auth.service';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.scss']
 })
 
 export class UserComponent implements OnInit {
@@ -19,12 +19,7 @@ export class UserComponent implements OnInit {
   }
 
   signOut() {
-    this.accountUserService.logOut().subscribe(
-      () => {
-        location.reload();
-      }
-    );
+    this.accountUserService.logOut();
   }
-
   ngOnInit() { }
 }

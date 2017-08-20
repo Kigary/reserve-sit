@@ -1,0 +1,18 @@
+<div class="filter" >
+  <md-select placeholder="Organization" [(ngModel)]="filterData.orgID">
+    <md-option *ngFor="let org of orgs" [value]="org.orgID">
+      {{org.name}}
+    </md-option>
+  </md-select>
+  <md-input-container>
+    <input mdInput placeholder="Sits" type="number" min="0" [(ngModel)]="filterData.sits">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput placeholder="Min price" type="number" min="1000" [(ngModel)]="filterData.minPrice" >
+  </md-input-container>
+  <md-input-container>
+    <input mdInput placeholder="Max price" type="number" [(ngModel)]="filterData.maxPrice">
+  </md-input-container>
+  <button  md-button class="mat-raised-button mat-primary" (click)="applySearch()">Apply</button>
+</div>
+

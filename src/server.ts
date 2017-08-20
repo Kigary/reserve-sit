@@ -5,8 +5,10 @@ import { join } from 'path';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 
-import {ApiRouter} from './server-api/';
-import {Organization} from './server-api/organization';
+import { ApiRouter } from './server-api/';
+import { Organization } from './server-api/organization';
+import { User } from './server-api/user';
+
 
 const PORT = process.env.PORT || 4400;
 
@@ -19,13 +21,13 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(function (req, res, next) {
   const sessionKey = req.cookies.sessionKey;
-  const loggedInOrg = Organization.getOrgBySessionKey(sessionKey);
-
+  const sessionUserKey = req.cookies.sessionUserKey;
+  const loggedInOrg = sessionKey && Organization.getOrgBySessionKey(sessionKey);
+  const loggedInUser = sessionUserKey && User.getUserBySessionKey(sessionUserKey);
   req.loggedInOrg = loggedInOrg;
-
-  if(!loggedInOrg) {
-    res.cookie('sessionKey', '');
-  }
+  req.loggedInUser = loggedInUser;
+  loggedInOrg || res.cookie('sessionKey', '');
+  loggedInUser || res.cookie('sessionUserKey', '');
 
   next();
 });

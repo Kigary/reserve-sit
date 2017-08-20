@@ -83,6 +83,8 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
   providers: [
+    CountriesResolve,
+    AccountGuard,
     OrderResolverService,
     ArchiveResolverService
   ]

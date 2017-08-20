@@ -9,17 +9,30 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-register-account',
   templateUrl: './create-account.component.html',
-  styleUrls: ['./create-account.component.css']
+  styleUrls: ['./create-account.component.scss']
 })
 
 export class UserRegisterAccountComponent implements OnInit {
   regForm: FormGroup;
-  isSubmit: boolean;
+  loading: boolean;
+  error: string;
   genders: IGender[] = ['Male', 'Female'];
 
   constructor(private fb: FormBuilder,
               private userService: UserService,
               private router: Router) {
+  }
+
+  UserRegister() {
+    this.loading = true;
+    this.userService.createUser(this.regForm.value).subscribe(() => {
+        this.router.navigate(['', {outlets: {'account': 'login'}}]);
+      },
+      (error) => {
+        this.loading = false;
+        this.error = error.error.message;
+        this.formBuild();
+      });
   }
 
   formBuild() {
@@ -33,15 +46,6 @@ export class UserRegisterAccountComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(15)]]
     });
   }
-
-  UserRegister() {
-    this.isSubmit = true;
-    this.userService.createUser(this.regForm.value).subscribe(() => {
-        this.router.navigate(['', {outlets: {'account': 'login'}}]);
-      },
-      (error) => console.log(error.message));
-  }
-
   errorStateMatcher(control: FormControl): boolean {
     return control.invalid && (control.dirty || control.touched);
   }

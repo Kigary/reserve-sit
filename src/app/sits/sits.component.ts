@@ -1,27 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-
-import {ISit} from '../defines/ISit';
-import {SitService} from '../services/sit/sit.service';
+import { ISit } from '../defines/ISit';
+import { SitService} from '../services/sit.service';
+import { ActivatedRoute } from '@angular/router';
+import { IFilterData } from '../defines/IFilterData';
 
 @Component({
   selector: 'app-sits',
   templateUrl: './sits.component.html',
-  styleUrls: ['./sits.component.css']
+  styleUrls: ['./sits.component.scss']
 })
 export class SitsComponent implements OnInit {
   sits: ISit[];
 
-  constructor(
-    private sitService: SitService) { }
+  constructor(private activatedRoute: ActivatedRoute,
+              private sitService: SitService) { }
 
-  getAllSits(): void {
-    this.sitService
-      .getAllSits()
-      .subscribe(sits => this.sits = sits as ISit[]);
+  ngOnInit() {
+    this.sits = this.activatedRoute.snapshot.data['sits'];
   }
-
-  ngOnInit(): void {
-    this.getAllSits();
+  applySearch(data: IFilterData) {
+    this.sitService.filterSits(data).subscribe((sits: ISit[]) => this.sits = sits);
   }
-
 }
