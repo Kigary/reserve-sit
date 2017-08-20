@@ -26,7 +26,10 @@ export class SitComponent implements OnInit {
   reserveSit() {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        msg: 'Really bro?'
+        title: 'Reserve',
+        msg: 'Really bro?',
+        confirm: 'Yes',
+        reject: 'No'
       } as IConfirmDialogOptions
     });
     dialogRef.afterClosed().subscribe(result => {

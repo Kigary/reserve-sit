@@ -44,11 +44,11 @@ export class SitsComponent implements OnInit {
     this.sits.splice(index, 1);
   }
 
-  orgLogOut() {
-    this.accountService.logOut().subscribe( () => {
-      location.reload();
-    });
-  }
+  // orgLogOut() {
+  //   this.accountService.logOut().subscribe( () => {
+  //     location.reload();
+  //   });
+  // }
 
   ngOnInit(): void {
     this.getAllSits();

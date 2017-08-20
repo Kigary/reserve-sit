@@ -1,9 +1,12 @@
 import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { MdInputModule, MdToolbarModule, MdButtonModule, MdSelectModule,
-         MdListModule, MdGridListModule,  MdTabsModule, MdCardModule,
-         MdDialogModule, MdCheckboxModule, MdProgressSpinnerModule,
-         MdTooltipModule, MdMenuModule } from '@angular/material';
+import {
+  MdInputModule, MdToolbarModule, MdButtonModule, MdSelectModule,
+  MdListModule, MdGridListModule, MdTabsModule, MdCardModule,
+  MdDialogModule, MdCheckboxModule, MdProgressSpinnerModule,
+  MdTooltipModule, MdMenuModule, MdTableModule
+} from '@angular/material';
+import { CdkTableModule } from '@angular/cdk';
 
 
 const mdModules = [
@@ -20,7 +23,9 @@ const mdModules = [
   MdDialogModule,
   MdCheckboxModule,
   MdTooltipModule,
-  MdMenuModule
+  MdMenuModule,
+  MdTableModule,
+  CdkTableModule
 ];
 
 @NgModule({

@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.sentLogin = true;
     this.accountService.login(this.loginForm.value).subscribe(() => {
-        this.router.navigate(['org/sits']);
+        this.router.navigate(['org/home']);
       },
       (error) => {
         this.sentLogin = false;

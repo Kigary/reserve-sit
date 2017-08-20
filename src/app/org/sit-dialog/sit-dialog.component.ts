@@ -49,6 +49,7 @@ export class SitDialogComponent implements OnInit {
       this.sitForm.get('paid')[val?'enable':'disable']();
       if(!val){
         this.sitForm.get('paid').setValue(false);
+        this.sit.paid = false;
       }
     });
   }

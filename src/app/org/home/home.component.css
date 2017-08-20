@@ -1,0 +1,13 @@
+md-toolbar {
+  background-color: #78909C;
+}
+.orgName {
+  font-size: 20px;
+  min-width: unset !important;
+}
+md-toolbar button {
+  color: #ECEFF1;
+}
+.logOut {
+  margin: 0;
+}

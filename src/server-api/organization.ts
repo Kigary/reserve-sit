@@ -3,7 +3,8 @@ import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import { createGUID } from './common/index';
 import { LoginData } from './defines/loginData';
-import { IOrg } from '../app/defines/IOrg'; // TODO
+import { IOrg } from '../app/defines/IOrg';
+import { Order } from './order'; // TODO
 
 
 const filePath = join(__dirname, './data/orgs.db.json');
@@ -137,6 +138,14 @@ OrgRouter.get('/is-logged-in', (req, res) => {
 OrgRouter.get('/logged-org', (req, res) => {
   const loggedInOrg = req.loggedInOrg;
   res.json(loggedInOrg);
+});
+
+OrgRouter.get('/orders', (req, res) => {
+  res.json(Order.getActiveOrders(req.loggedInOrg.orgID));
+});
+
+OrgRouter.get('/archive', (req, res) => {
+  res.json(Order.getArchivedOrders(req.loggedInOrg.orgID));
 });
 
 OrgRouter.get('/logout', (req, res) => {

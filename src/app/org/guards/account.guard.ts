@@ -9,11 +9,11 @@ export class AccountGuard implements CanActivateChild {
               private router: Router) {
   }
 
-  canActivateChild(childRout: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    const isAccountPage = childRout.url[0].path !== 'sits';
+  canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    const isAccountPage = state.url.includes('account');
     const isLogged = this.accountService.isLoggedIn().map(logged => {
       if (logged) {
-        return isAccountPage ? this.router.navigate(['org', 'sits']) && true : true;
+        return isAccountPage ? this.router.navigate(['org', 'home']) && true : true;
       }
        return isAccountPage ? true : this.router.navigate(['org']) && false;
     });

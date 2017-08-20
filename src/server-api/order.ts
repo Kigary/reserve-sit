@@ -1,62 +1,52 @@
 import * as express from 'express';
-import {readFileSync, writeFileSync} from 'fs';
-import {createGUID} from './common/index';
+import { readFileSync, writeFileSync } from 'fs';
+import { createGUID } from './common/index';
+import { join } from 'path';
 
-import {join} from 'path';
-import {User} from './user';
-import {Organization} from './organization';
-import {Sit} from './sit';
+import { User } from './user';
+import { Organization } from './organization';
+import { Sit } from './sit';
+import { IUser } from '../app/defines/IUser';
+import { ISit } from '../app/defines/ISit';
 
 const filePath = join(__dirname, './data/orders.db.json');
 
-class Order {
+export class Order {
   orderID: string = createGUID();
-  userId: string;
-  sitID: string;
   orgID: string;
+  userID: string;
+  user: IUser;
+  sitID: string;
+  sit: ISit;
   orderDate: Date;
-  expireDate: Date;
   createdAt: Date;
-  lastModifiedAt: Date;
+  releaseDate: string = null;
 
   constructor(data) {
     Object.assign(this, data);
+    this.user = User.getUser(this.userID);
+    this.sit = Sit.getSit(this.sitID);
   }
 
   static getAllOrders() {
     return JSON.parse(readFileSync(filePath).toString());
   }
 
-  static saveAllOrders(ordersList) {
-    writeFileSync(filePath, JSON.stringify(ordersList, null, 2));
+  static getOrder(orderID) {
+    return Order.getAllOrders().find(o => o.orderID === orderID);
   }
 
-  static createOrder(data) {
-    const order = new Order(data);
-    const orders = this.getAllOrders();
-    orders.push(order);
-    this.saveAllOrders(orders);
-    return order;
+  static getOrdersByOrg(loggedOrgID: string): Order[]{
+    return Order.getAllOrders().filter(order => order.orgID === loggedOrgID)
+      .map(data => new Order(data));
   }
 
-  static deleteOrder(orderId) {
-    const orders = this.getAllOrders();
-    const index = orders.findIndex((order) => order.orderId === orderId);
-    orders.splice(index, 1);
-    this.saveAllOrders(orders);
+  static getActiveOrders(loggedOrgID: string): Order[] {
+    return Order.getOrdersByOrg(loggedOrgID).filter(order => order.releaseDate === 'null');
   }
 
-  static updateOrder(data) {
-    const order = new Order(data);
-    const orders = this.getAllOrders();
-    const index = orders.findIndex((order) => order.orderId === data.orderId);
-    orders.splice(index, 1, order);
-    this.saveAllOrders(orders);
-    return order;
-  }
-
-  static getOrder(orderId) {
-    return Order.getAllOrders().find(o => o.orderId === orderId);
+  static getArchivedOrders(loggedOrgID: string): Order[] {
+    return Order.getOrdersByOrg(loggedOrgID).filter(order => order.releaseDate !== 'null');
   }
 
   static getAllOrdersInfo(userID: string) {
@@ -68,8 +58,42 @@ class Order {
     return order;
   }
 
+  static saveAllOrders(ordersList) {
+    writeFileSync(filePath, JSON.stringify(ordersList, null, 2));
+  }
+
+  static createOrder(data) {
+    const order = new Order(data);
+    const orders = this.getAllOrders();
+    orders.unshift(Order.clearData(order));
+    this.saveAllOrders(orders);
+    return order;
+  }
+
+  static deleteOrder(orderID) {
+    const orders = this.getAllOrders();
+    const index = orders.findIndex((order) => order.orderID === orderID);
+    orders.splice(index, 1);
+    this.saveAllOrders(orders);
+  }
+
+  static clearData(order) {
+    delete order.sit;
+    delete order.user;
+    return order;
+  }
+
+  static updateOrder(data) {
+    const order = new Order(data);
+    const orders = this.getAllOrders();
+    const index = orders.findIndex((order) => order.orderID === data.orderID);
+    orders.splice(index, 1, Order.clearData(order));
+    this.saveAllOrders(orders);
+    return order;
+  }
+
   static getAllOrdersUser(userID: string) {
-    return Order.getAllOrders().filter((ord) => ord.userID === userID);
+    return Order.getAllOrders().filter(order => order.userID === userID);
   }
 }
 
@@ -90,9 +114,18 @@ OrderRouter.get('/order-list', (req, res) => {
   res.json(Order.getAllOrdersInfo(req.userID));
 });
 
+// OrderRouter.get('/orders', (req, res) => {
+//   res.json(Order.getOrdersByOrg(req.loggedInOrg.orgID));
+// });
+
 // create order
 OrderRouter.post('/', (req, res) => {
   res.json(Order.createOrder(req.userID));
+});
+
+// finish order
+OrderRouter.get(`/release/:orderId`, (req, res) => {
+
 });
 
 // update order
@@ -101,8 +134,3 @@ OrderRouter.post('/:orderId', (req, res) => {
   data.orderId = req.prams.orderId;
   res.json(Order.updateOrder(data));
 });
-
-
-
-
-

@@ -20,6 +20,13 @@ import {CountriesResolve} from './services/country/country.resolve';
 import {AccountService} from './services/auth/account.service';
 import {AccountGuard} from './guards/account.guard';
 import {CountryService} from './services/country/country.service';
+import { OrdersComponent } from './orders/orders.component';
+import { HomeComponent } from './home/home.component';
+import { OrderService } from './services/order/order.service';
+import { OrderResolverService } from './services/order/order-resolver.service';
+import { ArchiveComponent } from './archive/archive.component';
+import { ArchiveService } from './services/archive/archive.service';
+import { ArchiveResolverService } from './services/archive/archive-resolver.service';
 
 
 
@@ -41,6 +48,9 @@ import {CountryService} from './services/country/country.service';
     SitDialogComponent,
     ImageUploadComponent,
     SitComponent,
+    OrdersComponent,
+    HomeComponent,
+    ArchiveComponent,
   ],
   providers: [
     CountryService,
@@ -48,7 +58,11 @@ import {CountryService} from './services/country/country.service';
     OrgService,
     CountriesResolve,
     AccountService,
-    AccountGuard
+    AccountGuard,
+    OrderService,
+    OrderResolverService,
+    ArchiveService,
+    ArchiveResolverService
   ],
 
   entryComponents: [SitDialogComponent]

@@ -8,6 +8,11 @@ import {LoginPageComponent} from './login-page/login-page.component';
 
 import {CountriesResolve} from './services/country/country.resolve';
 import {AccountGuard} from './guards/account.guard';
+import { OrdersComponent } from './orders/orders.component';
+import { HomeComponent } from './home/home.component';
+import { OrderResolverService } from './services/order/order-resolver.service';
+import { ArchiveComponent } from './archive/archive.component';
+import { ArchiveResolverService } from './services/archive/archive-resolver.service';
 
 const routes: Routes = [
   {
@@ -37,9 +42,33 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'sits',
-        component: SitsComponent,
-        pathMatch: 'full'
+        path: 'home',
+        component: HomeComponent,
+        children: [
+          {
+            path: 'sits',
+            component: SitsComponent,
+          },
+          {
+            path: 'orders',
+            component: OrdersComponent,
+            resolve: {
+              OrderResolverService
+            }
+          },
+          {
+            path: 'archive',
+            component: ArchiveComponent,
+            resolve: {
+              ArchiveResolverService
+            }
+          },
+          {
+            path: '',
+            redirectTo: 'sits',
+            pathMatch: 'full'
+          }
+        ]
       },
       {
         path: '',
@@ -53,6 +82,10 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
+  providers: [
+    OrderResolverService,
+    ArchiveResolverService
+  ]
 })
 export class OrgRoutingModule {
 }
