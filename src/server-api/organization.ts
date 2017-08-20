@@ -33,17 +33,12 @@ export class Organization {
   }
 
   static getAllOrgs(): Organization[] {
-    const orgs = this.getOrgs();
-    return orgs.map((org) => {
-      delete org.password;
-      return org;
-    });
+    return this.getOrgs()
+      .map(org => delete org.password && delete org.sessionKeys && org);
   }
 
   static getOrg(id: string): Organization {
-    const org = this.getOrgs().find(o => o.orgID === id);
-    delete org.password;
-    return org;
+    return this.getAllOrgs().find(o => o.orgID === id);
   }
 
   static createOrg(data) {

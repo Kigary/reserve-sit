@@ -1,7 +1,9 @@
 import * as express from 'express';
 import { createGUID } from './common/index';
 import { readFileSync, writeFileSync } from 'fs';
+import  {Organization} from './organization';
 import { join } from 'path';
+import {IOrg} from '../app/defines/IOrg';
 
 const filePath = join(__dirname, './data/sits.db.json');
 
@@ -14,18 +16,21 @@ export class Sit {
   cost: number;
   paid: boolean;
   image: string;
-
+  org?: IOrg;
   constructor(data) {
     Object.assign(this, data);
   }
 
-  static getSits() {
+  static getSits(): Sit[] {
     return JSON.parse(readFileSync(filePath).toString());
   }
 
   static getAllSits(): Sit[] {
     const sits = this.getSits();
-    return sits.map(sit => sit);
+    return sits.map(sit => {
+       sit.org = Organization.getOrg(sit.orgID);
+       return sit;
+    });
   }
 
   static getAllSitsByOrg(loggedOrgID): Sit[] {
@@ -116,7 +121,7 @@ SitRouter.get('/:id', (req, res) => {
 });
 
 SitRouter.post('/', (req, res) => {
-   const sit = Sit.createSit(req.body, req.loggedInOrg.orgID);
+  const sit = Sit.createSit(req.body, req.loggedInOrg.orgID);
   res.status(200).send(sit);
 });
 
