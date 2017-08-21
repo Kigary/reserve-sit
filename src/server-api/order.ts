@@ -69,6 +69,7 @@ export class Order {
   static clearData(order) {
     delete order.sit;
     delete order.user;
+    delete order.org;
     return order;
   }
 
