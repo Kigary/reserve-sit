@@ -21,6 +21,7 @@ import { SitsComponent } from './sits/sits.component';
 import { SitComponent } from './sit/sit.component';
 import { SitDialogComponent } from './sit-dialog/sit-dialog.component';
 import { FilterComponent } from './components/filter/filter.component';
+import { FooterComponent } from './footer/footer.component';
 
 import { UserService } from './services/user.service';
 import { AccountUserService } from './services/auth.service';
@@ -46,7 +47,8 @@ import { OrgService } from './services/org.service';
     SitComponent,
     SitsComponent,
     SitDialogComponent,
-    FilterComponent
+    FilterComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
