@@ -8,7 +8,7 @@ import { Organization } from './organization';
 import { Sit } from './sit';
 import { IUser } from '../app/defines/IUser';
 import { ISit } from '../app/defines/ISit';
-
+import { IOrg } from '../app/defines/IOrg';
 const filePath = join(__dirname, './data/orders.db.json');
 
 export class Order {
@@ -18,6 +18,7 @@ export class Order {
   user: IUser;
   sitID: string;
   sit: ISit;
+  org: IOrg;
   orderDate: Date;
   createdAt: Date;
   releaseDate: string = null;
@@ -26,23 +27,16 @@ export class Order {
     Object.assign(this, data);
     this.user = User.getUser(this.userID);
     this.sit = Sit.getSit(this.sitID);
+    this.org = Organization.getOrg(this.orgID);
   }
 
   static getAllOrders() {
     return JSON.parse(readFileSync(filePath).toString());
   }
 
-  static getOrdersByOrg(loggedOrgID: string): Order[]{
+  static getOrdersByOrg(loggedOrgID: string): Order[] {
     return Order.getAllOrders().filter(order => order.orgID === loggedOrgID)
       .map(data => new Order(data));
-  }
-
-  static getActiveOrders(loggedOrgID: string): Order[] {
-    return Order.getOrdersByOrg(loggedOrgID).filter(order => order.releaseDate === 'null');
-  }
-
-  static getArchivedOrders(loggedOrgID: string): Order[] {
-    return Order.getOrdersByOrg(loggedOrgID).filter(order => order.releaseDate !== 'null');
   }
 
   static saveAllOrders(ordersList) {
@@ -57,16 +51,21 @@ export class Order {
     return order;
   }
 
-  static deleteOrder(orderID) {
-    const orders = this.getAllOrders();
-    const index = orders.findIndex((order) => order.orderID === orderID);
-    orders.splice(index, 1);
-    this.saveAllOrders(orders);
+  static finishOrder(orderID: string) {
+    const currentOrder = this.getOrder(orderID);
+    currentOrder.releaseDate = new Date();
+    const sit = Sit.getSit(currentOrder.sitID);
+    sit.reserved = false;
+    sit.paid = false;
+    Sit.updateSit(sit);
+    this.updateOrder(currentOrder);
+    return currentOrder;
   }
 
   static clearData(order) {
     delete order.sit;
     delete order.user;
+    delete order.org;
     return order;
   }
 
@@ -79,29 +78,25 @@ export class Order {
     return order;
   }
 
-  static getOrder(orderId) {
-    return Order.getAllOrders().find(o => o.orderId === orderId);
+  static getOrder(orderID) {
+    return Order.getAllOrders().find(o => o.orderID === orderID);
   }
 
   static getAllOrdersInfo(userID: string) {
-    const order = Order.getAllOrdersUser(userID);
-    order.forEach((order) => {
-      order.orgID = Organization.getOrg(order.orgID);
-      order.sitID = Sit.getSit(order.sitID);
-    });
-    console.log(order);
-    return order;
+   return  Order.getAllOrders()
+      .filter(order => order.userID === userID)
+       .map (data => new Order(data));
   }
-
-  static getAllOrdersUser(userID: string) {
-    return Order.getAllOrders().filter(order => order.userID === userID);
-  }
-}
+ }
 
 export const OrderRouter = express.Router();
 
+OrderRouter.get('/order-list', (req, res) => {
+     res.json(Order.getAllOrdersInfo(req.loggedInUser.userID));
+});
+
 OrderRouter.use(function (req, res, next) {
-  const sessionKey = 'd577060d-0633-ae78-aba3-32d675540e9b';
+  const sessionKey = req.cookies.sessionUserKey;
   const {userID} = User.getUserBySessionKey(sessionKey) || {userID: null};
   if (!userID) {
     res.cookie('sessionKey', '');
@@ -111,26 +106,11 @@ OrderRouter.use(function (req, res, next) {
   next();
 });
 
-OrderRouter.get('/order-list', (req, res) => {
-   res.json(Order.getAllOrdersInfo(req.userID));
-});
-
 // create order
 OrderRouter.post('/', (req, res) => {
-  res.json(Order.createOrder(req.userID));
+  res.json(Order.createOrder(req.loggedInUser.userID));
 });
 
-// finish order
-OrderRouter.get(`/release/:orderId`, (req, res) => {
-
-});
-
-// update order
-OrderRouter.post('/:orderId', (req, res) => {
-  const data = req.body;
-  data.orderId = req.prams.orderId;
-  res.json(Order.updateOrder(data));
-});
 
 
 

@@ -8,11 +8,11 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  createOrder() {
-    return this.http.get( 'api/org')
-  }
+  // createOrder() {
+  //   return this.http.get( 'api/org')
+  // }
 
   getOrders() {
-    return this.http.get('api/order/order-list');
+    return this.http.get('api/order/order-list') as Observable<IOrder[]>;
   }
 }

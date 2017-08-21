@@ -13,9 +13,11 @@ export class SitService {
   reserveSit(sitID) {
     return this.http.get(`/api/sit/${sitID}` );
   }
+
   getAllSits() {
     return this.http.get('api/sit/sit-list');
   }
+
   filterSits(data: IFilterData): Observable<ISit[]> {
     const query = Object.keys(data)
       .map((key) => `${key}=${data[key]}`)

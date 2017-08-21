@@ -22,9 +22,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { HomeComponent } from './home/home.component';
 import { OrderService } from './services/order/order.service';
 import { OrderResolverService } from './services/order/order-resolver.service';
-import { ArchiveComponent } from './archive/archive.component';
-import { ArchiveService } from './services/archive/archive.service';
-import { ArchiveResolverService } from './services/archive/archive-resolver.service';
+import { OrderDialogComponent } from './order-dialog/order-dialog.component';
 
 
 
@@ -49,7 +47,7 @@ import { ArchiveResolverService } from './services/archive/archive-resolver.serv
     SitComponent,
     OrdersComponent,
     HomeComponent,
-    ArchiveComponent,
+    OrderDialogComponent,
   ],
   providers: [
     CountryService,
@@ -57,12 +55,13 @@ import { ArchiveResolverService } from './services/archive/archive-resolver.serv
     OrgService,
     AccountService,
     OrderService,
-    OrderResolverService,
-    ArchiveService,
-    ArchiveResolverService
+    OrderResolverService
   ],
 
-  entryComponents: [SitDialogComponent]
+  entryComponents: [
+    SitDialogComponent,
+    OrderDialogComponent
+  ]
 })
 export class OrgModule {
 }

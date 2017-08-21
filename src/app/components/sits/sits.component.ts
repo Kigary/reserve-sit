@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ISit } from '../defines/ISit';
-import { SitService} from '../services/sit.service';
+import { ISit } from '../../defines/ISit';
+import { SitService } from '../../services/sit.service';
 import { ActivatedRoute } from '@angular/router';
-import { IFilterData } from '../defines/IFilterData';
+import { IFilterData } from '../../defines/IFilterData';
 
 @Component({
   selector: 'app-sits',

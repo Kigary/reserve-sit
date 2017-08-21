@@ -1,7 +1,10 @@
 import * as express from 'express';
 import { createGUID } from './common/index';
 import { readFileSync, writeFileSync } from 'fs';
+import {Organization} from './organization';
 import { join } from 'path';
+import {IOrg} from '../app/defines/IOrg';
+import { Order } from './order';
 
 const filePath = join(__dirname, './data/sits.db.json');
 
@@ -14,18 +17,21 @@ export class Sit {
   cost: number;
   paid: boolean;
   image: string;
-
+  org?: IOrg;
   constructor(data) {
     Object.assign(this, data);
   }
 
-  static getSits() {
+  static getSits(): Sit[] {
     return JSON.parse(readFileSync(filePath).toString());
   }
 
   static getAllSits(): Sit[] {
     const sits = this.getSits();
-    return sits.map(sit => sit);
+    return sits.map(sit => {
+       sit.org = Organization.getOrg(sit.orgID);
+       return sit;
+    });
   }
 
   static getAllSitsByOrg(loggedOrgID): Sit[] {
@@ -38,6 +44,7 @@ export class Sit {
   }
 
   static createSit(data, loggedOrgID) {
+    console.log(data, loggedOrgID);
     data.orgID = loggedOrgID;
     data.reserved = false;
     data.paid = false;
@@ -58,20 +65,28 @@ export class Sit {
   }
 
   static updateSit(data) {
-    const sits = this.getAllSits();
+    const sits = this.getSits();
     const sitIndex = sits.findIndex(s => s.sitID === data.sitID);
     sits.splice(sitIndex, 1, data);
     this.saveAllSits(sits);
     return data;
   }
 
-  static reserveSit(id) {
+  static reserveSit(sitID, userID) {
     const sits = this.getAllSits();
-    const currentSit = sits.find(s => s.sitID === id);
+    const currentSit = sits.find(s => s.sitID === sitID);
     currentSit.reserved = !currentSit.reserved;
-    const sitIndex = sits.findIndex(s => s.sitID === id);
+    const sitIndex = sits.findIndex(s => s.sitID === sitID);
     sits.splice(sitIndex, 1, currentSit);
     this.saveAllSits(sits);
+    const order = {
+      orgID: currentSit.orgID,
+      userID: userID,
+      sitID: sitID,
+      orderDate: new Date,
+      createdAt: new Date
+    };
+    Order.createOrder(order);
     return currentSit;
   }
 
@@ -80,7 +95,7 @@ export class Sit {
     if(!Object.keys(filterData).length) {
       return sits;
     }
-    if (filterData.orgID) {
+    if (filterData.orgID !== 'allID' && filterData.orgID) {
         sits = sits.filter((sit) => sit.orgID === filterData.orgID);
     }
     if (filterData.sits) {
@@ -110,13 +125,13 @@ SitRouter.get('/sit-list-org', (req, res) => {
 });
 
 SitRouter.get('/:id', (req, res) => {
-  const id = req.params.id;
-  console.log(id);
-  res.json(Sit.reserveSit(id));
+  const sitID = req.params.id;
+  const userID = req.loggedInUser.userID;
+  res.json(Sit.reserveSit(sitID, userID));
 });
 
 SitRouter.post('/', (req, res) => {
-   const sit = Sit.createSit(req.body, req.loggedInOrg.orgID);
+  const sit = Sit.createSit(req.body, req.loggedInOrg.orgID);
   res.status(200).send(sit);
 });
 

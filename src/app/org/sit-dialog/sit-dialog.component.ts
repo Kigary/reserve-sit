@@ -27,7 +27,6 @@ export class SitDialogComponent implements OnInit {
   }
 
   saveSit() {
-    console.log(this.sitForm.value);
     Object.assign(this.sit, this.sitForm.value);
     const obs = this.sit.sitID ? this.sitService.updateSit(this.sit) :
       this.sitService.createSit(this.sit);

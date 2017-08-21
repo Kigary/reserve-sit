@@ -1,3 +1,5 @@
+import {IOrg} from './IOrg';
+
 export interface ISit {
   sitID: string;
   orgID: string;
@@ -7,4 +9,5 @@ export interface ISit {
   cost: number;
   paid: boolean;
   image: string;
+  org?: IOrg;
 }

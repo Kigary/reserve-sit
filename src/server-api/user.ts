@@ -103,6 +103,7 @@ UserRouter.post('/login', (req, res) => {
     firstName: user.firstName
   });
 });
+
 UserRouter.get('/logout', (req, res) => {
   const {sessionKey} = req.cookies;
   const loggedInUser = req.loggedInUser;

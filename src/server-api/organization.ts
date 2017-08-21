@@ -33,17 +33,12 @@ export class Organization {
   }
 
   static getAllOrgs(): Organization[] {
-    const orgs = this.getOrgs();
-    return orgs.map((org) => {
-      delete org.password;
-      return org;
-    });
+    return this.getOrgs()
+      .map(org => delete org.password && delete org.sessionKeys && org);
   }
 
   static getOrg(id: string): Organization {
-    const org = this.getOrgs().find(o => o.orgID === id);
-    delete org.password;
-    return org;
+    return this.getAllOrgs().find(o => o.orgID === id);
   }
 
   static createOrg(data) {
@@ -142,20 +137,20 @@ OrgRouter.post('/login', (req, res) => {
 OrgRouter.get('/is-logged-in', (req, res) => {
   res.json(!!req.loggedInOrg);
 });
+
 OrgRouter.get('/org-names', (req, res) => {
-  res.json(Organization.getOrgNames());
+  const orgNames = Organization.getOrgNames();
+  orgNames.unshift({name: 'All', orgID: 'allID'});
+  res.json(orgNames);
 });
+
 OrgRouter.get('/logged-org', (req, res) => {
   const loggedInOrg = req.loggedInOrg;
   res.json(loggedInOrg);
 });
 
 OrgRouter.get('/orders', (req, res) => {
-  res.json(Order.getActiveOrders(req.loggedInOrg.orgID));
-});
-
-OrgRouter.get('/archive', (req, res) => {
-  res.json(Order.getArchivedOrders(req.loggedInOrg.orgID));
+  res.json(Order.getOrdersByOrg(req.loggedInOrg.orgID));
 });
 
 OrgRouter.get('/logout', (req, res) => {
@@ -170,6 +165,10 @@ OrgRouter.get('/logout', (req, res) => {
 
 OrgRouter.get('/org-list', (req, res) => {
   res.json(Organization.getAllOrgs());
+});
+
+OrgRouter.get('/release/:orderID', (req, res) => {
+  res.json(Order.finishOrder(req.params.orderID));
 });
 
 OrgRouter.post('/', (req, res) => {

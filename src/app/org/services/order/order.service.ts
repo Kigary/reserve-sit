@@ -12,7 +12,7 @@ export class OrderService {
     return this.http.get(`/api/org/orders`) as Observable<IOrder[]>;
   }
 
-  // finishOrder(orderID) {
-  //   return this.http.get(`/api/org/order/release/${orderID}`) as Observable<IOrder>;
-  // }
+  finishOrder(orderID) {
+    return this.http.get(`/api/org/release/${orderID}`) as Observable<IOrder>;
+  }
 }
