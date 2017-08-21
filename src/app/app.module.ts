@@ -17,9 +17,9 @@ import { HomeComponent } from './components/home/home.component';
 import { OrderComponent } from './components/order/order.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderDialogComponent } from './components/order-dialog/order-dialog.component';
-import { SitsComponent } from './sits/sits.component';
-import { SitComponent } from './sit/sit.component';
-import { SitDialogComponent } from './sit-dialog/sit-dialog.component';
+import { SitsComponent } from './components/sits/sits.component';
+import { SitComponent } from './components/sit/sit.component';
+import { SitDialogComponent } from './components/sit-dialog/sit-dialog.component';
 import { FilterComponent } from './components/filter/filter.component';
 
 import { UserService } from './services/user.service';

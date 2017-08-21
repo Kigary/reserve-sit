@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {ISit} from '../defines/ISit';
-import { IUser} from '../defines/IUser';
-import {MdDialog} from '@angular/material';
-import {SitService} from '../services/sit.service';
-import {AccountUserService} from '../services/auth.service';
-import {SitDialogComponent} from '../sit-dialog/sit-dialog.component';
-import {ConfirmDialogComponent, IConfirmDialogOptions} from '../common/confirm-dialog/confirm-dialog.component';
-import {Router} from '@angular/router';
-import { UserLoginPageComponent } from '../components/login-page/login-page.component';
+import { ISit } from '../../defines/ISit';
+import { IUser } from '../../defines/IUser';
+import { MdDialog } from '@angular/material';
+import { SitService } from '../../services/sit.service';
+import { AccountUserService } from '../../services/auth.service';
+import { SitDialogComponent } from '../sit-dialog/sit-dialog.component';
+import { ConfirmDialogComponent, IConfirmDialogOptions } from '../../common/confirm-dialog/confirm-dialog.component';
+import { Router } from '@angular/router';
+import { UserLoginPageComponent } from '../login-page/login-page.component';
 
 @Component({
   selector: 'app-sit',
