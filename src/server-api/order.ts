@@ -39,14 +39,6 @@ export class Order {
       .map(data => new Order(data));
   }
 
-  static getActiveOrders(loggedOrgID: string): Order[] {
-    return Order.getOrdersByOrg(loggedOrgID).filter(order => order.releaseDate === 'null');
-  }
-
-  static getArchivedOrders(loggedOrgID: string): Order[] {
-    return Order.getOrdersByOrg(loggedOrgID).filter(order => order.releaseDate !== 'null');
-  }
-
   static saveAllOrders(ordersList) {
     writeFileSync(filePath, JSON.stringify(ordersList, null, 2));
   }
@@ -59,11 +51,16 @@ export class Order {
     return order;
   }
 
-  static deleteOrder(orderID) {
-    const orders = this.getAllOrders();
-    const index = orders.findIndex((order) => order.orderID === orderID);
-    orders.splice(index, 1);
-    this.saveAllOrders(orders);
+  static finishOrder(orderID: string) {
+    const currentOrder = this.getOrder(orderID);
+    console.log(currentOrder);
+    currentOrder.releaseDate = new Date();
+    const sit = Sit.getSit(currentOrder.sitID);
+    sit.reserved = false;
+    sit.paid = false;
+    Sit.updateSit(sit);
+    this.updateOrder(currentOrder);
+    return currentOrder;
   }
 
   static clearData(order) {
@@ -82,8 +79,8 @@ export class Order {
     return order;
   }
 
-  static getOrder(orderId) {
-    return Order.getAllOrders().find(o => o.orderId === orderId);
+  static getOrder(orderID) {
+    return Order.getAllOrders().find(o => o.orderID === orderID);
   }
 
   static getAllOrdersInfo(userID: string) {
@@ -91,14 +88,23 @@ export class Order {
       .filter(order => order.userID === userID)
        .map (data => new Order(data));
   }
-
  }
 
 export const OrderRouter = express.Router();
 
-
 OrderRouter.get('/order-list', (req, res) => {
      res.json(Order.getAllOrdersInfo(req.loggedInUser.userID));
+});
+
+OrderRouter.use(function (req, res, next) {
+  const sessionKey = req.cookies.sessionUserKey;
+  const {userID} = User.getUserBySessionKey(sessionKey) || {userID: null};
+  if (!userID) {
+    res.cookie('sessionKey', '');
+    return res.sendStatus(404);
+  }
+  req.userID = userID;
+  next();
 });
 
 // create order
@@ -106,17 +112,6 @@ OrderRouter.post('/', (req, res) => {
   res.json(Order.createOrder(req.loggedInUser.userID));
 });
 
-// finish order
-OrderRouter.get(`/release/:orderId`, (req, res) => {
-
-});
-
-// update order
-// OrderRouter.post('/:orderId', (req, res) => {
-//   const data = req.body;
-//   data.orderId = req.prams.orderId;
-//   res.json(Order.updateOrder(data));
-// });
 
 
 

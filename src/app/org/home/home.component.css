@@ -11,3 +11,7 @@ md-toolbar button {
 .logOut {
   margin: 0;
 }
+md-icon {
+  font-family: 'Material Icons', serif;
+  font-size: 30px;
+}

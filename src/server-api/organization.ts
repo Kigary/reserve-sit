@@ -137,22 +137,20 @@ OrgRouter.post('/login', (req, res) => {
 OrgRouter.get('/is-logged-in', (req, res) => {
   res.json(!!req.loggedInOrg);
 });
+
 OrgRouter.get('/org-names', (req, res) => {
   const orgNames = Organization.getOrgNames();
   orgNames.unshift({name: 'All', orgID: 'allID'});
   res.json(orgNames);
 });
+
 OrgRouter.get('/logged-org', (req, res) => {
   const loggedInOrg = req.loggedInOrg;
   res.json(loggedInOrg);
 });
 
 OrgRouter.get('/orders', (req, res) => {
-  res.json(Order.getActiveOrders(req.loggedInOrg.orgID));
-});
-
-OrgRouter.get('/archive', (req, res) => {
-  res.json(Order.getArchivedOrders(req.loggedInOrg.orgID));
+  res.json(Order.getOrdersByOrg(req.loggedInOrg.orgID));
 });
 
 OrgRouter.get('/logout', (req, res) => {
@@ -167,6 +165,11 @@ OrgRouter.get('/logout', (req, res) => {
 
 OrgRouter.get('/org-list', (req, res) => {
   res.json(Organization.getAllOrgs());
+});
+
+OrgRouter.get('/release/:orderID', (req, res) => {
+  Order.finishOrder(req.params.orderID);
+  res.end();
 });
 
 OrgRouter.post('/', (req, res) => {

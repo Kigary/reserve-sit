@@ -11,8 +11,6 @@ import {AccountGuard} from './guards/account.guard';
 import { OrdersComponent } from './orders/orders.component';
 import { HomeComponent } from './home/home.component';
 import { OrderResolverService } from './services/order/order-resolver.service';
-import { ArchiveComponent } from './archive/archive.component';
-import { ArchiveResolverService } from './services/archive/archive-resolver.service';
 
 const routes: Routes = [
   {
@@ -57,13 +55,6 @@ const routes: Routes = [
             }
           },
           {
-            path: 'archive',
-            component: ArchiveComponent,
-            resolve: {
-              ArchiveResolverService
-            }
-          },
-          {
             path: '',
             redirectTo: 'sits',
             pathMatch: 'full'
@@ -85,8 +76,7 @@ const routes: Routes = [
   providers: [
     CountriesResolve,
     AccountGuard,
-    OrderResolverService,
-    ArchiveResolverService
+    OrderResolverService
   ]
 })
 export class OrgRoutingModule {

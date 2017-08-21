@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MdDialog } from '@angular/material';
 import { DataSource } from '@angular/cdk';
 import { OrderService } from '../services/order/order.service';
+import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
 
 @Component({
   selector: 'org-orders',
@@ -14,10 +15,8 @@ export class OrdersComponent implements OnInit {
   orders: IOrder[];
   @Input()
   disabled = false;
-  @Input()
-  innerText = ' Return ';
 
-  displayedColumns = ['sitName', 'userName', 'reserveDate', 'action'];
+  displayedColumns = ['sitName', 'reserveDate', 'user', 'action'];
   dataSource: OrderDataSource;
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -32,11 +31,17 @@ export class OrdersComponent implements OnInit {
     this.router.navigate(['org', 'home', 'orders']);
   }
 
-  // releaseSit(order: IOrder) {
-  //   this.orderService.finishOrder(order.orderID).subscribe(() => {
-  //     order.sit.reserved = false;
-  //   });
-  // }
+  details(order) {
+    this.dialog.open(OrderDialogComponent , {
+      data: order
+    });
+  }
+
+  releaseSit(order: IOrder) {
+    this.orderService.finishOrder(order.orderID).subscribe(() => {
+      order.sit.reserved = false;
+    });
+  }
 }
 
 export class OrderDataSource extends DataSource<IOrder> {

@@ -1,16 +1,11 @@
 .container {
   width: 100%;
-  background-color: #ECEFF1;
-  margin: 0;
+  margin-top: 20px;
 }
 h2{
   font-weight: 700;
   margin: 0;
   padding: 20px 0;
-}
-div {
-  width: 1000px;
-  margin: 20px 0 0 20px;
 }
 md-grid-tile {
   display: inline-flex;
@@ -33,6 +28,11 @@ org-sit {
 .addSit {
   background-color: #78909C;
   color: white;
-  float: right;
   font-size: 36px;
+  float: right;
+  margin-right: 40px;
+}
+md-grid-list {
+  margin-right: 100px;
+  margin-left: 100px;
 }

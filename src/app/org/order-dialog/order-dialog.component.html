@@ -1,0 +1,53 @@
+<md-card>
+  <md-card-content>
+    <md-list>
+      <h3 md-subheader>Order</h3>
+      <md-list-item>
+        <md-icon md-list-icon>event</md-icon>
+        <p md-line [innerText]="'Order Date: ' + (order.orderDate|date:dateFormat)"></p>
+      </md-list-item>
+      <md-list-item>
+        <md-icon md-list-icon>date_range</md-icon>
+        <p md-line [innerText]="'Creation Date: ' + (order.createdAt|date:dateFormat)"></p>
+      </md-list-item>
+      <md-divider></md-divider>
+      <h3 md-subheader>User</h3>
+      <md-list-item>
+        <md-icon md-list-icon>account_box</md-icon>
+        <p md-line [innerText]="order.user.firstName + ' ' + order.user.lastName"></p>
+      </md-list-item>
+      <md-list-item>
+        <md-icon md-list-icon>phone</md-icon>
+        <p md-line [innerText]="order.user.phone"></p>
+      </md-list-item>
+      <md-list-item>
+        <md-icon md-list-icon>email</md-icon>
+        <p md-line [innerText]="order.user.email"></p>
+      </md-list-item>
+      <md-divider></md-divider>
+      <h3 md-subheader>Seat</h3>
+      <md-list-item>
+        <md-icon md-list-icon>font_download</md-icon>
+        <p md-line [innerText]="order.sit.sitName"></p>
+      </md-list-item>
+      <md-list-item>
+        <md-icon md-list-icon>event_seat</md-icon>
+        <p md-line [innerText]="order.sit.numOfSeats"></p>
+      </md-list-item>
+      <md-list-item>
+        <md-icon md-list-icon>monetization_on</md-icon>
+        <p md-line [innerText]="order.sit.cost|currency:'JPY':true"></p>
+      </md-list-item>
+    </md-list>
+  </md-card-content>
+  <md-card-actions>
+    <button md-raised-button
+            [disabled]="true"
+            [innerText]="order.sit.reserved? 'Active':'Finished'">
+    </button>
+    <button md-raised-button
+            [md-dialog-close]="null"
+            [innerText]="'Close'">
+    </button>
+  </md-card-actions>
+</md-card>

@@ -1,3 +1,8 @@
+<button md-raised-button routerLink="../">
+  <md-icon>arrow_back</md-icon>
+  Sits
+</button>
+
 <md-table #table [dataSource]="dataSource">
 
   <!-- Sit name column -->
@@ -13,7 +18,7 @@
   </ng-container>
 
   <!-- User name Column -->
-  <ng-container cdkColumnDef="userName">
+  <ng-container cdkColumnDef="user">
     <md-header-cell *cdkHeaderCellDef>User</md-header-cell>
     <md-cell *cdkCellDef="let order"> {{order.user.firstName}} </md-cell>
   </ng-container>
@@ -23,7 +28,12 @@
     <md-header-cell *cdkHeaderCellDef>Action</md-header-cell>
     <md-cell *cdkCellDef="let order">
       <button md-raised-button
+              (click)="details(order)"
+              [innerText]="'Details'">
+      </button>
+      <button md-raised-button
               [disabled]="!order.sit.reserved"
+              (click)="releaseSit(order)"
               [innerText]="order.sit.reserved ? 'Release' : 'Released'">
       </button>
     </md-cell>

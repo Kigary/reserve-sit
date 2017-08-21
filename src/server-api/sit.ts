@@ -72,21 +72,21 @@ export class Sit {
     return data;
   }
 
-  static reserveSit(sitID, loggedUser) {
-    const sits = this.getSits();
+  static reserveSit(sitID, userID) {
+    const sits = this.getAllSits();
     const currentSit = sits.find(s => s.sitID === sitID);
-    Order.createOrder({
-      userID: loggedUser,
-      sitID: sitID,
-      orgID: currentSit.orgID,
-      orderDate: new Date,
-      createdAt: new Date,
-      releaseDate: new Date
-    });
     currentSit.reserved = !currentSit.reserved;
     const sitIndex = sits.findIndex(s => s.sitID === sitID);
     sits.splice(sitIndex, 1, currentSit);
     this.saveAllSits(sits);
+    const order = {
+      orgID: currentSit.orgID,
+      userID: userID,
+      sitID: sitID,
+      orderDate: new Date,
+      createdAt: new Date
+    };
+    Order.createOrder(order);
     return currentSit;
   }
 
@@ -125,8 +125,9 @@ SitRouter.get('/sit-list-org', (req, res) => {
 });
 
 SitRouter.get('/:id', (req, res) => {
-  const id = req.params.id;
-  res.json(Sit.reserveSit(id,  req.loggedInUser.userID));
+  const sitID = req.params.id;
+  const userID = req.loggedInUser.userID;
+  res.json(Sit.reserveSit(sitID, userID));
 });
 
 SitRouter.post('/', (req, res) => {

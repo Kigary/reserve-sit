@@ -5,16 +5,25 @@
     "login": "vzgo.asa",
     "password": "pass1234",
     "email": "vzgo@mail.ru",
-    "phoneNumber": "099 99 99 99",
+    "phone": "099 99 99 99",
     "firstName": "Vzgo",
     "lastName": "Asatryan",
     "gender": "male"
   },
   {
     "userID": "a3cbac26-5eeb-7b8a-abdf-1d1cdaf38e03",
-    "sessionKeys": [
-      "e9d73fd2-7928-1ad4-2b7c-3db41b06b674"
-    ],
+    "sessionKeys": [],
+    "login": "informm109",
+    "firstName": "Artur",
+    "lastName": "dad",
+    "email": "adad@mail.ru",
+    "phone": "121212",
+    "gender": "male",
+    "password": "111111111111111"
+  },
+  {
+    "userID": "a3cbac26-5eeb-7b8a-abdf-1d1cdaf38e03",
+    "sessionKeys": [],
     "login": "informm109",
     "firstName": "Artur",
     "lastName": "dad",
