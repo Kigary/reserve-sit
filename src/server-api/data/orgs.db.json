@@ -14,7 +14,9 @@
   },
   {
     "orgID": "34b55696-d604-b2c4-e451-ce27dedb5338",
-    "sessionKeys": [],
+    "sessionKeys": [
+      "80287e62-9ad1-a49c-3a4e-0ef72c796121"
+    ],
     "login": "login2",
     "password": "passwordpassword",
     "name": "SQ1",

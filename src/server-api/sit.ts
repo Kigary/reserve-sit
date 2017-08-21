@@ -1,9 +1,10 @@
 import * as express from 'express';
 import { createGUID } from './common/index';
 import { readFileSync, writeFileSync } from 'fs';
-import  {Organization} from './organization';
+import {Organization} from './organization';
 import { join } from 'path';
 import {IOrg} from '../app/defines/IOrg';
+import { Order } from './order';
 
 const filePath = join(__dirname, './data/sits.db.json');
 
@@ -43,6 +44,7 @@ export class Sit {
   }
 
   static createSit(data, loggedOrgID) {
+    console.log(data, loggedOrgID);
     data.orgID = loggedOrgID;
     data.reserved = false;
     data.paid = false;
@@ -63,18 +65,26 @@ export class Sit {
   }
 
   static updateSit(data) {
-    const sits = this.getAllSits();
+    const sits = this.getSits();
     const sitIndex = sits.findIndex(s => s.sitID === data.sitID);
     sits.splice(sitIndex, 1, data);
     this.saveAllSits(sits);
     return data;
   }
 
-  static reserveSit(id) {
-    const sits = this.getAllSits();
-    const currentSit = sits.find(s => s.sitID === id);
+  static reserveSit(sitID, loggedUser) {
+    const sits = this.getSits();
+    const currentSit = sits.find(s => s.sitID === sitID);
+    Order.createOrder({
+      userID: loggedUser,
+      sitID: sitID,
+      orgID: currentSit.orgID,
+      orderDate: new Date,
+      createdAt: new Date,
+      releaseDate: new Date
+    });
     currentSit.reserved = !currentSit.reserved;
-    const sitIndex = sits.findIndex(s => s.sitID === id);
+    const sitIndex = sits.findIndex(s => s.sitID === sitID);
     sits.splice(sitIndex, 1, currentSit);
     this.saveAllSits(sits);
     return currentSit;
@@ -85,7 +95,7 @@ export class Sit {
     if(!Object.keys(filterData).length) {
       return sits;
     }
-    if (filterData.orgID) {
+    if (filterData.orgID !== 'allID' && filterData.orgID) {
         sits = sits.filter((sit) => sit.orgID === filterData.orgID);
     }
     if (filterData.sits) {
@@ -116,8 +126,7 @@ SitRouter.get('/sit-list-org', (req, res) => {
 
 SitRouter.get('/:id', (req, res) => {
   const id = req.params.id;
-  console.log(id);
-  res.json(Sit.reserveSit(id));
+  res.json(Sit.reserveSit(id,  req.loggedInUser.userID));
 });
 
 SitRouter.post('/', (req, res) => {

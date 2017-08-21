@@ -12,7 +12,9 @@
   },
   {
     "userID": "a3cbac26-5eeb-7b8a-abdf-1d1cdaf38e03",
-    "sessionKeys": [],
+    "sessionKeys": [
+      "e9d73fd2-7928-1ad4-2b7c-3db41b06b674"
+    ],
     "login": "informm109",
     "firstName": "Artur",
     "lastName": "dad",
@@ -20,19 +22,5 @@
     "phone": "121212",
     "gender": "male",
     "password": "111111111111111"
-  },
-  {
-    "userID": "g5b938tf-1f8r-2v7r-156y-15r89h34t84e",
-    "sessionKeys": [
-      "7b7e9cf2-5805-8a62-db79-7c0ba0170945",
-      "d898fc64-cf09-abb3-0b6a-5bb732868f0d"
-    ],
-    "login": "login",
-    "firstName": "David",
-    "lastName": "h0v",
-    "email": "h0v@gmail.com",
-    "phone": "02020202",
-    "gender": "male",
-    "password": "pass"
   }
 ]

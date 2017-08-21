@@ -1,17 +1,17 @@
 <md-card class="example-card">
     <md-card-header>
-      <md-card-title> <h2>{{order.orgID.name}}</h2></md-card-title>
+      <md-card-title> <h2>{{order.org.name}}</h2></md-card-title>
     </md-card-header>
-    <img md-card-image [src]="order.sitID.image">
+    <img md-card-image [src]="order.sit.image">
     <md-card-content>
       <md-grid-list cols="2" rowHeight="2:1">
         <md-grid-tile><strong>Seats:</strong>
-          <span>{{order.sitID.numOfSeats}}</span>
+          <span>{{order.sit.numOfSeats}}</span>
         </md-grid-tile>
         <md-grid-tile><strong>OrderDate:</strong>
           <span>{{order.orderDate | date : 'shortDate'}}</span>
         </md-grid-tile>
-        <md-grid-tile><strong>Cost:</strong><span>{{order.sitID.cost + ' AMD'}}</span></md-grid-tile>
+        <md-grid-tile><strong>Cost:</strong><span>{{order.sit.cost + ' AMD'}}</span></md-grid-tile>
         <md-grid-tile><strong>Created:</strong>
           <span>
             {{order.createdAt | date : 'shortDate'}}

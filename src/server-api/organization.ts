@@ -138,7 +138,9 @@ OrgRouter.get('/is-logged-in', (req, res) => {
   res.json(!!req.loggedInOrg);
 });
 OrgRouter.get('/org-names', (req, res) => {
-  res.json(Organization.getOrgNames());
+  const orgNames = Organization.getOrgNames();
+  orgNames.unshift({name: 'All', orgID: 'allID'});
+  res.json(orgNames);
 });
 OrgRouter.get('/logged-org', (req, res) => {
   const loggedInOrg = req.loggedInOrg;
