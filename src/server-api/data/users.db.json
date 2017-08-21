@@ -33,16 +33,14 @@
     "password": "111111111111111"
   },
   {
-    "userID": "d226eba4-128f-f9ce-c69f-19a1a0275799",
-    "sessionKeys": [
-      "b9897fd7-9e0a-57dd-25a1-db47852a753a"
-    ],
-    "login": "login",
-    "firstName": "David",
-    "lastName": "hov",
-    "email": "blabla@gmail.com",
-    "phone": "02020202",
-    "gender": "Male",
-    "password": "passpasspasspass"
+    "userID": "a3cbac26-5eeb-7b8a-abdf-1d1cdaf38e03",
+    "sessionKeys": [],
+    "login": "informm109",
+    "firstName": "Artur",
+    "lastName": "dad",
+    "email": "adad@mail.ru",
+    "phone": "121212",
+    "gender": "male",
+    "password": "111111111111111"
   }
 ]

@@ -38,8 +38,8 @@ export class OrdersComponent implements OnInit {
   }
 
   releaseSit(order: IOrder) {
-    this.orderService.finishOrder(order.orderID).subscribe(() => {
-      order.sit.reserved = false;
+    this.orderService.finishOrder(order.orderID).subscribe((ord) => {
+      order.releaseDate = ord.releaseDate;
     });
   }
 }

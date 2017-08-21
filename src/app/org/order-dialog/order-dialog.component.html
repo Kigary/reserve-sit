@@ -43,7 +43,7 @@
   <md-card-actions>
     <button md-raised-button
             [disabled]="true"
-            [innerText]="order.sit.reserved? 'Active':'Finished'">
+            [innerText]="order.releaseDate? 'Finished':'Active'">
     </button>
     <button md-raised-button
             [md-dialog-close]="null"

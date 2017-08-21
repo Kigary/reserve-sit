@@ -53,7 +53,6 @@ export class Order {
 
   static finishOrder(orderID: string) {
     const currentOrder = this.getOrder(orderID);
-    console.log(currentOrder);
     currentOrder.releaseDate = new Date();
     const sit = Sit.getSit(currentOrder.sitID);
     sit.reserved = false;

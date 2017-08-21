@@ -32,9 +32,9 @@
               [innerText]="'Details'">
       </button>
       <button md-raised-button
-              [disabled]="!order.sit.reserved"
+              [disabled]="order.releaseDate"
               (click)="releaseSit(order)"
-              [innerText]="order.sit.reserved ? 'Release' : 'Released'">
+              [innerText]="order.releaseDate ? 'Released' : 'Release'">
       </button>
     </md-cell>
   </ng-container>

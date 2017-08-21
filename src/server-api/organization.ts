@@ -168,8 +168,7 @@ OrgRouter.get('/org-list', (req, res) => {
 });
 
 OrgRouter.get('/release/:orderID', (req, res) => {
-  Order.finishOrder(req.params.orderID);
-  res.end();
+  res.json(Order.finishOrder(req.params.orderID));
 });
 
 OrgRouter.post('/', (req, res) => {
