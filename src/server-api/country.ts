@@ -3,10 +3,10 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import { ICountry } from '../app/defines/ICountry';
 
+
 const  filePath = join(__dirname, './data/countries.db.json');
 
 class Country {
-
    static getAllCountries(): ICountry[] {
     return JSON.parse(readFileSync(filePath).toString());
   }

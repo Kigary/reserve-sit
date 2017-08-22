@@ -16,7 +16,7 @@ export class OrdersComponent implements OnInit {
   @Input()
   disabled = false;
 
-  displayedColumns = ['sitName', 'reserveDate', 'user', 'action'];
+  displayedColumns = ['name', 'reserveDate', 'user', 'action'];
   dataSource: OrderDataSource;
 
   constructor(private activatedRoute: ActivatedRoute,

@@ -32,7 +32,7 @@ export class SitComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
         title: 'Delete Sit',
-        msg: `Are you sure you want to delete sit "${this.sit.sitName}" ?`,
+        msg: `Are you sure you want to delete sit "${this.sit.name}" ?`,
         confirm: 'Delete',
         reject: 'Cancel'
       } as IConfirmDialogOptions

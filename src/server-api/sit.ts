@@ -1,25 +1,32 @@
 import * as express from 'express';
+import { join } from 'path';
 import { createGUID } from './common/index';
 import { readFileSync, writeFileSync } from 'fs';
-import {Organization} from './organization';
-import { join } from 'path';
-import {IOrg} from '../app/defines/IOrg';
+
+import { Organization } from './organization';
 import { Order } from './order';
+import { IOrg } from './defines/IOrg';
+
 
 const filePath = join(__dirname, './data/sits.db.json');
 
 export class Sit {
   sitID: string = createGUID();
   orgID: string;
-  sitName: string;
+  name: string;
   numOfSeats: number;
   reserved: boolean;
   cost: number;
   paid: boolean;
   image: string;
   org?: IOrg;
+
   constructor(data) {
     Object.assign(this, data);
+  }
+
+  static getSit(id: string): Sit {
+    return this.getSits().find(s => s.sitID === id);
   }
 
   static getSits(): Sit[] {
@@ -34,17 +41,11 @@ export class Sit {
     });
   }
 
-  static getAllSitsByOrg(loggedOrgID): Sit[] {
-    const sits = this.getSits();
-    return sits.filter(sit => sit.orgID === loggedOrgID);
+  static getSitsByOrg(loggedOrgID: string): Sit[] {
+    return this.getSits().filter(sit => sit.orgID === loggedOrgID);
   }
 
-  static getSit(id: string): Sit {
-    return this.getSits().find(s => s.sitID === id);
-  }
-
-  static createSit(data, loggedOrgID) {
-    console.log(data, loggedOrgID);
+  static createSit(data, loggedOrgID: string): Sit {
     data.orgID = loggedOrgID;
     data.reserved = false;
     data.paid = false;
@@ -55,29 +56,25 @@ export class Sit {
     return sit;
   }
 
-  static saveAllSits(sitList) {
-    writeFileSync(filePath, JSON.stringify(sitList, null, 2));
-  }
-
-  static deleteSit(id) {
-    const sits = this.getSits().filter(s => s.sitID !== id);
-    this.saveAllSits(sits);
-  }
-
-  static updateSit(data) {
+  static updateSit(data): Sit {
     const sits = this.getSits();
-    const sitIndex = sits.findIndex(s => s.sitID === data.sitID);
-    sits.splice(sitIndex, 1, data);
+    const index = sits.findIndex(s => s.sitID === data.sitID);
+    sits.splice(index, 1, data);
     this.saveAllSits(sits);
     return data;
   }
 
-  static reserveSit(sitID, userID) {
-    const sits = this.getAllSits();
+  static deleteSit(id: string) {
+    const sits = this.getSits().filter(s => s.sitID !== id);
+    this.saveAllSits(sits);
+  }
+
+  static reserveSit(sitID: string, userID: string): Sit {
+    const sits = this.getSits();
     const currentSit = sits.find(s => s.sitID === sitID);
-    currentSit.reserved = !currentSit.reserved;
-    const sitIndex = sits.findIndex(s => s.sitID === sitID);
-    sits.splice(sitIndex, 1, currentSit);
+    currentSit.reserved = true;
+    const index = sits.findIndex(s => s.sitID === sitID);
+    sits.splice(index, 1, currentSit);
     this.saveAllSits(sits);
     const order = {
       orgID: currentSit.orgID,
@@ -88,26 +85,30 @@ export class Sit {
     };
     Order.createOrder(order);
     return currentSit;
-  }
+  } //TODO date-time-picker
 
-  static applySearch(filterData) {
-    let sits = Sit.getAllSits();
+  static applySearch(filterData): Sit[] {
+    let sits = Sit.getSits();
     if(!Object.keys(filterData).length) {
       return sits;
     }
     if (filterData.orgID !== 'allID' && filterData.orgID) {
-        sits = sits.filter((sit) => sit.orgID === filterData.orgID);
+        sits = sits.filter(sit => sit.orgID === filterData.orgID);
     }
     if (filterData.sits) {
-        sits = sits.filter((sit) => sit.numOfSeats >= +filterData.sits);
+        sits = sits.filter(sit => sit.numOfSeats >= +filterData.sits);
     }
     if (filterData.minPrice) {
-      sits = sits.filter((sit) => +filterData.minPrice <= sit.cost);
+      sits = sits.filter(sit => +filterData.minPrice <= sit.cost);
     }
     if (filterData.maxPrice) {
-      sits = sits.filter((sit) => +filterData.maxPrice >= sit.cost);
+      sits = sits.filter(sit => +filterData.maxPrice >= sit.cost);
     }
     return sits;
+  }
+
+  static saveAllSits(sitList: Sit[]) {
+    writeFileSync(filePath, JSON.stringify(sitList, null, 2));
   }
 }
 
@@ -115,33 +116,32 @@ export const SitRouter = express.Router();
 
 SitRouter.get('/sit-list', (req, res) => {
   res.json(Sit.getAllSits());
-});
-SitRouter.get('/sit-filter', (req, res) => {
-   res.json(Sit.applySearch(req.query));
-});
+});      // sit list for user
 
 SitRouter.get('/sit-list-org', (req, res) => {
-  res.json(Sit.getAllSitsByOrg(req.loggedInOrg.orgID));
-});
+  res.json(Sit.getSitsByOrg(req.loggedInOrg.orgID));
+});  // sit list for organization
 
-SitRouter.get('/:id', (req, res) => {
+SitRouter.get('/sit-filter', (req, res) => {
+   res.json(Sit.applySearch(req.query));
+});    // sit list filter
+
+SitRouter.get('/reserve/:id', (req, res) => {
   const sitID = req.params.id;
   const userID = req.loggedInUser.userID;
   res.json(Sit.reserveSit(sitID, userID));
-});
+});   // reserve sit
 
 SitRouter.post('/', (req, res) => {
   const sit = Sit.createSit(req.body, req.loggedInOrg.orgID);
   res.status(200).send(sit);
-});
+});             // create sit
+
+SitRouter.post('/update/', (req, res) => {
+  res.json(Sit.updateSit(req.body));
+});      // update sit
 
 SitRouter.delete('/:id', (req, res) => {
   Sit.deleteSit(req.params.id);
   res.status(200).end();
-});
-
-SitRouter.post('/:id', (req, res) => {
-  const data = req.body;
-  data.sitID = req.params.id;
-  res.json(Sit.updateSit(data));
-});
+});        // delete sit

@@ -3,12 +3,10 @@ import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import { createGUID } from './common/index';
 import { LoginData } from './defines/loginData';
-import { IOrg } from '../app/defines/IOrg';
-import { Order } from './order'; // TODO
+import { Order } from './order';
 
 
 const filePath = join(__dirname, './data/orgs.db.json');
-
 
 export class Organization {
   orgID: string = createGUID();
@@ -24,21 +22,33 @@ export class Organization {
   sessionKeys: string[] = [];
 
   constructor(data) {
-    // copies every property of data to this
     Object.assign(this, data);
+  }
+
+  static getOrg(id: string): Organization {
+    return this.getOrgsSafe().find(o => o.orgID === id);
+  }
+
+  static getOrgBySessionKey(sessionKey: string): Organization|null {
+    if (!sessionKey) {
+      return null;
+    }
+    const orgData = this.getOrgs()
+      .find(org => org.sessionKeys.includes(sessionKey));
+    return Organization.dataToOrg(orgData);
   }
 
   static getOrgs(): Organization[] {
     return JSON.parse(readFileSync(filePath).toString());
   }
 
-  static getAllOrgs(): Organization[] {
+  static getOrgsSafe(): Organization[] {
     return this.getOrgs()
-      .map(org => delete org.password && delete org.sessionKeys && org);
-  }
-
-  static getOrg(id: string): Organization {
-    return this.getAllOrgs().find(o => o.orgID === id);
+      .map(org =>
+           delete org.password
+        && delete org.login
+        && delete org.sessionKeys
+        && org);
   }
 
   static createOrg(data) {
@@ -48,10 +58,10 @@ export class Organization {
     this.saveAllOrgs(orgs);
   }
 
-  static updateOrg(data) {
+  static updateOrg(data): Organization {
     const orgs = this.getOrgs();
-    const orgIndex = orgs.findIndex(o => o.orgID === data.orgID);
-    orgs.splice(orgIndex, 1, data);
+    const index = orgs.findIndex(o => o.orgID === data.orgID);
+    orgs.splice(index, 1, data);
     this.saveAllOrgs(orgs);
     return data;
   }
@@ -60,45 +70,38 @@ export class Organization {
     writeFileSync(filePath, JSON.stringify(orgList, null, 2));
   }
 
-  static login(data: LoginData) {
+  static login(data: LoginData): Organization|null {
     const orgData = this.getOrgs()
       .find((org) => {
-      return org.login === data.login && org.password === data.password;
+      return org.login === data.login
+          && org.password === data.password;
     });
     return Organization.dataToOrg(orgData);
   }
 
-  static getOrgBySessionKey(sessionKey?: string) {
-    if (!sessionKey) {
-      return null;
-    }
-
-    const orgData = this.getOrgs().find(org => org.sessionKeys.includes(sessionKey));
-    return Organization.dataToOrg(orgData);
+  static doesExistOrgLogin({login}): Boolean {
+    return !!this.getOrgs()
+      .find(org => org.login === login);
   }
 
-  static dataToOrg(data) {
+  static doesExistOrgName ({name}): Boolean {
+    return !!this.getOrgs()
+      .find(org => org.name === name);
+  }
+
+  static dataToOrg(data): Organization|null {
     return data && new Organization(data);
   }
 
-  static doesExistOrgLogin({login}) {
-    const orgs = this.getOrgs();
-    return orgs.find((org) => org.login === login);
-  }
-
-  static doesExistOrgName ({name}) {
-    const orgs = this.getOrgs();
-    return orgs.find((org) => org.name === name);
-  }
-
-  static  getOrgNames() {
-    return this.getOrgs().map((org) => {
+  static getOrgNames() {
+    return this.getOrgs().map(org => {
       return {
         orgID: org.orgID,
         name: org.name
       };
     });
   }
+
   addSessionKey(sessionKey) {
     this.sessionKeys.push(sessionKey);
     Organization.updateOrg(this);
@@ -108,15 +111,8 @@ export class Organization {
     const {sessionKeys} = this;
     const index = sessionKeys.indexOf(sessionKey);
     sessionKeys.splice(index, 1);
-
     Organization.updateOrg(this);
   }
-
-  // static logOut() {
-  //   this.loggedInOrg = null;
-  // }
-  //
-
 }
 
 export const OrgRouter = express.Router();
@@ -124,18 +120,29 @@ export const OrgRouter = express.Router();
 OrgRouter.post('/login', (req, res) => {
   const org = Organization.login(req.body);
   if (!org) {
-    res.cookie('sessionKey', ''); // TRY LATER cookie.remove('sessionKey')
-    return res.status(404).send({error: 'Username or password is incorrect'});
+    res.cookie('sessionKey', '');
+    return res.status(404)
+      .send({error: 'Username or password is incorrect'});
   }
   const sessionKey = createGUID();
   res.cookie('sessionKey', sessionKey, {maxAge: new Date(2024, 0, 1), httpOnly: true});
   org.addSessionKey(sessionKey);
-
   res.status(200).send({success: 'ok'});
 });
 
 OrgRouter.get('/is-logged-in', (req, res) => {
   res.json(!!req.loggedInOrg);
+});
+
+OrgRouter.get('/logged-org', (req, res) => {
+  res.json(req.loggedInOrg);
+});
+
+OrgRouter.get('/logout', (req, res) => {
+  const loggedInOrg = req.loggedInOrg;
+  loggedInOrg && loggedInOrg.removeSessionKey(req.cookies.sessionKey);
+  res.cookie('sessionKey', '');
+  return res.status(200).end();
 });
 
 OrgRouter.get('/org-names', (req, res) => {
@@ -144,44 +151,21 @@ OrgRouter.get('/org-names', (req, res) => {
   res.json(orgNames);
 });
 
-OrgRouter.get('/logged-org', (req, res) => {
-  const loggedInOrg = req.loggedInOrg;
-  res.json(loggedInOrg);
-});
-
 OrgRouter.get('/orders', (req, res) => {
   res.json(Order.getOrdersByOrg(req.loggedInOrg.orgID));
 });
 
-OrgRouter.get('/logout', (req, res) => {
-  const {sessionKey} = req.cookies;
-  const loggedInOrg = req.loggedInOrg;
-
-  loggedInOrg && loggedInOrg.removeSessionKey(sessionKey);
-
-  res.cookie('sessionKey', '');
-  return res.status(200).end(); // TRY
-});
-
-OrgRouter.get('/org-list', (req, res) => {
-  res.json(Organization.getAllOrgs());
-});
-
-OrgRouter.get('/release/:orderID', (req, res) => {
+OrgRouter.get('/finish/:orderID', (req, res) => {
   res.json(Order.finishOrder(req.params.orderID));
 });
 
 OrgRouter.post('/', (req, res) => {
   if (Organization.doesExistOrgLogin(req.body)) {
-    return res.status(404).send({message: 'Login is registred'});
+    return res.status(404).send({message: 'Pick another login'});
   }
   if (Organization.doesExistOrgName(req.body)) {
-    return res.status(404).send({message: 'Name is registred'});
+    return res.status(404).send({message: 'Name is registered'});
   }
   Organization.createOrg(req.body);
   res.status(200).end();
 });
-
-// OrgRouter.get('/:id', (req, res) => {
-//   res.json(Organization.getOrg(req.params.id));
-// });

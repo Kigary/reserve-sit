@@ -11,7 +11,7 @@ export class SitService {
   constructor(private http: HttpClient) { }
 
   reserveSit(sitID) {
-    return this.http.get(`/api/sit/${sitID}` );
+    return this.http.get(`/api/sit/reserve/${sitID}`);
   }
 
   getAllSits() {

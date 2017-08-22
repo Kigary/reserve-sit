@@ -6,9 +6,9 @@
 <md-table #table [dataSource]="dataSource">
 
   <!-- Sit name column -->
-  <ng-container cdkColumnDef="sitName">
+  <ng-container cdkColumnDef="name">
     <md-header-cell *cdkHeaderCellDef>Seat name</md-header-cell>
-    <md-cell *cdkCellDef="let order"> {{order.sit.sitName}} </md-cell>
+    <md-cell *cdkCellDef="let order"> {{order.sit.name}} </md-cell>
   </ng-container>
 
   <!-- Reserve date Column -->

@@ -1,7 +1,7 @@
 <md-list>
   <md-list-item [innerText]="index+1"></md-list-item>
   <md-list-item> <img md-card-image [src]="order.sit.image"></md-list-item>
-  <md-list-item [innerText]="order.sit.sitName"></md-list-item>
+  <md-list-item [innerText]="order.sit.name"></md-list-item>
   <md-list-item>
     <md-input-container class="example-full-width">
       <input mdInput type="text" [value]="order.orderDate | date : 'yMdjm'" disabled>

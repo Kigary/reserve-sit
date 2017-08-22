@@ -13,6 +13,6 @@ export class OrderService {
   }
 
   finishOrder(orderID) {
-    return this.http.get(`/api/org/release/${orderID}`) as Observable<IOrder>;
+    return this.http.get(`/api/org/finish/${orderID}`) as Observable<IOrder>;
   }
 }

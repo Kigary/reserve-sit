@@ -16,6 +16,6 @@ export class SitService {
     return this.http.post(`/api/sit/`, data);
   }
   updateSit(data) {
-    return this.http.post(`/api/sit/${data.sitID}`, data);
+    return this.http.post(`/api/sit/update/`, data);
   }
 }

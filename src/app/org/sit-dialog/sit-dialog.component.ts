@@ -36,7 +36,7 @@ export class SitDialogComponent implements OnInit {
 
   formBuild() {
     this.sitForm = this.fb.group({
-      sitName: [this.sit.sitName, [Validators.required, Validators.maxLength(12)]],
+      name: [this.sit.name, [Validators.required, Validators.maxLength(12)]],
       numOfSeats: [this.sit.numOfSeats, [Validators.required, Validators.min(0), Validators.max(1000)]],
       cost: [this.sit.cost, [Validators.required, Validators.min(0), Validators.max(1000000)]],
       reserved: [{value: this.sit.reserved, disabled: !this.editMode}],

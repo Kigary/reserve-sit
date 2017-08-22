@@ -3,7 +3,7 @@ import {IOrg} from './IOrg';
 export interface ISit {
   sitID: string;
   orgID: string;
-  sitName: string;
+  name: string;
   numOfSeats: number;
   reserved: boolean;
   cost: number;
