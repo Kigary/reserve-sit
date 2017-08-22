@@ -9,12 +9,12 @@
           <span>{{order.sit.numOfSeats}}</span>
         </md-grid-tile>
         <md-grid-tile><strong>OrderDate:</strong>
-          <span>{{order.orderDate | date : 'shortDate'}}</span>
+          <span>{{order.orderDate | date : 'yMdjm'}}</span>
         </md-grid-tile>
         <md-grid-tile><strong>Cost:</strong><span>{{order.sit.cost + ' AMD'}}</span></md-grid-tile>
         <md-grid-tile><strong>Created:</strong>
           <span>
-            {{order.createdAt | date : 'shortDate'}}
+            {{order.createdAt | date : 'yMdjm'}}
           </span>
         </md-grid-tile>
       </md-grid-list>

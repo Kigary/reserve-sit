@@ -34,7 +34,9 @@
   },
   {
     "userID": "a3cbac26-5eeb-7b8a-abdf-1d1cdaf38e03",
-    "sessionKeys": [],
+    "sessionKeys": [
+      "576328b3-7d2a-4e9e-9478-886636358a9c"
+    ],
     "login": "informm109",
     "firstName": "Artur",
     "lastName": "dad",
