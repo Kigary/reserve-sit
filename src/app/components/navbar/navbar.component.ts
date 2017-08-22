@@ -6,7 +6,6 @@ import { AccountUserService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 
-
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -15,6 +14,7 @@ import { Router } from '@angular/router';
 
 export class NavbarComponent {
   userLogged: IUser | null;
+
   constructor(public dialog: MdDialog,
               public router: Router,
               private accountUserService: AccountUserService) {

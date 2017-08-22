@@ -126,12 +126,6 @@ SitRouter.get('/sit-filter', (req, res) => {
    res.json(Sit.applySearch(req.query));
 });    // sit list filter
 
-SitRouter.get('/reserve/:id', (req, res) => {
-  const sitID = req.params.id;
-  const userID = req.loggedInUser.userID;
-  res.json(Sit.reserveSit(sitID, userID));
-});   // reserve sit
-
 SitRouter.post('/', (req, res) => {
   const sit = Sit.createSit(req.body, req.loggedInOrg.orgID);
   res.status(200).send(sit);
@@ -140,6 +134,12 @@ SitRouter.post('/', (req, res) => {
 SitRouter.post('/update/', (req, res) => {
   res.json(Sit.updateSit(req.body));
 });      // update sit
+
+SitRouter.get('/reserve/:id', (req, res) => {
+  const sitID = req.params.id;
+  const userID = req.loggedInUser.userID;
+  res.json(Sit.reserveSit(sitID, userID));
+});   // reserve sit
 
 SitRouter.delete('/:id', (req, res) => {
   Sit.deleteSit(req.params.id);

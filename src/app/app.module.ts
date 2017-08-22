@@ -21,7 +21,7 @@ import { SitsComponent } from './components/sits/sits.component';
 import { SitComponent } from './components/sit/sit.component';
 import { SitDialogComponent } from './components/sit-dialog/sit-dialog.component';
 import { FilterComponent } from './components/filter/filter.component';
-import { FooterComponent } from './footer/footer.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 import { UserService } from './services/user.service';
 import { AccountUserService } from './services/auth.service';
