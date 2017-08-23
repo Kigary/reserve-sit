@@ -18,12 +18,12 @@
         <strong>{{sit.reserved? '':'Not'}} Reserved</strong>
       </md-grid-tile>
       <md-grid-tile>
-        Cost: {{sit.cost}}
+        {{sit.cost ? (sit.cost|currency:'JPY':true):'Free'}}
       </md-grid-tile>
     </md-grid-list>
   </md-card-content>
   <md-card-actions>
-    <button md-button (click)="reserveSit()" [disabled]="sit.reserved">Reserve</button>
-    <button md-button (click)="sitDetails()">Details</button>
+    <button md-raised-button (click)="reserveSit()" [disabled]="sit.reserved">Reserve</button>
+    <button md-raised-button (click)="sitDetails()" class="details">Details</button>
   </md-card-actions>
 </md-card>

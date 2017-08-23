@@ -5,10 +5,26 @@ md-dialog-content {
 md-input-container {
   width: 100%;
 }
+md-dialog-actions {
+  justify-content: flex-end;
+}
 div {
   width: 400px;
 }
 img{
-  max-width: 100%;
+  display: block;
   margin: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+md-chip-list {
+  float: right;
+}
+md-chip {
+  outline: none;
+  user-select: none;
+  cursor: default;
+}
+h1 {
+  display: inline-block;
 }

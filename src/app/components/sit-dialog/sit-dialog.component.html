@@ -1,13 +1,11 @@
-<h1 md-dialog-title>Sit Details</h1>
+<h1 md-dialog-title [innerText]="sit.org.name"></h1>
+<md-chip-list>
+  <md-chip [color]="sit.reserved?'warn':'primary'" selected="true" [innerText]="(sit.reserved?'':'Not ')+'Reserved'"></md-chip>
+</md-chip-list>
 
 <md-dialog-content>
-  <md-input-container>
-    <input mdInput placeholder="Organization" disabled
-           [value]="sit.org.name"/>
-  </md-input-container>
-  <br/>
   <div class="imgCtr">
-    <img md-card-image [src]=sit.image />
+    <img [src]=sit.image />
   </div>
   <br/>
   <md-input-container>
@@ -15,15 +13,11 @@
            [value]="sit.numOfSeats"/>
   </md-input-container>
   <md-input-container>
-    <input mdInput type="number" placeholder="Cost" disabled
-           [value]="sit.cost"/>
+    <input mdInput placeholder="Cost" disabled
+           [value]="sit.cost ? (sit.cost|currency:'JPY':true):'Free'"/>
   </md-input-container>
-  <br/>
-  <md-checkbox [checked]=sit.reserved disabled="disabled">
-    {{sit.reserved? '':'Not'}} Reserved
-  </md-checkbox>
 </md-dialog-content>
 
 <md-dialog-actions>
-  <button md-button [md-dialog-close]="null">Close</button>
+  <button md-raised-button [md-dialog-close]="null">Close</button>
 </md-dialog-actions>

@@ -14,7 +14,8 @@ import {
   MdIconModule,
   MdCardModule,
   MdSelectModule,
-  MdProgressBarModule
+  MdProgressBarModule,
+  MdChipsModule
 } from '@angular/material';
 
 const materialModules = [
@@ -33,7 +34,8 @@ const materialModules = [
   MdIconModule,
   MdCardModule,
   MdSelectModule,
-  MdProgressBarModule
+  MdProgressBarModule,
+  MdChipsModule
 ];
 
 @NgModule({
