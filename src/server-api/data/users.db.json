@@ -1,46 +1,35 @@
 [
   {
-    "userID": "bb4b2bd5-ff26-ab6f-37dc-0b6d778a75fe",
+    "userID": "e1d21b43-f969-78a2-af3c-aeaa77a42303",
     "sessionKeys": [],
-    "login": "vzgo.asa",
-    "password": "pass1234",
-    "email": "vzgo@mail.ru",
-    "phone": "099 99 99 99",
-    "firstName": "Vzgo",
-    "lastName": "Asatryan",
-    "gender": "male"
+    "login": "login",
+    "firstName": "David",
+    "lastName": "h0v",
+    "email": "blabla@gmail.com",
+    "phone": "02020202",
+    "gender": "Male",
+    "password": "passwordpassword"
   },
   {
-    "userID": "a3cbac26-5eeb-7b8a-abdf-1d1cdaf38e03",
+    "userID": "408a48d5-850d-3a1b-be0e-2ef38e62f9be",
     "sessionKeys": [],
     "login": "informm109",
     "firstName": "Artur",
     "lastName": "dad",
     "email": "adad@mail.ru",
-    "phone": "121212",
-    "gender": "male",
+    "phone": "12121212",
+    "gender": "Male",
     "password": "111111111111111"
   },
   {
-    "userID": "a3cbac26-5eeb-7b8a-abdf-1d1cdaf38e03",
+    "userID": "43f6057d-6279-4381-1f7f-f0861d6ec638",
     "sessionKeys": [],
-    "login": "informm109",
-    "firstName": "Artur",
-    "lastName": "dad",
-    "email": "adad@mail.ru",
-    "phone": "121212",
-    "gender": "male",
-    "password": "111111111111111"
-  },
-  {
-    "userID": "a3cbac26-5eeb-7b8a-abdf-1d1cdaf38e03",
-    "sessionKeys": [],
-    "login": "informm109",
-    "firstName": "Artur",
-    "lastName": "dad",
-    "email": "adad@mail.ru",
-    "phone": "121212",
-    "gender": "male",
-    "password": "111111111111111"
+    "login": "himar",
+    "firstName": "bla",
+    "lastName": "blaa",
+    "email": "bla@bla.com",
+    "phone": "1010",
+    "gender": "Male",
+    "password": "hellopeopleupthere"
   }
 ]
