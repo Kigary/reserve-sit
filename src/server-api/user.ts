@@ -41,7 +41,7 @@ export class User {
 
   static updateUser (data) {
     const users = this.getAllUsers();
-    const userIndex = users.findIndex(u => u.userID === data.id);
+    const userIndex = users.findIndex(u => u.userID === data.userID);
     users.splice(userIndex, 1, data);
     this.saveAllUsers(users);
   }
