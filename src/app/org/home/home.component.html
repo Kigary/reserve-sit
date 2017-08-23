@@ -1,5 +1,5 @@
-<md-toolbar>
-  <button md-button class="orgName" routerLink="org/home/sits">{{loggedOrg?.name}}</button>
+<md-toolbar class="mat-accent">
+  <button md-button class="orgName" routerLink="/org">{{loggedOrg?.name}}</button>
   <div class="logOut" fxFlex="flex" fxLayoutAlign="end" >
     <button md-icon-button [mdMenuTriggerFor]="menu">
       <md-icon>menu</md-icon>
