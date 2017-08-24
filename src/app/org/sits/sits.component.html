@@ -4,9 +4,7 @@
   </button>
   <br/>
   <md-grid-list cols="2" gutterSize="10px" rowHeight="250px">
-    <md-grid-tile
-        *ngFor="let sit of sits"
-        [style.opacity]="sit.reserved? 0.5:1">
+    <md-grid-tile *ngFor="let sit of sits">
       <org-sit [sit]="sit" (del)="deleteSit($event)"></org-sit>
     </md-grid-tile>
   </md-grid-list>

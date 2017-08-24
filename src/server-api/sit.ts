@@ -19,10 +19,11 @@ export class Sit {
   cost: number;
   paid: boolean;
   image: string;
-  org?: IOrg;
+  org: IOrg;
 
   constructor(data) {
     Object.assign(this, data);
+    this.org = {} as IOrg;
   }
 
   static getSit(id: string): Sit {
@@ -47,10 +48,10 @@ export class Sit {
 
   static createSit(data, loggedInOrg): Sit {
     data.orgID = loggedInOrg.orgID;
-    data.org.name = loggedInOrg.name;
     data.reserved = false;
     data.paid = false;
     const sit = new Sit(data);
+    sit.org.name = loggedInOrg.name;
     const sits = this.getSits();
     sits.unshift(sit);
     this.saveAllSits(sits);

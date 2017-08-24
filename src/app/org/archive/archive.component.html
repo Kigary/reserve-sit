@@ -17,8 +17,8 @@
 
   <!-- Sit name column -->
   <ng-container cdkColumnDef="sitName">
-    <md-header-cell *cdkHeaderCellDef>Seat name</md-header-cell>
-    <md-cell *cdkCellDef="let order"> {{order.sit.name}} </md-cell>
+    <md-header-cell *cdkHeaderCellDef fxFlex="200px">Seat name</md-header-cell>
+    <md-cell *cdkCellDef="let order" fxFlex="200px"> {{order.sit.name}} </md-cell>
   </ng-container>
 
   <!-- User name Column -->
@@ -30,20 +30,23 @@
   <!-- Reserve date Column -->
   <ng-container cdkColumnDef="reserveDate">
     <md-header-cell *cdkHeaderCellDef>Reserve date</md-header-cell>
-    <md-cell *cdkCellDef="let order"> {{order.orderDate | date:'short'}} </md-cell>
+    <md-cell *cdkCellDef="let order"> {{order.orderDate | date:dateFormat}} </md-cell>
   </ng-container>
 
   <!-- Release date Column -->
   <ng-container cdkColumnDef="releaseDate">
     <md-header-cell *cdkHeaderCellDef>Release date</md-header-cell>
-    <md-cell *cdkCellDef="let order"> {{order.releaseDate | date:'short'}} </md-cell>
+    <md-cell *cdkCellDef="let order"> {{order.releaseDate | date:dateFormat}} </md-cell>
   </ng-container>
 
   <!-- Action Column -->
   <ng-container cdkColumnDef="action">
-    <md-header-cell *cdkHeaderCellDef>Action</md-header-cell>
-    <md-cell *cdkCellDef="let order">
-
+    <md-header-cell *cdkHeaderCellDef fxFlex="100px">Details</md-header-cell>
+    <md-cell *cdkCellDef="let order" fxFlex="100px">
+      <button md-raised-button
+              (click)="details(order)"
+              [innerText]="'Details'">
+      </button>
     </md-cell>
   </ng-container>
 

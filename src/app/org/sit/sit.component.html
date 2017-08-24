@@ -8,9 +8,11 @@
         <span [innerText]="'Seats: ' + sit.numOfSeats"></span>
       </md-grid-tile>
       <md-grid-tile>
-        <span>
-          <strong [innerText]="sit.reserved ? 'Reserved':'Not reserved'"></strong>
-        </span>
+        <md-chip-list>
+          <md-chip [selected]="sit.reserved" color="accent"
+                   [innerText]="sit.reserved?'Reserved':'Not reserved'">
+          </md-chip>
+        </md-chip-list>
       </md-grid-tile>
       <md-grid-tile>
         <span [innerText]="sit.cost ? (sit.cost|currency:'JPY':true):'Free'"></span>

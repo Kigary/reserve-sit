@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class SitService {
@@ -13,7 +14,8 @@ export class SitService {
     return this.http.delete(`api/sit/${sitID}`);
   }
   createSit(data) {
-    return this.http.post(`/api/sit/`, data);
+    return this.http.post(`/api/sit/`, data)
+      .catch(error => Observable.throw(error));
   }
   updateSit(data) {
     return this.http.post(`/api/sit/update/`, data);

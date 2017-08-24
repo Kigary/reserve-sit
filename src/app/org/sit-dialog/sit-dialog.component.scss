@@ -1,10 +1,11 @@
 md-dialog-content {
   width: 400px;
-  height: 330px;
+  height: 300px;
 }
 md-spinner {
   width: 35px;
   height: 35px;
+  margin: 0 5px;
 }
 md-icon {
   font-family: "Material Icons", serif;
@@ -15,7 +16,8 @@ button[md-raised-button] {
   margin-right: 6px;
 }
 md-dialog-actions {
-  float: right;
+  display: flex;
+  justify-content: space-between;
 }
 org-image-upload {
   opacity: .7;
@@ -28,4 +30,14 @@ md-input-container {
 }
 span {
   opacity: .8;
+}
+.fileSizeError {
+  color: red;
+  font-size: 10px;
+  text-align: right;
+}
+md-dialog-actions div:first-of-type {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
 }

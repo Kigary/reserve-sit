@@ -23,22 +23,22 @@
              formControlName="cost"/>
     </md-input-container>
     <br/>
-    <md-checkbox formControlName="reserved">
-      Reserved
-    </md-checkbox>
-    <br/>
+
     <md-checkbox formControlName="paid">
       Paid
     </md-checkbox>
-    <br/><br/><br/><br/>
-    <span>* required fields</span>
+    <br/><br/>
+    <div class="fileSizeError" [innerText]="fileSizeError"></div>
   </md-dialog-content>
 
   <md-dialog-actions>
+    <div>* required fields</div>
     <md-spinner class="mat-accent" *ngIf="inProgress"></md-spinner>
-    <button md-raised-button class="mat-accent"
-            (click)="saveSit()" [disabled]='!sitForm.valid'>Save</button>
-    <button md-button class="mat-accent"
-            [md-dialog-close]="null">Cancel</button>
+    <div class="actions-container">
+      <button md-raised-button class="mat-accent"
+              (click)="saveSit()" [disabled]='!sitForm.valid'>Save</button>
+      <button md-button class="mat-accent"
+              [md-dialog-close]="null">Cancel</button>
+    </div>
   </md-dialog-actions>
 </form>

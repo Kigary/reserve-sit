@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MdPaginator, PageEvent } from '@angular/material';
+import { MdDialog, MdPaginator, PageEvent } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrderService } from '../services/order/order.service';
 import { Observable } from 'rxjs/Observable';
@@ -10,6 +10,8 @@ import { DataSource } from '@angular/cdk';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { IOrder } from '../../defines/IOrder';
 import { IPagingData } from '../../defines/IPagingData';
+import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
+import { dateTimeFormat } from '../../defines/common';
 
 
 @Component({
@@ -24,6 +26,8 @@ export class ArchiveComponent implements OnInit {
   @ViewChild(MdPaginator)
   paginator: MdPaginator;
 
+  get dateFormat() { return dateTimeFormat.format; }
+
   get pagingConfig() {
     return this.orderService.pagingConfig;
   }
@@ -34,8 +38,15 @@ export class ArchiveComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private orderService: OrderService
+    private orderService: OrderService,
+    public dialog: MdDialog
   ) {}
+
+  details(order) {
+    this.dialog.open(OrderDialogComponent , {
+      data: order
+    });
+  }
 
   ngOnInit() {
     this.router.navigate(['org', 'home', 'archive']);
@@ -47,9 +58,9 @@ export class ArchiveComponent implements OnInit {
       .map(() => elem.value);
 
     this.dataSource = new OrderDataSource(
+      this.orderService,
       this.activatedRoute,
       searchChange,
-      this.orderService,
       this.paginator
     );
   }
@@ -64,9 +75,9 @@ export class OrderDataSource extends DataSource<IOrder> {
   }
 
   constructor(
+    private orderService: OrderService,
     activatedRoute: ActivatedRoute,
     searchChange: Observable<string>,
-    private orderService: OrderService,
     paginator: MdPaginator
   ) {
     super();
