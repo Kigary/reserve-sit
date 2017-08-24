@@ -151,8 +151,12 @@ OrgRouter.get('/org-names', (req, res) => {
   res.json(orgNames);
 });
 
-OrgRouter.get('/orders', (req, res) => {
-  res.json(Order.getOrdersByOrg(req.loggedInOrg.orgID));
+OrgRouter.get('/reserved', (req, res) => {
+  res.json(Order.getOrgReservations(req.loggedInOrg.orgID, req.query.search));
+});
+
+OrgRouter.get('/archive', (req, res) => {
+  res.json(Order.getOrgArchive(req.loggedInOrg.orgID, req.query));
 });
 
 OrgRouter.get('/finish/:orderID', (req, res) => {

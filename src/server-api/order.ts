@@ -7,7 +7,14 @@ import { Sit } from './sit';
 import { User } from './user';
 import { IUser } from '../app/defines/IUser';
 import { Organization } from './organization';
+import { IPagingData } from '../app/defines/IPagingData';
 
+
+interface IOrderSearchCriteria {
+  search: string;
+  size: number;
+  index: number;
+}
 
 const filePath = join(__dirname, './data/orders.db.json');
 
@@ -21,7 +28,7 @@ export class Order {
   sit: Sit;
   orderDate: Date;
   createdAt: Date;
-  releaseDate: string = null;
+  releaseDate: Date|null = null;
 
   constructor(data) {
     Object.assign(this, data);
@@ -44,6 +51,30 @@ export class Order {
       .map(data => new Order(data));
   }
 
+  static getOrgReservations(loggedOrgID: string, search: string): Order[] {
+    return Order.getOrdersByOrg(loggedOrgID)
+      .filter(order => order.releaseDate === null
+        && order.sit.name.toLowerCase().includes(search.toLowerCase()));
+  }
+
+  static getOrgArchive(loggedOrgID: string, criteria: IOrderSearchCriteria) {
+    const filteredOrders = Order.getOrdersByOrg(loggedOrgID)
+      .filter(order => order.releaseDate !== null
+        && order.sit.name.toLowerCase().includes(criteria.search.toLowerCase())
+    );
+
+    const result = {
+      totalCount: filteredOrders.length
+    } as IPagingData<Order>;
+
+    criteria.size = +criteria.size;
+
+    const offset = criteria.index * criteria.size || 0;
+    result.data = filteredOrders.slice(offset, offset + criteria.size);
+
+    return result;
+  }
+
   static getOrdersByUser(loggedUserID: string): Order[] {
     return  Order.getAllOrders()
       .filter(order => order.userID === loggedUserID)
@@ -61,7 +92,7 @@ export class Order {
   static finishOrder(orderID: string): Order {
     const currentOrder = this.getOrder(orderID);
     const currentSit = Sit.getSit(currentOrder.sitID);
-    currentOrder.releaseDate = (new Date).toString();
+    currentOrder.releaseDate = new Date;
     currentSit.reserved = false;
     currentSit.paid = false;
     Sit.updateSit(currentSit);

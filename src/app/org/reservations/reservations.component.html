@@ -1,7 +1,15 @@
-<button md-raised-button routerLink="../">
-  <md-icon>arrow_back</md-icon>
-  Sits
-</button>
+<md-toolbar>
+  <button md-raised-button routerLink="../">
+    <md-icon>home</md-icon>
+    Home
+  </button>
+  <button md-raised-button routerLink="../archive">
+    Archive
+  </button>
+  <md-input-container>
+    <input mdInput placeholder="Search" type="search" #search>
+  </md-input-container>
+</md-toolbar>
 
 <md-table #table [dataSource]="dataSource">
 
@@ -20,10 +28,10 @@
   <!-- User name Column -->
   <ng-container cdkColumnDef="user">
     <md-header-cell *cdkHeaderCellDef>User</md-header-cell>
-    <md-cell *cdkCellDef="let order"> {{order.user.firstName}} </md-cell>
+    <md-cell *cdkCellDef="let order"> {{order.user.firstName + ' ' + order.user.lastName}} </md-cell>
   </ng-container>
 
-  <!-- return Column -->
+  <!-- Action Column -->
   <ng-container cdkColumnDef="action">
     <md-header-cell *cdkHeaderCellDef>Action</md-header-cell>
     <md-cell *cdkCellDef="let order">

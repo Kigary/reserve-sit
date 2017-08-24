@@ -5,7 +5,8 @@
       <md-icon>menu</md-icon>
     </button>
     <md-menu #menu xPosition="before" yPosition="below" [overlapTrigger]="false">
-      <button md-menu-item [innerText]="'Orders'" routerLink="orders"></button>
+      <button md-menu-item [innerText]="'Reservations'" routerLink="reservations"></button>
+      <button md-menu-item [innerText]="'Archive'" routerLink="archive"></button>
       <button md-menu-item (click)="orgLogOut()" [innerText]="'Log out'"></button>
     </md-menu>
   </div>

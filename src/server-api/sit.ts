@@ -45,8 +45,9 @@ export class Sit {
     return this.getSits().filter(sit => sit.orgID === loggedOrgID);
   }
 
-  static createSit(data, loggedOrgID: string): Sit {
-    data.orgID = loggedOrgID;
+  static createSit(data, loggedInOrg): Sit {
+    data.orgID = loggedInOrg.orgID;
+    data.org.name = loggedInOrg.name;
     data.reserved = false;
     data.paid = false;
     const sit = new Sit(data);
@@ -127,7 +128,7 @@ SitRouter.get('/sit-filter', (req, res) => {
 });    // sit list filter
 
 SitRouter.post('/', (req, res) => {
-  const sit = Sit.createSit(req.body, req.loggedInOrg.orgID);
+  const sit = Sit.createSit(req.body, req.loggedInOrg);
   res.status(200).send(sit);
 });             // create sit
 

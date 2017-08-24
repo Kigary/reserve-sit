@@ -1,0 +1,59 @@
+
+
+<md-toolbar>
+  <button md-raised-button routerLink="../">
+    <md-icon>home</md-icon>
+    Home
+  </button>
+  <button md-raised-button routerLink="../reservations">
+    Reservations
+  </button>
+  <md-input-container>
+    <input mdInput placeholder="Search" type="search" #search>
+  </md-input-container>
+</md-toolbar>
+
+<md-table #table [dataSource]="dataSource">
+
+  <!-- Sit name column -->
+  <ng-container cdkColumnDef="sitName">
+    <md-header-cell *cdkHeaderCellDef>Seat name</md-header-cell>
+    <md-cell *cdkCellDef="let order"> {{order.sit.name}} </md-cell>
+  </ng-container>
+
+  <!-- User name Column -->
+  <ng-container cdkColumnDef="user">
+    <md-header-cell *cdkHeaderCellDef>User</md-header-cell>
+    <md-cell *cdkCellDef="let order"> {{order.user.firstName + ' ' + order.user.lastName}} </md-cell>
+  </ng-container>
+
+  <!-- Reserve date Column -->
+  <ng-container cdkColumnDef="reserveDate">
+    <md-header-cell *cdkHeaderCellDef>Reserve date</md-header-cell>
+    <md-cell *cdkCellDef="let order"> {{order.orderDate | date:'short'}} </md-cell>
+  </ng-container>
+
+  <!-- Release date Column -->
+  <ng-container cdkColumnDef="releaseDate">
+    <md-header-cell *cdkHeaderCellDef>Release date</md-header-cell>
+    <md-cell *cdkCellDef="let order"> {{order.releaseDate | date:'short'}} </md-cell>
+  </ng-container>
+
+  <!-- Action Column -->
+  <ng-container cdkColumnDef="action">
+    <md-header-cell *cdkHeaderCellDef>Action</md-header-cell>
+    <md-cell *cdkCellDef="let order">
+
+    </md-cell>
+  </ng-container>
+
+  <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+  <md-row *cdkRowDef="let order; columns: displayedColumns;"></md-row>
+</md-table>
+
+<md-paginator #paginator
+              [length]="dataSource.totalCount"
+              [pageIndex]="pagingConfig.pageIndex"
+              [pageSize]="pagingConfig.pageSize"
+              [pageSizeOptions]="pagingConfig.pageSizeOptions">
+</md-paginator>

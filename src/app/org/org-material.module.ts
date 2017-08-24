@@ -4,7 +4,7 @@ import {
   MdInputModule, MdToolbarModule, MdButtonModule, MdSelectModule,
   MdListModule, MdGridListModule, MdTabsModule, MdCardModule,
   MdDialogModule, MdCheckboxModule, MdProgressSpinnerModule,
-  MdTooltipModule, MdMenuModule, MdTableModule
+  MdTooltipModule, MdMenuModule, MdTableModule, MdPaginatorModule
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk';
 
@@ -25,7 +25,8 @@ const mdModules = [
   MdTooltipModule,
   MdMenuModule,
   MdTableModule,
-  CdkTableModule
+  CdkTableModule,
+  MdPaginatorModule
 ];
 
 @NgModule({

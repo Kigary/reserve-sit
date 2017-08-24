@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { ArchiveService } from './archive.service';
-import { IOrder } from '../../../defines/IOrder';
+import { OrderService } from '../order/order.service';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 @Injectable()
-export class ArchiveResolverService implements Resolve<IOrder[]>{
-  constructor(private archiveService: ArchiveService) { }
+export class ArchiveResolverService {
+
+  constructor(private orderService: OrderService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return this.archiveService.getArchive();
+    return this.orderService.getOrgArchivedOrders();
   }
 }

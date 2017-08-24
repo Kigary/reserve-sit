@@ -8,9 +8,11 @@ import {LoginPageComponent} from './login-page/login-page.component';
 
 import {CountriesResolve} from './services/country/country.resolve';
 import {AccountGuard} from './guards/account.guard';
-import { OrdersComponent } from './orders/orders.component';
+import { ReservationsComponent } from './reservations/reservations.component';
 import { HomeComponent } from './home/home.component';
-import { OrderResolverService } from './services/order/order-resolver.service';
+import { ArchiveResolverService } from './services/archive/archive-resolver.service';
+import { ArchiveComponent } from './archive/archive.component';
+import { ReservedResolverService } from './services/reserved/reserved-resolver.service';
 
 const routes: Routes = [
   {
@@ -48,10 +50,17 @@ const routes: Routes = [
             component: SitsComponent,
           },
           {
-            path: 'orders',
-            component: OrdersComponent,
+            path: 'reservations',
+            component: ReservationsComponent,
             resolve: {
-              OrderResolverService
+              ReservedResolverService
+            }
+          },
+          {
+            path: 'archive',
+            component: ArchiveComponent,
+            resolve: {
+              ArchiveResolverService
             }
           },
           {
@@ -76,7 +85,8 @@ const routes: Routes = [
   providers: [
     CountriesResolve,
     AccountGuard,
-    OrderResolverService
+    ArchiveResolverService,
+    ReservedResolverService
   ]
 })
 export class OrgRoutingModule {
