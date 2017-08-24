@@ -85,11 +85,12 @@ export class OrderDataSource extends DataSource<IOrder> {
     const {orderSubject} = this;
 
     activatedRoute.data
-      .subscribe((resolvedData: { ArchiveResolverService: IPagingData<IOrder> }) =>
-        orderSubject.next(resolvedData.ArchiveResolverService));
+      .subscribe((resolvedData: { archive: IPagingData<IOrder> }) =>
+        orderSubject.next(resolvedData.archive));
 
     searchChange.subscribe(value => {
       this.searchValue = value;
+      orderService.pagingConfig.pageIndex = 0;
       this.updateOrders();
     });
 

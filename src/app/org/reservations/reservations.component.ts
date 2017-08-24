@@ -73,8 +73,9 @@ export class OrderDataSource extends DataSource<IOrder> {
     const {orderSubject} = this;
 
     activatedRoute.data
-      .subscribe((resolvedData: { ReservationsResolverService: IOrder[] }) =>
-        orderSubject.next(resolvedData.ReservationsResolverService));
+      .subscribe((resolvedData: { reservations: IOrder[] }) => {
+        orderSubject.next(resolvedData.reservations);
+      });
 
     searchChange.subscribe(value => {
       this.searchValue = value;

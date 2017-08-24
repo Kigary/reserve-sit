@@ -54,8 +54,7 @@
   <md-row *cdkRowDef="let order; columns: displayedColumns;"></md-row>
 </md-table>
 
-<md-paginator #paginator
-              [length]="dataSource.totalCount"
+<md-paginator [length]="dataSource.totalCount"
               [pageIndex]="pagingConfig.pageIndex"
               [pageSize]="pagingConfig.pageSize"
               [pageSizeOptions]="pagingConfig.pageSizeOptions">

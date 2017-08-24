@@ -53,14 +53,14 @@ const routes: Routes = [
             path: 'reservations',
             component: ReservationsComponent,
             resolve: {
-              ReservedResolverService
+              reservations: ReservedResolverService
             }
           },
           {
             path: 'archive',
             component: ArchiveComponent,
             resolve: {
-              ArchiveResolverService
+              archive: ArchiveResolverService
             }
           },
           {

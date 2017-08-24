@@ -4,7 +4,7 @@ import { IOrg } from '../../defines/IOrg';
 import { OrgService } from '../services/org/org.service';
 
 @Component({
-  selector: 'home',
+  selector: 'org-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })

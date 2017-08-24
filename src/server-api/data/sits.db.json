@@ -11,7 +11,7 @@
         "name": "SQ1"
       }
     ],
-    "reserved": true,
+    "reserved": false,
     "paid": false
   },
   {
@@ -26,7 +26,7 @@
         "name": "SQ1"
       }
     ],
-    "reserved": true,
+    "reserved": false,
     "paid": false
   },
   {
@@ -41,7 +41,7 @@
         "name": "SQ1"
       }
     ],
-    "reserved": true,
+    "reserved": false,
     "paid": false
   },
   {
@@ -101,7 +101,7 @@
         "name": "Tashir Pizza"
       }
     ],
-    "reserved": true,
+    "reserved": false,
     "paid": false
   },
   {
