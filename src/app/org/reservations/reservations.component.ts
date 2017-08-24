@@ -7,6 +7,7 @@ import { OrderService } from '../services/order/order.service';
 import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { dateTimeFormat } from '../../defines/common';
 
 @Component({
   selector: 'org-reservations',
@@ -17,7 +18,7 @@ export class ReservationsComponent implements OnInit {
   @ViewChild('search')
   search: ElementRef;
 
-  orders: IOrder[];
+  get dateFormat() { return dateTimeFormat.format; }
 
   displayedColumns = ['name', 'reserveDate', 'user', 'action'];
   dataSource: OrderDataSource;

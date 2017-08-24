@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MD_DIALOG_DATA } from '@angular/material';
+import { dateTimeFormat } from '../../defines/common';
 
 @Component({
   selector: 'org-order-dialog',
@@ -8,7 +9,8 @@ import { MD_DIALOG_DATA } from '@angular/material';
 })
 export class OrderDialogComponent implements OnInit {
   order: any;
-  dateFormat = 'hh:mm a, dd/mm/yy';
+
+  get dateFormat() { return dateTimeFormat.format; }
 
   constructor(@Inject(MD_DIALOG_DATA) data: any) {
     this.order = data;

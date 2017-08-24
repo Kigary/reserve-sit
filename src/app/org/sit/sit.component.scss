@@ -49,3 +49,11 @@ md-grid-tile:nth-of-type(1) {
   align-items: flex-start;
   word-break: break-all;
 }
+md-chip-list {
+  width: 100%;
+}
+md-chip {
+  outline: none;
+  user-select: none;
+  cursor: default;
+}

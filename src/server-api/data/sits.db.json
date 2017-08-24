@@ -56,7 +56,7 @@
         "name": "Tashir Pizza"
       }
     ],
-    "reserved": true,
+    "reserved": false,
     "paid": false
   },
   {
@@ -71,7 +71,7 @@
         "name": "Tashir Pizza"
       }
     ],
-    "reserved": true,
+    "reserved": false,
     "paid": false
   },
   {

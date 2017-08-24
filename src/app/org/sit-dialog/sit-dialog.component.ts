@@ -15,6 +15,7 @@ export class SitDialogComponent implements OnInit {
   title: string;
   editMode: boolean;
   sitForm: FormGroup;
+  fileSizeError = '';
 
   constructor(
     @Inject(MD_DIALOG_DATA) data: ISit,
@@ -30,26 +31,23 @@ export class SitDialogComponent implements OnInit {
     Object.assign(this.sit, this.sitForm.value);
     const obs = this.sit.sitID ? this.sitService.updateSit(this.sit) :
       this.sitService.createSit(this.sit);
-    this.inProgress = true;
-    obs.subscribe(sit => this.dialogRef.close(sit));
-  }
+    obs.subscribe(sit => {
+        this.fileSizeError = '';
+        this.inProgress = true;
+        setTimeout(()=>{return this.dialogRef.close(sit)}, 500);
+      },(error) => {
+          this.inProgress = false;
+          this.fileSizeError = 'Image size must be less than 300 KB';
+    })
+  };
 
   formBuild() {
     this.sitForm = this.fb.group({
       name: [this.sit.name, [Validators.required, Validators.maxLength(12)]],
       numOfSeats: [this.sit.numOfSeats, [Validators.required, Validators.min(0), Validators.max(1000)]],
       cost: [this.sit.cost, [Validators.required, Validators.min(0), Validators.max(1000000)]],
-      reserved: [{value: this.sit.reserved, disabled: !this.editMode}],
-      paid: [{value: this.sit.paid, disabled: !this.editMode}],
-      image: [this.sit.image, [Validators.required]]
-    });
-    this.sitForm.get('paid')[this.sitForm.get('reserved').value?'enable':'disable']();
-    this.sitForm.get('reserved').valueChanges.subscribe(val => {
-      this.sitForm.get('paid')[val?'enable':'disable']();
-      if(!val){
-        this.sitForm.get('paid').setValue(false);
-        this.sit.paid = false;
-      }
+      paid: [{value: this.sit.paid, disabled: !this.editMode || !this.sit.reserved}],
+      image: [this.sit.image, [Validators, Validators.required]]
     });
   }
 

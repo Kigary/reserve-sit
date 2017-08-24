@@ -15,14 +15,14 @@
 
   <!-- Sit name column -->
   <ng-container cdkColumnDef="name">
-    <md-header-cell *cdkHeaderCellDef>Seat name</md-header-cell>
-    <md-cell *cdkCellDef="let order"> {{order.sit.name}} </md-cell>
+    <md-header-cell *cdkHeaderCellDef fxFlex="200px">Seat name</md-header-cell>
+    <md-cell *cdkCellDef="let order" fxFlex="200px"> {{order.sit.name}} </md-cell>
   </ng-container>
 
   <!-- Reserve date Column -->
   <ng-container cdkColumnDef="reserveDate">
     <md-header-cell *cdkHeaderCellDef>Reserve date</md-header-cell>
-    <md-cell *cdkCellDef="let order"> {{order.orderDate | date:'short'}} </md-cell>
+    <md-cell *cdkCellDef="let order"> {{order.orderDate | date:dateFormat}} </md-cell>
   </ng-container>
 
   <!-- User name Column -->
@@ -33,8 +33,8 @@
 
   <!-- Action Column -->
   <ng-container cdkColumnDef="action">
-    <md-header-cell *cdkHeaderCellDef>Action</md-header-cell>
-    <md-cell *cdkCellDef="let order">
+    <md-header-cell *cdkHeaderCellDef fxFlex="200px">Action</md-header-cell>
+    <md-cell *cdkCellDef="let order" fxFlex="200px">
       <button md-raised-button
               (click)="details(order)"
               [innerText]="'Details'">

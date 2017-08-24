@@ -6,9 +6,9 @@
         <md-icon md-list-icon>event</md-icon>
         <p md-line [innerText]="'Order Date: ' + (order.orderDate|date:dateFormat)"></p>
       </md-list-item>
-      <md-list-item>
+      <md-list-item [ngStyle]="{'display': order.releaseDate?'block':'none'}">
         <md-icon md-list-icon>date_range</md-icon>
-        <p md-line [innerText]="'Creation Date: ' + (order.createdAt|date:dateFormat)"></p>
+        <p md-line [innerText]="'Release Date: ' + (order.releaseDate|date:dateFormat)"></p>
       </md-list-item>
       <md-divider></md-divider>
       <h3 md-subheader>User</h3>
