@@ -125,7 +125,7 @@ OrgRouter.post('/login', (req, res) => {
       .send({error: 'Username or password is incorrect'});
   }
   const sessionKey = createGUID();
-  res.cookie('sessionKey', sessionKey, {maxAge: new Date(2024, 0, 1), httpOnly: true});
+  res.cookie('sessionKey', sessionKey, {maxAge: new Date(2024, 0, 1), httpOnly: false});
   org.addSessionKey(sessionKey);
   res.status(200).send({success: 'ok'});
 });

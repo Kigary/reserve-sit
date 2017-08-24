@@ -8,12 +8,19 @@ import { IUser } from '../defines/IUser';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/do';
 
+const getCookieValue = (propName) => {
+  const keyValues = document.cookie.split(';').map((pair) => pair.split('='));
+  console.log(document.cookie);
+  const keyValue = keyValues.find((pair) => pair[0].trim() === propName.trim());
+  return keyValue && keyValue[1];
+};
 @Injectable()
 export class AccountUserService {
-  private userSubject = new BehaviorSubject(null);
+  userSubject: BehaviorSubject<IUser>;
 
   constructor(private http: HttpClient) {
-    this.isLoggedUser()
+    this.userSubject =  new BehaviorSubject(getCookieValue('sessionUserKey') ? {} as IUser : null);
+    this.http.get('/api/user/logged-user')
       .subscribe((loggedInUser: IUser) => this.userSubject.next(loggedInUser));
   }
 
@@ -30,9 +37,9 @@ export class AccountUserService {
   }
 
   getLoggedUser() {
-    return this.userSubject;
+   return this.userSubject;
   }
   isLoggedUser() {
-    return this.http.get('/api/user/logged-user');
+   return this.userSubject.map((user: IUser) => !!user);
   }
 }

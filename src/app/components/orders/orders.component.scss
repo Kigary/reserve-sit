@@ -4,3 +4,13 @@ md-card {
 button{
   margin: 20px;
 }
+.loader {
+  display: flex;
+  justify-content: center;
+  height: 200px;
+  align-items: center;
+}
+md-spinner{
+  width: 40px;
+  height: auto;
+}

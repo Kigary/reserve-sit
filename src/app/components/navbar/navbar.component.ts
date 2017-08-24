@@ -13,16 +13,21 @@ import { Router } from '@angular/router';
 })
 
 export class NavbarComponent {
-  userLogged: IUser | null;
+  userLogged: IUser | boolean = false;
 
   constructor(public dialog: MdDialog,
               public router: Router,
               private accountUserService: AccountUserService) {
-    this.accountUserService.getLoggedUser().subscribe((user) => this.userLogged = user);
+    this.accountUserService.getLoggedUser().subscribe((user) => {
+      if(user && typeof user === 'object' && !Object.keys(user).length) {
+        return ;
+      }
+      this.userLogged = user;
+    });
   }
 
   openLoginDialog() {
     const ref = this.dialog.open(UserLoginPageComponent);
-    ref.afterClosed().subscribe(() => this.router.navigate(['/']));
+    ref.afterClosed().subscribe(() => this.router.navigate([{outlets: {account: null}}]));
   }
 }

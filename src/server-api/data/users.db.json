@@ -13,7 +13,15 @@
   {
     "userID": "408a48d5-850d-3a1b-be0e-2ef38e62f9be",
     "sessionKeys": [
-      "59b65405-1b21-bcbc-62c4-2e044479f473"
+      "a914584b-907e-9e44-ab6a-45b3191eeb06",
+      "bd280d51-50bb-94bd-2f61-35dc0bcb307b",
+      "bf81c617-630f-660d-992f-c06848ee6d52",
+      "a9fedf4e-4516-7c3d-b95f-6ac89e0b905a",
+      "1dfe0b6e-1039-fbb7-8e9c-753a9323f686",
+      "74dcc8e8-9bf6-254f-82aa-2e26f32a1145",
+      "9db80cd9-af2c-2355-3219-c3f9e9a9c61d",
+      "9f55c925-1c3a-6bbd-7cf2-f7d8b0679289",
+      "285788ae-d05d-a10d-8a8b-d02b96e1ecea"
     ],
     "login": "informm109",
     "firstName": "Artur",
@@ -33,5 +41,16 @@
     "phone": "1010",
     "gender": "Male",
     "password": "hellopeopleupthere"
+  },
+  {
+    "userID": "a3cbac26-5eeb-7b8a-abdf-1d1cdaf38e03",
+    "sessionKeys": [],
+    "login": "informm109",
+    "firstName": "b",
+    "lastName": "dad",
+    "email": "adad@mail.ru",
+    "phone": "121212",
+    "gender": "male",
+    "password": "111111111111111"
   }
 ]

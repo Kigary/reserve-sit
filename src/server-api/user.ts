@@ -97,7 +97,7 @@ UserRouter.post('/login', (req, res) => {
         return res.status(404).send({message: 'login or password is incorrect'});
   }
   const sessionKey = createGUID();
-  res.cookie('sessionUserKey', sessionKey, {maxAge: new Date(2024, 0, 1), httpOnly: true});
+  res.cookie('sessionUserKey', sessionKey, {maxAge: new Date(2024, 0, 1)});
   user.addSessionKey(sessionKey);
   res.json({
     firstName: user.firstName

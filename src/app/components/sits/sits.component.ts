@@ -3,6 +3,7 @@ import { ISit } from '../../defines/ISit';
 import { SitService } from '../../services/sit.service';
 import { ActivatedRoute } from '@angular/router';
 import { IFilterData } from '../../defines/IFilterData';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-sits',
@@ -13,7 +14,10 @@ export class SitsComponent implements OnInit {
   sits: ISit[];
 
   constructor(private activatedRoute: ActivatedRoute,
-              private sitService: SitService) { }
+              private sitService: SitService,
+              private router: Router) {
+    this.router.navigate([{outlets: {account: null}}]);
+  }
 
   ngOnInit() {
     this.sits = this.activatedRoute.snapshot.data['sits'];

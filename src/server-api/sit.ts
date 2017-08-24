@@ -93,7 +93,7 @@ export class Sit {
     if(!Object.keys(filterData).length) {
       return sits;
     }
-    if (filterData.orgID !== 'allID' && filterData.orgID) {
+    if (filterData.orgID && filterData.orgID !== 'allID' ) {
         sits = sits.filter(sit => sit.orgID === filterData.orgID);
     }
     if (filterData.sits) {

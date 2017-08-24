@@ -2,10 +2,15 @@
   <md-icon>arrow_back</md-icon>
   Back
 </button>
+<div class="loader" *ngIf="!orders; else orderList">
+  <md-spinner ></md-spinner>
+</div>
+<ng-template #orderList>
+  <md-card *ngFor="let order of orders  let i=index">
+    <md-card-content>
+      <app-order [order]="order" [index]='i'>
+      </app-order>
+    </md-card-content>
+  </md-card>
+</ng-template>
 
-<md-card *ngFor="let order of orders | async, let i=index">
-  <md-card-content>
-    <app-order [order]="order" [index]='i'>
-    </app-order>
-  </md-card-content>
-</md-card>

@@ -11,7 +11,7 @@
         "name": "SQ1"
       }
     ],
-    "reserved": false,
+    "reserved": true,
     "paid": false
   },
   {
@@ -26,7 +26,7 @@
         "name": "SQ1"
       }
     ],
-    "reserved": false,
+    "reserved": true,
     "paid": false
   },
   {
@@ -41,7 +41,7 @@
         "name": "SQ1"
       }
     ],
-    "reserved": false,
+    "reserved": true,
     "paid": false
   },
   {

@@ -29,6 +29,7 @@ import { CapitalizePipe } from './pipe/capitalize.pipe';
 import { OrderService } from './services/order.service';
 import { SitService } from './services/sit.service';
 import { OrgService } from './services/org.service';
+import { DatatimepickerComponent } from './components/datatimepicker/datatimepicker.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { OrgService } from './services/org.service';
     SitsComponent,
     SitDialogComponent,
     FilterComponent,
-    FooterComponent
+    FooterComponent,
+    DatatimepickerComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,8 @@ import { OrgService } from './services/org.service';
   entryComponents: [
     UserLoginPageComponent,
     SitDialogComponent,
-    OrderDialogComponent
+    OrderDialogComponent,
+    DatatimepickerComponent
   ],
   bootstrap: [AppComponent]
 })

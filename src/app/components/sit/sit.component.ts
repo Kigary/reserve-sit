@@ -8,6 +8,7 @@ import { SitDialogComponent } from '../sit-dialog/sit-dialog.component';
 import { ConfirmDialogComponent, IConfirmDialogOptions } from '../../common/confirm-dialog/confirm-dialog.component';
 import { Router } from '@angular/router';
 import { UserLoginPageComponent } from '../login-page/login-page.component';
+import { DatatimepickerComponent} from '../datatimepicker/datatimepicker.component';
 
 @Component({
   selector: 'app-sit',
@@ -39,7 +40,11 @@ export class SitComponent implements OnInit {
       if (!result) {
         return;
       }
-      this.sitService.reserveSit(this.sit.sitID).subscribe(() => this.sit.reserved = true);
+      const dialogRef = this.dialog.open(DatatimepickerComponent);
+        dialogRef.afterClosed().subscribe((dateTime) => {
+          console.log(dateTime);
+          //this.sitService.reserveSit(this.sit.sitID).subscribe(() => this.sit.reserved = true);
+        });
     });
   }
 
