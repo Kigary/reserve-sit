@@ -9,7 +9,7 @@
       </md-grid-tile>
       <md-grid-tile>
         <md-chip-list>
-          <md-chip [selected]="sit.reserved" color="primary"
+          <md-chip [selected]="!sit.reserved" color="primary"
                    [innerText]="sit.reserved?'Reserved':'Not reserved'">
           </md-chip>
         </md-chip-list>
@@ -28,7 +28,7 @@
       <img [src]="sit.image"/>
     </div>
     <md-card-actions fxLayout="row">
-      <button md-button class="edit" (click)="editSit()">Edit</button>
+      <button md-button color="primary" class="edit" (click)="editSit()">Edit</button>
       <button md-button class="delete" (click)="deleteSit()">
         <md-icon mdTooltip="Delete">clear</md-icon>
       </button>

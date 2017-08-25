@@ -1,5 +1,5 @@
-<md-toolbar>
-  <h2>Organization Login</h2>
+<md-toolbar class="mat-primary">
+  Organization Login
 </md-toolbar>
 <form [formGroup]="loginForm"
       fxLayout="column" (ngSubmit)="login()" >
@@ -22,13 +22,13 @@
   </md-input-container>
   <div fxLayout="row" class="footer">
     <button type="submit"
-            md-raised-button
+            md-raised-button color="primary"
             [disabled]='loginForm.invalid' >
       Login
     </button>
     <md-spinner *ngIf="sentLogin"></md-spinner>
     <div fxFlex="60"></div>
-    <button type="button" md-button
+    <button type="button" md-button color="primary"
             routerLink="../create">
       Sign Up
     </button>
