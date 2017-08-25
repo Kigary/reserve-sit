@@ -105,9 +105,9 @@ UserRouter.post('/login', (req, res) => {
 });
 
 UserRouter.get('/logout', (req, res) => {
-  const {sessionKey} = req.cookies;
+  const {sessionUserKey} = req.cookies;
   const loggedInUser = req.loggedInUser;
-  loggedInUser && loggedInUser.removeSessionKey(sessionKey);
+  loggedInUser && loggedInUser.removeSessionKey(sessionUserKey);
   res.cookie('sessionUserKey', '');
   res.status(200).end();
 });

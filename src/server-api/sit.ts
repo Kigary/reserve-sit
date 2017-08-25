@@ -72,7 +72,7 @@ export class Sit {
     this.saveAllSits(sits);
   }
 
-  static reserveSit(sitID: string, userID: string): Sit {
+  static reserveSit(sitID: string, userID: string, reserveDate: string): Sit {
     const sits = this.getSits();
     const currentSit = sits.find(s => s.sitID === sitID);
     currentSit.reserved = true;
@@ -83,12 +83,12 @@ export class Sit {
       orgID: currentSit.orgID,
       userID: userID,
       sitID: sitID,
-      orderDate: new Date,
-      createdAt: new Date
+      orderDate: new Date(reserveDate),
+      createdAt: new Date()
     };
     Order.createOrder(order);
     return currentSit;
-  } //TODO date-time-picker
+  }
 
   static applySearch(filterData): Sit[] {
     let sits = Sit.getSits();
@@ -141,7 +141,8 @@ SitRouter.post('/update/', (req, res) => {
 SitRouter.get('/reserve/:id', (req, res) => {
   const sitID = req.params.id;
   const userID = req.loggedInUser.userID;
-  res.json(Sit.reserveSit(sitID, userID));
+  const reserveDate = req.query.reserve;
+  res.json(Sit.reserveSit(sitID, userID, reserveDate));
 });   // reserve sit
 
 SitRouter.delete('/:id', (req, res) => {

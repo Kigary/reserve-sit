@@ -4,7 +4,7 @@
   <md-list-item [innerText]="order.org.name"></md-list-item>
   <md-list-item>
     <md-input-container class="example-full-width">
-      <input mdInput type="text" [value]="order.orderDate | date : 'yMdjm'" disabled>
+      <input mdInput type="text" [value]="order.orderDate | date : 'short'" disabled>
     </md-input-container>
   </md-list-item>
   <md-list-item>

@@ -1,59 +1,50 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { ISit } from '../../defines/ISit';
 import { IUser } from '../../defines/IUser';
 import { MdDialog } from '@angular/material';
 import { SitService } from '../../services/sit.service';
 import { AccountUserService } from '../../services/auth.service';
 import { SitDialogComponent } from '../sit-dialog/sit-dialog.component';
-import { ConfirmDialogComponent, IConfirmDialogOptions } from '../../common/confirm-dialog/confirm-dialog.component';
 import { Router } from '@angular/router';
 import { UserLoginPageComponent } from '../login-page/login-page.component';
-import { DatatimepickerComponent} from '../datatimepicker/datatimepicker.component';
+import { DateTimePickerComponent } from '../date-time-picker/date-time-picker.component';
 
 @Component({
   selector: 'app-sit',
   templateUrl: './sit.component.html',
   styleUrls: ['./sit.component.scss']
 })
-export class SitComponent implements OnInit {
-
+export class SitComponent {
   @Input()
   sit: ISit;
   loggedInUser: IUser | boolean = false;
+
   constructor(private dialog: MdDialog,
               public router: Router,
               private sitService: SitService,
               private accountUserService: AccountUserService) {
-    this.accountUserService.getLoggedUser().subscribe((user) => this.loggedInUser = user);
+    this.accountUserService.getLoggedUser()
+      .subscribe((user) => this.loggedInUser = user);
   }
 
   private reserve() {
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: {
-        title: 'Reserve Seat',
-        msg: 'Are you sure you want to reserve this seat?',
-        confirm: 'Reserve',
-        reject: 'Cancel'
-      } as IConfirmDialogOptions
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (!result) {
+    const dialogRef = this.dialog.open(DateTimePickerComponent);
+    dialogRef.afterClosed().subscribe((reserveDate: string) => {
+      if (!reserveDate) {
         return;
       }
-      const dialogRef = this.dialog.open(DatatimepickerComponent);
-        dialogRef.afterClosed().subscribe((dateTime) => {
-          console.log(dateTime);
-          //this.sitService.reserveSit(this.sit.sitID).subscribe(() => this.sit.reserved = true);
-        });
+      this.sitService.reserveSit(this.sit.sitID, reserveDate)
+        .subscribe(() => this.sit.reserved = !this.sit.reserved);
     });
   }
-
   reserveSit() {
-    if(this.loggedInUser) {
+    if (this.loggedInUser) {
       this.reserve();
     } else {
       const ref = this.dialog.open(UserLoginPageComponent);
-      ref.afterClosed().subscribe(() => this.router.navigate(['/']) && this.loggedInUser && this.reserve());
+      ref.afterClosed().subscribe(() =>
+        this.router.navigate(['/']) && this.loggedInUser && this.reserve()
+      );
     }
   }
 
@@ -61,9 +52,6 @@ export class SitComponent implements OnInit {
     const dialogRef = this.dialog.open(SitDialogComponent, {
       data: this.sit
     });
-  }
-
-  ngOnInit() {
   }
 
 }

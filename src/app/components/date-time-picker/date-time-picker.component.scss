@@ -1,0 +1,11 @@
+md-dialog-content{
+  display: flex !important;
+  flex-direction: column;
+}
+button{
+  margin-left:2px;
+  &[md-raised-button]{
+    background-color: #78909C;
+    color: white;
+  }
+}

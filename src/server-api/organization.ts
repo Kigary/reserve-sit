@@ -139,8 +139,9 @@ OrgRouter.get('/logged-org', (req, res) => {
 });
 
 OrgRouter.get('/logout', (req, res) => {
+  const {sessionKey} = req.cookies;
   const loggedInOrg = req.loggedInOrg;
-  loggedInOrg && loggedInOrg.removeSessionKey(req.cookies.sessionKey);
+  loggedInOrg && loggedInOrg.removeSessionKey(sessionKey);
   res.cookie('sessionKey', '');
   return res.status(200).end();
 });

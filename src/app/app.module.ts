@@ -29,7 +29,7 @@ import { CapitalizePipe } from './pipe/capitalize.pipe';
 import { OrderService } from './services/order.service';
 import { SitService } from './services/sit.service';
 import { OrgService } from './services/org.service';
-import { DatatimepickerComponent } from './components/datatimepicker/datatimepicker.component';
+import { DateTimePickerComponent } from './components/date-time-picker/date-time-picker.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,7 @@ import { DatatimepickerComponent } from './components/datatimepicker/datatimepic
     SitDialogComponent,
     FilterComponent,
     FooterComponent,
-    DatatimepickerComponent
+    DateTimePickerComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +74,7 @@ import { DatatimepickerComponent } from './components/datatimepicker/datatimepic
     UserLoginPageComponent,
     SitDialogComponent,
     OrderDialogComponent,
-    DatatimepickerComponent
+    DateTimePickerComponent
   ],
   bootstrap: [AppComponent]
 })

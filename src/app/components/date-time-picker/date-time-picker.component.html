@@ -1,0 +1,23 @@
+<h2 md-dialog-title>Reserve</h2>
+<md-dialog-content>
+  <md-input-container>
+    <input mdInput [mdDatepicker]="picker"
+           placeholder="Choose a date"
+           [(ngModel)]="date"
+           name='date' [min]="minDate">
+    <button mdSuffix
+            [mdDatepickerToggle]="picker">
+    </button>
+  </md-input-container>
+  <md-datepicker #picker></md-datepicker>
+  <md-input-container>
+    <input type="time" mdInput
+           placeholder="Choose a time"
+           [(ngModel)]="time">
+    <md-icon mdSuffix>access_time</md-icon>
+  </md-input-container>
+</md-dialog-content>
+<md-dialog-actions>
+  <button md-button (click)="reserve()">Reserve</button>
+  <button md-raised-button [md-dialog-close]="null">Cancel</button>
+</md-dialog-actions>

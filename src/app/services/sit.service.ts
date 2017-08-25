@@ -10,10 +10,11 @@ export class SitService {
 
   constructor(private http: HttpClient) { }
 
-  reserveSit(sitID) {
-    return this.http.get(`/api/sit/reserve/${sitID}`);
+  reserveSit(sitID, reserveDate) {
+    return this.http.get(`/api/sit/reserve/${sitID}`, {
+      params: new HttpParams().set('reserve', reserveDate)
+    });
   }
-
   getAllSits() {
     return this.http.get('api/sit/sit-list');
   }
