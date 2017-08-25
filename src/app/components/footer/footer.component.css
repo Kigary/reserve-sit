@@ -22,13 +22,13 @@ md-icon {
 a {
   font-size: 14px;
   text-decoration: none;
-  color: #ECEFF1;
+  color: white;
   margin-right: 20px;
 }
 .copyright p {
   font-size: 14px;
   float: right;
   line-height: 16px;
-  color: #ECEFF1;
+  color: white;
   margin: 0;
 }

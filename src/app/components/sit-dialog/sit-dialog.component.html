@@ -8,14 +8,14 @@
     <img [src]=sit.image />
   </div>
   <br/>
-  <md-input-container>
-    <input mdInput type="number" placeholder="Quantity of seats" disabled
-           [value]="sit.numOfSeats"/>
-  </md-input-container>
-  <md-input-container>
-    <input mdInput placeholder="Cost" disabled
-           [value]="sit.cost ? (sit.cost|currency:'JPY':true):'Free'"/>
-  </md-input-container>
+  <md-list>
+    <md-list-item><strong>Number of seats:  </strong>
+      <span>{{sit.numOfSeats}}</span>
+    </md-list-item>
+    <md-list-item><strong>Cost:</strong>
+      <span>{{sit.cost ? (sit.cost|currency:'JPY':true):'Free'}}</span>
+    </md-list-item>
+  </md-list>
 </md-dialog-content>
 
 <md-dialog-actions>

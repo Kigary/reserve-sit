@@ -2,9 +2,6 @@ md-dialog-content {
   width: 400px;
   height: 500px;
 }
-md-input-container {
-  width: 100%;
-}
 md-dialog-actions {
   justify-content: flex-end;
 }
@@ -27,4 +24,7 @@ md-chip {
 }
 h1 {
   display: inline-block;
+}
+span {
+  margin: 5px;
 }

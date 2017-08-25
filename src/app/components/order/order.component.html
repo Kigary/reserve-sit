@@ -7,7 +7,7 @@
       <input mdInput type="text" [value]="order.orderDate | date : 'yMdjm'" disabled>
     </md-input-container>
   </md-list-item>
-  <md-list-item class = 'details'>
+  <md-list-item>
     <button md-button class="mat-primary mat-raised-button" (click)="openDialog()">Details</button>
     <button md-button class="mat-primary mat-raised-button" disabled *ngIf="!!order.releaseDate">Finished</button>
   </md-list-item>
