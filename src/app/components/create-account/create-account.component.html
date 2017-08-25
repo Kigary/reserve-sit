@@ -1,4 +1,4 @@
-<md-toolbar class="mat-primary">Sign Up</md-toolbar>
+<md-toolbar class="mat-accent">Sign Up</md-toolbar>
 <form [formGroup]="regForm" fxLayout="column" (ngSubmit)="UserRegister()">
 
   <md-input-container>
@@ -55,7 +55,7 @@
   </md-input-container>
 
   <md-radio-group formControlName="gender">Gender
-    <md-radio-button *ngFor="let gender of genders" [value]="gender" color="primary">
+    <md-radio-button *ngFor="let gender of genders" [value]="gender" color="accent">
       {{gender}}
     </md-radio-button>
   </md-radio-group>
@@ -77,13 +77,13 @@
     <md-error *ngIf="error" [innerText]="error"></md-error>
   </div>
   <div fxLayout="row" class="mat-grid-tile-footer">
-    <button type="button" class=" mat-raised-button mat-primary"
+    <button type="button" class=" mat-raised-button mat-accent"
             [routerLink]="['', {outlets: {'account': 'login'}}]"
             [innerText]="'Sign In'">
     </button>
     <div fxFlex="2"></div>
     <button type="submit"
-            md-button class="mat-raised-button mat-primary"
+            md-button class="mat-raised-button mat-accent"
             [disabled]="!regForm.valid"
             [innerText]="'Sign Up'">
     </button>

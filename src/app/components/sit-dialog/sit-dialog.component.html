@@ -1,6 +1,6 @@
 <h1 md-dialog-title [innerText]="sit.org.name"></h1>
 <md-chip-list>
-  <md-chip [color]="sit.reserved?'warn':'primary'" selected="true" [innerText]="(sit.reserved?'':'Not ')+'Reserved'"></md-chip>
+  <md-chip [color]="sit.reserved?'warn':'accent'" selected="true" [innerText]="(sit.reserved?'':'Not ')+'Reserved'"></md-chip>
 </md-chip-list>
 
 <md-dialog-content>
@@ -9,7 +9,7 @@
   </div>
   <br/>
   <md-list>
-    <md-list-item><strong>Number of seats:  </strong>
+    <md-list-item><strong>Number of seats:</strong>
       <span>{{sit.numOfSeats}}</span>
     </md-list-item>
     <md-list-item><strong>Cost:</strong>

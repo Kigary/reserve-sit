@@ -4,22 +4,22 @@
     </md-card-header>
     <img md-card-image [src]="order.sit.image">
     <md-card-content>
-      <md-grid-list cols="2" rowHeight="2:1">
-        <md-grid-tile><strong>Seats:</strong>
+      <md-list>
+        <md-list-item><strong>Seats:</strong>
           <span>{{order.sit.numOfSeats}}</span>
-        </md-grid-tile>
-        <md-grid-tile><strong>OrderDate:</strong>
+        </md-list-item>
+        <md-list-item><strong>OrderDate:</strong>
           <span>{{order.orderDate | date : 'yMdjm'}}</span>
-        </md-grid-tile>
-        <md-grid-tile><strong>Cost:</strong>
+        </md-list-item>
+        <md-list-item><strong>Cost:</strong>
           <span>{{order.sit.cost ? (order.sit.cost|currency:'JPY':true):'Free'}}</span>
-        </md-grid-tile>
-        <md-grid-tile><strong>Created:</strong>
+        </md-list-item>
+        <md-list-item><strong>Created:</strong>
           <span>
             {{order.createdAt | date : 'yMdjm'}}
           </span>
-        </md-grid-tile>
-      </md-grid-list>
+        </md-list-item>
+      </md-list>
     </md-card-content>
   </md-card>
 

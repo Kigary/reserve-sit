@@ -1,4 +1,4 @@
-<md-toolbar class="mat-primary">Sign In</md-toolbar>
+<md-toolbar class="mat-accent">Sign In</md-toolbar>
 <form [formGroup]="loginForm" fxLayout="column" (ngSubmit)="logIn()">
   <md-input-container>
     <input mdInput placeholder="Login"
@@ -21,13 +21,13 @@
 
   <div fxLayout="row" class="footer">
     <button type="submit"
-            class=" mat-raised-button mat-primary"
+            class=" mat-raised-button mat-accent"
             [disabled]='!loginForm.valid'
             [innerText]="'Sign In'" >
     </button>
     <md-spinner *ngIf="loading"></md-spinner>
     <div fxFlex="60"></div>
-    <button type="button" md-button class="mat-primary"
+    <button type="button" md-button class="mat-accent"
             [routerLink]="['', {outlets: {'account': 'create'}}]"
             [innerText]="'Sign Up'">
     </button>

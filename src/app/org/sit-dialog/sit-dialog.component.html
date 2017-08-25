@@ -1,6 +1,6 @@
 <h1 md-dialog-title [innerText]="this.title"></h1>
 
-<form [formGroup]="sitForm" class="mat-accent">
+<form [formGroup]="sitForm" class="mat-primary">
   <md-dialog-content>
     <md-input-container>
       <input mdInput placeholder="Seat Name"
@@ -33,11 +33,11 @@
 
   <md-dialog-actions>
     <div>* required fields</div>
-    <md-spinner class="mat-accent" *ngIf="inProgress"></md-spinner>
+    <md-spinner class="mat-primary" *ngIf="inProgress"></md-spinner>
     <div class="actions-container">
-      <button md-raised-button class="mat-accent"
+      <button md-raised-button class="mat-primary"
               (click)="saveSit()" [disabled]='!sitForm.valid'>Save</button>
-      <button md-button class="mat-accent"
+      <button md-button class="mat-primary"
               [md-dialog-close]="null">Cancel</button>
     </div>
   </md-dialog-actions>
