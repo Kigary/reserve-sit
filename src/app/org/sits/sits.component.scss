@@ -28,9 +28,14 @@ org-sit {
 .addSit {
   font-size: 36px;
   float: right;
+  margin-top: inherit;
   margin-right: 40px;
 }
 md-grid-list {
   margin-right: 100px;
+  margin-left: 100px;
+}
+md-input-container {
+  margin-top: 10px;
   margin-left: 100px;
 }

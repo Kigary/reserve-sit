@@ -42,8 +42,9 @@ export class Sit {
     });
   }
 
-  static getSitsByOrg(loggedOrgID: string): Sit[] {
-    return this.getSits().filter(sit => sit.orgID === loggedOrgID);
+  static getSitsByOrg(loggedOrgID: string, search: string): Sit[] {
+    return this.getSits().filter(sit => sit.orgID === loggedOrgID
+        && sit.name.toLowerCase().includes(search.toLowerCase()));
   }
 
   static createSit(data, loggedInOrg): Sit {
@@ -121,7 +122,7 @@ SitRouter.get('/sit-list', (req, res) => {
 });      // sit list for user
 
 SitRouter.get('/sit-list-org', (req, res) => {
-  res.json(Sit.getSitsByOrg(req.loggedInOrg.orgID));
+  res.json(Sit.getSitsByOrg(req.loggedInOrg.orgID, req.query.search));
 });  // sit list for organization
 
 SitRouter.get('/sit-filter', (req, res) => {

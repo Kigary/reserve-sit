@@ -25,6 +25,7 @@ import { OrderDialogComponent } from './order-dialog/order-dialog.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { ArchiveResolverService } from './services/archive/archive-resolver.service';
 import { ReservedResolverService } from './services/reserved/reserved-resolver.service';
+import { SitsResolverService } from './services/sits/sits-resolver.service';
 
 
 
@@ -59,7 +60,8 @@ import { ReservedResolverService } from './services/reserved/reserved-resolver.s
     AccountService,
     OrderService,
     ArchiveResolverService,
-    ReservedResolverService
+    ReservedResolverService,
+    SitsResolverService
   ],
 
   entryComponents: [

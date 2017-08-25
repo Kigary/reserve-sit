@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { ArchiveResolverService } from './services/archive/archive-resolver.service';
 import { ArchiveComponent } from './archive/archive.component';
 import { ReservedResolverService } from './services/reserved/reserved-resolver.service';
+import { SitsResolverService } from './services/sits/sits-resolver.service';
 
 const routes: Routes = [
   {
@@ -48,6 +49,9 @@ const routes: Routes = [
           {
             path: 'sits',
             component: SitsComponent,
+            resolve: {
+              sits: SitsResolverService
+            }
           },
           {
             path: 'reservations',
@@ -85,6 +89,7 @@ const routes: Routes = [
   providers: [
     CountriesResolve,
     AccountGuard,
+    SitsResolverService,
     ArchiveResolverService,
     ReservedResolverService
   ]
