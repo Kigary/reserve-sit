@@ -1,22 +1,25 @@
-import { Component, Input} from '@angular/core';
+import { Router } from '@angular/router';
 import { ISit } from '../../defines/ISit';
 import { IUser } from '../../defines/IUser';
 import { MdDialog } from '@angular/material';
+import { Component, Input} from '@angular/core';
 import { SitService } from '../../services/sit.service';
 import { AccountUserService } from '../../services/auth.service';
 import { SitDialogComponent } from '../sit-dialog/sit-dialog.component';
-import { Router } from '@angular/router';
 import { UserLoginPageComponent } from '../login-page/login-page.component';
 import { DateTimePickerComponent } from '../date-time-picker/date-time-picker.component';
+
 
 @Component({
   selector: 'app-sit',
   templateUrl: './sit.component.html',
   styleUrls: ['./sit.component.scss']
 })
+
 export class SitComponent {
   @Input()
   sit: ISit;
+
   loggedInUser: IUser | boolean = false;
 
   constructor(private dialog: MdDialog,
@@ -37,6 +40,7 @@ export class SitComponent {
         .subscribe(() => this.sit.reserved = !this.sit.reserved);
     });
   }
+
   reserveSit() {
     if (this.loggedInUser) {
       this.reserve();
@@ -49,9 +53,8 @@ export class SitComponent {
   }
 
   sitDetails() {
-    const dialogRef = this.dialog.open(SitDialogComponent, {
+    this.dialog.open(SitDialogComponent, {
       data: this.sit
     });
   }
-
 }

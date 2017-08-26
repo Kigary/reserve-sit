@@ -1,18 +1,21 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/delay';
 import { IUser } from '../defines/IUser';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/do';
 
+
 const getCookieValue = (propName) => {
-  const keyValues = document.cookie.split(';').map((pair) => pair.split('='));
-  const keyValue = keyValues.find((pair) => pair[0].trim() === propName.trim());
+  const keyValues = document.cookie.split(';')
+    .map(pair => pair.split('='));
+  const keyValue = keyValues.find(pair => pair[0].trim() === propName.trim());
   return keyValue && keyValue[1];
 };
+
 @Injectable()
 export class AccountUserService {
   userSubject: BehaviorSubject<IUser>;
@@ -24,7 +27,7 @@ export class AccountUserService {
   }
 
   logIn(data) {
-    return  this.http.post('api/user/login', data)
+    return this.http.post('api/user/login', data)
       .do((user: IUser) => this.userSubject.next(user))
       .catch((error: HttpErrorResponse) => Observable.throw(error));
   }
@@ -38,6 +41,7 @@ export class AccountUserService {
   getLoggedUser() {
    return this.userSubject;
   }
+
   isLoggedUser() {
    return this.userSubject.map((user: IUser) => !!user);
   }

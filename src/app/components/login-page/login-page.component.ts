@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 
 
 @Component({
@@ -8,11 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-page.component.scss']
 })
 
-export class UserLoginPageComponent implements OnInit {
+export class UserLoginPageComponent {
 
   constructor(private router: Router) {
     this.router.navigate(['', {outlets: {'account': 'login'}}]);
   }
-
-  ngOnInit() { }
 }

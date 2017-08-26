@@ -1,25 +1,23 @@
 <md-card class="example-card">
-    <md-card-header>
-      <md-card-title> <h2>{{order.org.name}}</h2></md-card-title>
-    </md-card-header>
-    <img md-card-image [src]="order.sit.image">
-    <md-card-content>
-      <md-list>
-        <md-list-item><strong>Seats:</strong>
-          <span>{{order.sit.numOfSeats}}</span>
-        </md-list-item>
-        <md-list-item><strong>Order Date:</strong>
-          <span>{{order.orderDate | date : 'yMdjm'}}</span>
-        </md-list-item>
-        <md-list-item><strong>Cost:</strong>
-          <span>{{order.sit.cost ? (order.sit.cost|currency:'JPY':true):'Free'}}</span>
-        </md-list-item>
-        <md-list-item><strong>Created:</strong>
-          <span>
-            {{order.createdAt | date : 'yMdjm'}}
-          </span>
-        </md-list-item>
-      </md-list>
-    </md-card-content>
-  </md-card>
+  <md-card-header>
+    <md-card-title><h2 [innerText]="order.org.name"></h2></md-card-title>
+  </md-card-header>
+  <img md-card-image [src]="order.sit.image">
+  <md-card-content>
+    <md-list>
+      <md-list-item><strong>Order Date:</strong>
+        <span [innerText]="order.orderDate | date:dateFormat"></span>
+      </md-list-item>
+      <md-list-item><strong>Seats:</strong>
+        <span [innerText]="order.sit.numOfSeats"></span>
+      </md-list-item>
+      <md-list-item><strong>Cost:</strong>
+        <span [innerText]="order.sit.cost ? (order.sit.cost|currency:'JPY':true):'Free'"></span>
+      </md-list-item>
+      <md-list-item><strong>Created:</strong>
+        <span [innerText]="order.createdAt | date:dateFormat"></span>
+      </md-list-item>
+    </md-list>
+  </md-card-content>
+</md-card>
 

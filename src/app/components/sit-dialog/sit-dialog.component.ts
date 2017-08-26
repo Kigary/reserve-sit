@@ -1,22 +1,19 @@
-import { Component, Inject, OnInit } from '@angular/core';
 import { ISit } from '../../defines/ISit';
+import { Component, Inject } from '@angular/core';
 import { MD_DIALOG_DATA } from '@angular/material';
+
 
 @Component({
   selector: 'app-sit-dialog',
   templateUrl: './sit-dialog.component.html',
   styleUrls: ['./sit-dialog.component.scss']
 })
-export class SitDialogComponent implements OnInit {
+
+export class SitDialogComponent {
   sit: ISit;
 
   constructor(
-    @Inject(MD_DIALOG_DATA) data: ISit
-  ) {
+      @Inject(MD_DIALOG_DATA) data: ISit) {
     this.sit = data;
   }
-
-  ngOnInit() {
-  }
-
 }

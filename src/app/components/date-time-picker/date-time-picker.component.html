@@ -2,7 +2,7 @@
 <md-dialog-content>
   <md-input-container>
     <input mdInput [mdDatepicker]="picker"
-           placeholder="Choose a date"
+           placeholder="Choose date"
            [(ngModel)]="date"
            name='date' [min]="minDate">
     <button mdSuffix
@@ -12,7 +12,7 @@
   <md-datepicker #picker></md-datepicker>
   <md-input-container>
     <input type="time" mdInput
-           placeholder="Choose a time"
+           placeholder="Choose time"
            [(ngModel)]="time">
     <md-icon mdSuffix>access_time</md-icon>
   </md-input-container>

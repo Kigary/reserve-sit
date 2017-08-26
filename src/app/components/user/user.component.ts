@@ -1,8 +1,7 @@
-import {Component, Input} from '@angular/core';
-import { IUser } from '../../defines/IUser';
-import { AccountUserService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-
+import { IUser } from '../../defines/IUser';
+import { Component, Input } from '@angular/core';
+import { AccountUserService } from '../../services/auth.service';
 
 
 @Component({
@@ -11,17 +10,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./user.component.scss']
 })
 
-export class UserComponent{
+export class UserComponent {
   @Input()
   user: IUser;
 
   constructor(private accountUserService: AccountUserService,
-              private router: Router
-              ) {
+              private router: Router) {
   }
 
   signOut() {
     this.accountUserService.logOut().subscribe(() => this.router.navigate(['/']) );
   }
-
 }

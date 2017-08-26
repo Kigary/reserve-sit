@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AccountUserService } from '../../services/auth.service';
 import { MdDialogRef } from '@angular/material';
+import { Component, OnInit } from '@angular/core';
+import { AccountUserService } from '../../services/auth.service';
+import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,10 +13,9 @@ import { MdDialogRef } from '@angular/material';
 export class UserLoginComponent implements OnInit {
   loginForm: FormGroup;
   loading: boolean;
-  storage: Storage;
   error: string;
+
   constructor(private fb: FormBuilder,
-              private router: Router,
               private accountUserService: AccountUserService,
               private dialogRef: MdDialogRef<any>) {
   }
@@ -36,7 +36,8 @@ export class UserLoginComponent implements OnInit {
         this.loading = false;
         this.error = error.error.message;
         this.formBuild();
-      });
+      }
+    );
   }
 
   errorStateMatcher(control: FormControl): boolean {
@@ -44,7 +45,6 @@ export class UserLoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.storage = sessionStorage;
     this.formBuild();
   }
 }

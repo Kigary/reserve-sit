@@ -1,6 +1,7 @@
 <md-toolbar class="mat-accent">Sign Up</md-toolbar>
 <form [formGroup]="regForm" fxLayout="column" (ngSubmit)="UserRegister()">
 
+  <br/>
   <md-input-container>
     <input mdInput placeholder="Login"
            formControlName="login"
@@ -11,20 +12,20 @@
   </md-input-container>
 
   <md-input-container>
-    <input mdInput placeholder="FirstName"
+    <input mdInput placeholder="First Name"
            formControlName="firstName"
            [errorStateMatcher]="errorStateMatcher" required>
     <md-error *ngIf="regForm.get('firstName').hasError('required')"
-              [innerHTML]="' FirstName is <strong>required</strong>'">
+              [innerHTML]="' First Name is <strong>required</strong>'">
     </md-error>
   </md-input-container>
 
   <md-input-container>
-    <input mdInput placeholder="LastName"
+    <input mdInput placeholder="Last Name"
            formControlName="lastName"
            [errorStateMatcher]="errorStateMatcher" required>
     <md-error *ngIf="regForm.get('lastName').hasError('required')"
-              [innerHTML]="' LastName is <strong>required</strong>'">
+              [innerHTML]="' Last Name is <strong>required</strong>'">
     </md-error>
   </md-input-container>
 
@@ -41,16 +42,15 @@
   </md-input-container>
 
   <md-input-container>
-    <input mdInput placeholder="Phone Number"
+    <input mdInput placeholder="Phone"
            formControlName="phone"
            [errorStateMatcher]="errorStateMatcher"
            required>
     <md-error *ngIf="regForm.get('phone').hasError('required')"
-              [innerHTML]="'Number is <strong>required</strong>'">
-
+              [innerHTML]="'Phone number is <strong>required</strong>'">
     </md-error>
     <md-error *ngIf="regForm.get('phone').hasError('pattern')"
-              [innerHTML]="'Number is not valid'">
+              [innerHTML]="'Phone number is not valid'">
     </md-error>
   </md-input-container>
 
@@ -64,8 +64,7 @@
     <input mdInput type="password"
            placeholder="Password"
            formControlName="password"
-           [errorStateMatcher]="errorStateMatcher"
-           required>
+           [errorStateMatcher]="errorStateMatcher" required>
     <md-error *ngIf="regForm.get('password').hasError('required')"
               [innerHTML]=" ' Password is <strong>required</strong>'">
     </md-error>
@@ -73,6 +72,7 @@
               [innerHTML]=" 'Password must be at least <strong>15</strong> characters'">
     </md-error>
   </md-input-container>
+
   <div class="regError">
     <md-error *ngIf="error" [innerText]="error"></md-error>
   </div>
@@ -88,6 +88,6 @@
             [innerText]="'Sign Up'">
     </button>
     <md-spinner *ngIf="loading"></md-spinner>
-     </div>
+  </div>
 </form>
 

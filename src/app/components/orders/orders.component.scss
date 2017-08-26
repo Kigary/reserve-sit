@@ -1,16 +1,16 @@
-md-card {
-  margin:0 20px 5px 20px;
-}
-button{
+button {
   margin: 20px;
 }
-.loader {
-  display: flex;
-  justify-content: center;
-  height: 200px;
-  align-items: center;
+md-card {
+  margin: 0 20px 5px 20px;
 }
-md-spinner{
-  width: 40px;
+md-spinner {
   height: auto;
+  width: 40px;
+}
+.loader {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

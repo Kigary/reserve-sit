@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { MdDialog } from '@angular/material';
-import { UserLoginPageComponent } from '../login-page/login-page.component';
-import { IUser} from '../../defines/IUser';
-import { AccountUserService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { IUser} from '../../defines/IUser';
+import { MdDialog } from '@angular/material';
+import { AccountUserService } from '../../services/auth.service';
+import { UserLoginPageComponent } from '../login-page/login-page.component';
 
 
 @Component({

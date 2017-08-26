@@ -9,5 +9,5 @@ export interface ISit {
   cost: number;
   paid: boolean;
   image: string;
-  org?: IOrg;
+  org: IOrg;
 }

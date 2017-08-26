@@ -10,10 +10,10 @@
   <br/>
   <md-list>
     <md-list-item><strong>Number of seats:</strong>
-      <span>{{sit.numOfSeats}}</span>
+      <span [innerText]="sit.numOfSeats"></span>
     </md-list-item>
     <md-list-item><strong>Cost:</strong>
-      <span>{{sit.cost ? (sit.cost|currency:'JPY':true):'Free'}}</span>
+      <span [innerText]="sit.cost ? (sit.cost|currency:'JPY':true):'Free'"></span>
     </md-list-item>
   </md-list>
 </md-dialog-content>

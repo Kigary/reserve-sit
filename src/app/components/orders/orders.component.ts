@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { OrderService } from '../../services/order.service';
-import {Observable} from 'rxjs/Observable';
+import { Component } from '@angular/core';
 import { IOrder } from '../../defines/IOrder'
+import { OrderService } from '../../services/order.service';
 
 
 @Component({
@@ -9,12 +8,11 @@ import { IOrder } from '../../defines/IOrder'
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss']
 })
-export class OrdersComponent implements OnInit {
-  orders: IOrder[];
-  constructor(private orderService: OrderService) { }
 
-  ngOnInit() {
+export class OrdersComponent {
+  orders: IOrder[];
+
+  constructor(private orderService: OrderService) {
     this.orderService.getOrders().subscribe((orders: IOrder[]) => this.orders = orders);
   }
-
 }

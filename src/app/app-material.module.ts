@@ -1,45 +1,43 @@
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {
-  MdButtonModule,
-  MdToolbarModule,
+  MdCardModule,
+  MdIconModule,
+  MdListModule,
   MdMenuModule,
-  MdDialogModule,
+  MdChipsModule,
   MdInputModule,
   MdRadioModule,
-  MdProgressSpinnerModule,
-  MdGridListModule,
-  MdCheckboxModule,
-  MdListModule,
-  MdIconModule,
-  MdCardModule,
-  MdSelectModule,
-  MdProgressBarModule,
-  MdChipsModule,
-  MdDatepickerModule,
-  MdNativeDateModule
-} from '@angular/material';
-
-const materialModules = [
-  FlexLayoutModule,
   MdButtonModule,
-  MdToolbarModule,
-  MdMenuModule,
   MdDialogModule,
-  MdInputModule,
-  MdRadioModule,
-  MdProgressSpinnerModule,
-  MdGridListModule,
-  MdCheckboxModule,
-  MdProgressSpinnerModule,
-  MdListModule,
-  MdIconModule,
-  MdCardModule,
   MdSelectModule,
-  MdProgressBarModule,
-  MdChipsModule,
+  MdToolbarModule,
+  MdCheckboxModule,
+  MdGridListModule,
   MdDatepickerModule,
   MdNativeDateModule,
+  MdProgressSpinnerModule
+} from '@angular/material';
+
+
+const materialModules = [
+  MdCardModule,
+  MdIconModule,
+  MdListModule,
+  MdMenuModule,
+  MdChipsModule,
+  MdInputModule,
+  MdRadioModule,
+  MdButtonModule,
+  MdDialogModule,
+  MdSelectModule,
+  MdToolbarModule,
+  MdCheckboxModule,
+  MdGridListModule,
+  MdDatepickerModule,
+  MdNativeDateModule,
+  MdProgressSpinnerModule,
+  FlexLayoutModule,
 ];
 
 @NgModule({

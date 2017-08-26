@@ -2,24 +2,20 @@
   <md-card-header>
     <div class="mat-card-header-text">
       <md-card-title>
-        <strong>{{sit.org.name}}</strong>
+        <strong [innerText]="sit.org.name"></strong>
       </md-card-title>
-      <md-card-subtitle>
-        Seats: {{sit.numOfSeats}}
-      </md-card-subtitle>
+      <md-card-subtitle [innerText]="'Seats: ' + sit.numOfSeats"></md-card-subtitle>
     </div>
   </md-card-header>
   <div class="imgCtr">
-    <img md-card-image [src]=sit.image />
+    <img md-card-image [src]="sit.image"/>
   </div>
   <md-card-content class="sitProps">
     <md-grid-list cols="2" rowHeight="30px">
       <md-grid-tile>
-        <strong>{{sit.reserved? '':'Not'}} Reserved</strong>
+        <strong [innerText]="(sit.reserved? '':'Not ') + 'Reserved'"></strong>
       </md-grid-tile>
-      <md-grid-tile>
-        {{sit.cost ? (sit.cost|currency:'JPY':true):'Free'}}
-      </md-grid-tile>
+      <md-grid-tile>{{sit.cost ? (sit.cost|currency:'JPY':true):'Free'}}</md-grid-tile>
     </md-grid-list>
   </md-card-content>
   <md-card-actions>

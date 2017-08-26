@@ -13,8 +13,7 @@
   {
     "userID": "408a48d5-850d-3a1b-be0e-2ef38e62f9be",
     "sessionKeys": [
-      "ad62c3e5-a5ef-14b8-5ee1-5af4deac215e",
-      "19c66137-95af-1b08-da5d-cbd800ca7b6a"
+      "ad62c3e5-a5ef-14b8-5ee1-5af4deac215e"
     ],
     "login": "informm109",
     "firstName": "Artur",
@@ -45,5 +44,16 @@
     "phone": "121212",
     "gender": "male",
     "password": "111111111111111"
+  },
+  {
+    "userID": "dee646aa-75d2-01ac-5a02-458d8d4f1b4d",
+    "sessionKeys": [],
+    "login": "kigary",
+    "firstName": "David",
+    "lastName": "Mirumyan",
+    "email": "david.mirumyan.1@gmail.com",
+    "phone": "098692007",
+    "gender": "Male",
+    "password": "kigariopassword"
   }
 ]

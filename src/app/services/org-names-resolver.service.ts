@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { OrgService } from './org.service';
 import { IOrg } from '../defines/IOrg';
 import { Resolve } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { OrgService } from './org.service';
 
 @Injectable()
-export class OrgNamesResolveService implements Resolve<IOrg[]> {
+export class OrgNamesResolverService implements Resolve<IOrg[]> {
 
   constructor(private orgService: OrgService) { }
 

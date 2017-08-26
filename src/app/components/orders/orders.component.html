@@ -6,10 +6,9 @@
   <md-spinner ></md-spinner>
 </div>
 <ng-template #orderList>
-  <md-card *ngFor="let order of orders  let i=index">
+  <md-card *ngFor="let order of orders; let i=index">
     <md-card-content>
-      <app-order [order]="order" [index]='i'>
-      </app-order>
+      <app-order [order]="order" [index]='i'></app-order>
     </md-card-content>
   </md-card>
 </ng-template>

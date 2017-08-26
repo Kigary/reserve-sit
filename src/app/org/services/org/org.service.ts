@@ -10,7 +10,7 @@ export class OrgService {
   constructor(private http: HttpClient) { }
 
   createOrg (data) {
-    return this.http.post('api/org/', data).delay(2000)
+    return this.http.post('api/org/', data).delay(500)
       .catch(() => Observable.throw('error'));
   }
 

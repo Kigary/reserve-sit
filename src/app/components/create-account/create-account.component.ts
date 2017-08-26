@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
-import { UserService } from '../../services/user.service';
-import { EMAIL_REGEX } from '../../org/register-account/register-account.component';
-import { IGender } from '../../defines/IGender';
 import { Router } from '@angular/router';
+import { IGender } from '../../defines/IGender';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
+import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
+import { EMAIL_REGEX } from '../../org/register-account/register-account.component';
 
 
 @Component({
@@ -32,7 +32,8 @@ export class UserRegisterAccountComponent implements OnInit {
         this.loading = false;
         this.error = error.error.message;
         this.formBuild();
-      });
+      }
+    );
   }
 
   formBuild() {
@@ -46,6 +47,7 @@ export class UserRegisterAccountComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(15)]]
     });
   }
+
   errorStateMatcher(control: FormControl): boolean {
     return control.invalid && (control.dirty || control.touched);
   }

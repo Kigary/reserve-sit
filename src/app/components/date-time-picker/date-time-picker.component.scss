@@ -1,7 +1,10 @@
-md-dialog-content{
+button {
+  margin-left: 2px;
+}
+md-dialog-actions {
+  justify-content: space-between;
+}
+md-dialog-content {
   display: flex !important;
   flex-direction: column;
-}
-button{
-  margin-left:2px;
 }

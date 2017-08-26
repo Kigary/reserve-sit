@@ -2,8 +2,8 @@
   <span [innerText] = "user.firstName[0] | capitalize"></span>
   <md-menu #menu="mdMenu" xPosition="before" yPosition="below"
            [overlapTrigger]="false" >
-    <button md-menu-item [innerText]="'Orders'" routerLink="orders"></button>
-    <button md-menu-item (click)="signOut()" [innerText] = "'Sign Out'"></button>
+    <button md-menu-item routerLink="orders">Orders</button>
+    <button md-menu-item (click)="signOut()">Sign Out</button>
   </md-menu>
 </div>
 
