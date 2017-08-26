@@ -1,6 +1,6 @@
-<md-list [ngClass]="{'finish_order': !!order.releaseDate}">
+<md-list [ngClass]="{'finished_order': !!order.releaseDate}">
   <md-list-item [innerText]="index+1"></md-list-item>
-  <md-list-item> <img md-card-image [src]="order.sit.image"></md-list-item>
+  <md-list-item><img md-card-image [src]="order.sit.image"></md-list-item>
   <md-list-item [innerText]="order.org.name"></md-list-item>
   <md-list-item>
     <md-input-container class="example-full-width">

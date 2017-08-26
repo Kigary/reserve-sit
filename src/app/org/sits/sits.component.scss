@@ -7,35 +7,29 @@ h2{
   margin: 0;
   padding: 20px 0;
 }
-md-grid-tile {
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-content: stretch;
-  outline: 1px solid #CFD8DC;
-}
 md-icon {
   font-family: 'Material Icons', serif;
   font-size: 30px;
 }
-md-grid-tile:hover {
-  outline: 2px solid #B0BEC5;
-}
-org-sit {
-  height: 100%;
-  width: 100%;
-}
 .addSit {
+  position: absolute;
+  right: 0;
   font-size: 36px;
-  float: right;
-  margin-top: inherit;
   margin-right: 40px;
 }
-md-grid-list {
-  margin-right: 100px;
-  margin-left: 100px;
+.sits {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
 }
-md-input-container {
-  margin-top: 10px;
-  margin-left: 100px;
+md-toolbar {
+  background: transparent;
+  position: relative;
+  width: 90%;
+  margin: auto;
+  padding: 0 10px;
+}
+md-toolbar md-input-container {
+  width: 550px;
 }

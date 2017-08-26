@@ -1,6 +1,10 @@
+:host {
+  width: 270px;
+  height: 390px;
+  margin: 10px;
+}
 md-card {
   background-color: white;
-  height: 100%;
   outline: 1px solid #B2DFDB;
 }
 md-card:hover {
@@ -47,6 +51,7 @@ md-card-actions {
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
+  margin-bottom: unset !important;
 }
 button {
   width: 86%;

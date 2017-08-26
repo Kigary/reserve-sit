@@ -10,7 +10,6 @@ import 'rxjs/add/operator/do';
 
 const getCookieValue = (propName) => {
   const keyValues = document.cookie.split(';').map((pair) => pair.split('='));
-  console.log(document.cookie);
   const keyValue = keyValues.find((pair) => pair[0].trim() === propName.trim());
   return keyValue && keyValue[1];
 };

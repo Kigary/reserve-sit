@@ -1,10 +1,7 @@
 <app-filter (search)="applySearch($event)"></app-filter>
-<div>
-  <md-grid-list cols="4" gutterSize="10px" rowHeight="400px">
-    <md-grid-tile
-      *ngFor="let sit of sits"
-      [style.opacity]="sit.reserved? 0.5:1">
+<div class="sits">
+    <ng-container *ngFor="let sit of sits"
+                  [style.opacity]="sit.reserved? 0.5:1">
       <app-sit [sit]="sit"></app-sit>
-    </md-grid-tile>
-  </md-grid-list>
+    </ng-container>
 </div>

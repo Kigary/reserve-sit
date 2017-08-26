@@ -1,17 +1,6 @@
 div {
-  width: 100%;
-}
-md-grid-tile {
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-content: stretch;
-  max-width: 270px;
-}
-md-grid-list {
-  margin: 20px;
-}
-app-sit {
-  height: 100%;
-  width: 100%;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
 }

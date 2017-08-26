@@ -5,12 +5,16 @@ md-toolbar button {
    margin: auto 10px;
  }
 md-toolbar {
-  margin-top: 16px;
-  margin-left: 10px;
+  margin: 16px 10px;
+  position: relative;
   width: unset;
   padding: 0;
   background: transparent;
 }
 md-table {
   margin: 0 20px;
+}
+md-toolbar button:last-of-type {
+  position: absolute;
+  right: 0;
 }

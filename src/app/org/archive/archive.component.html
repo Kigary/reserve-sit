@@ -5,12 +5,12 @@
     <md-icon>home</md-icon>
     Home
   </button>
-  <button md-raised-button routerLink="../reservations">
-    Reservations
-  </button>
   <md-input-container>
     <input mdInput placeholder="Search" type="search" #search>
   </md-input-container>
+  <button md-raised-button routerLink="../reservations">
+    Reservations
+  </button>
 </md-toolbar>
 
 <md-table #table [dataSource]="dataSource">
