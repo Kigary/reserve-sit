@@ -1,6 +1,6 @@
 import * as express from 'express';
-import { readFileSync } from 'fs';
 import { join } from 'path';
+import { readFileSync } from 'fs';
 import { ICountry } from '../app/defines/ICountry';
 
 
@@ -14,6 +14,7 @@ class Country {
 
 export const CountryRouter = express.Router();
 
+// get all countries (names)
 CountryRouter.get('/country-list', (req, res) => {
   res.json(Country.getAllCountries());
 });

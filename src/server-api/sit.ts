@@ -75,8 +75,8 @@ export class Sit {
   static reserveSit(sitID: string, userID: string, reserveDate: string): Sit {
     const sits = this.getSits();
     const currentSit = sits.find(s => s.sitID === sitID);
-    currentSit.reserved = true;
     const index = sits.findIndex(s => s.sitID === sitID);
+    currentSit.reserved = true;
     sits.splice(index, 1, currentSit);
     this.saveAllSits(sits);
     const order = {
@@ -117,35 +117,42 @@ export class Sit {
 
 export const SitRouter = express.Router();
 
+// sit list for user
 SitRouter.get('/sit-list', (req, res) => {
   res.json(Sit.getAllSits());
-});      // sit list for user
+});
 
+// sit list for organization
 SitRouter.get('/sit-list-org', (req, res) => {
   res.json(Sit.getSitsByOrg(req.loggedInOrg.orgID, req.query.search));
-});  // sit list for organization
+});
 
+// sit list filter
 SitRouter.get('/sit-filter', (req, res) => {
    res.json(Sit.applySearch(req.query));
-});    // sit list filter
+});
 
+// create sit
 SitRouter.post('/', (req, res) => {
   const sit = Sit.createSit(req.body, req.loggedInOrg);
   res.status(200).send(sit);
-});             // create sit
+});
 
+// update sit
 SitRouter.post('/update/', (req, res) => {
   res.json(Sit.updateSit(req.body));
-});      // update sit
+});
 
+// reserve sit
 SitRouter.get('/reserve/:id', (req, res) => {
   const sitID = req.params.id;
   const userID = req.loggedInUser.userID;
   const reserveDate = req.query.reserve;
   res.json(Sit.reserveSit(sitID, userID, reserveDate));
-});   // reserve sit
+});
 
+// delete sit
 SitRouter.delete('/:id', (req, res) => {
   Sit.deleteSit(req.params.id);
   res.status(200).end();
-});        // delete sit
+});

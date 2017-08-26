@@ -15,28 +15,25 @@ export class User {
   lastName: string;
   gender: string;
   sessionKeys: string[] = [];
+
   constructor(data) {
     Object.assign(this, data);
-  }
-
-  static getAllUsers (): User[] {
-    return JSON.parse(readFileSync(filePath).toString());
   }
 
   static getUser(id: string): User {
     return this.getAllUsers().find((u) => u.userID === id);
   }
 
-  static createUser(data) {
+  static getAllUsers (): User[] {
+    return JSON.parse(readFileSync(filePath).toString());
+  }
+
+  static createUser(data): User {
     const user = new User(data);
     const users = this.getAllUsers();
     users.push(user);
     this.saveAllUsers(users);
     return user;
-  }
-
-  static saveAllUsers(users: User[]) {
-    writeFileSync(filePath, JSON.stringify(users, null, 2));
   }
 
   static updateUser (data) {
@@ -45,6 +42,11 @@ export class User {
     users.splice(userIndex, 1, data);
     this.saveAllUsers(users);
   }
+
+  static dataToUser(data) {
+    return data && new User(data);
+  }
+
   static login(data) {
     const userData = this.getAllUsers()
       .find((user) => {
@@ -52,36 +54,41 @@ export class User {
     });
     return User.dataToUser(userData);
   }
-  static dataToUser(data) {
-    return data && new User(data);
-  }
+
   static getUserBySessionKey(sessionKey?: string) {
     if (!sessionKey) {
       return null;
     }
-
-    const userData = this.getAllUsers().find(user => user.sessionKeys.includes(sessionKey));
+    const userData = this.getAllUsers()
+      .find(user => user.sessionKeys.includes(sessionKey));
     return User.dataToUser(userData);
   }
+
   static doesExistUserLogin({login}) {
     const users = this.getAllUsers();
-    return users.find((user) => user.login === login);
+    return users.find(user => user.login === login);
   }
+
+  static saveAllUsers(users: User[]) {
+    writeFileSync(filePath, JSON.stringify(users, null, 2));
+  }
+
   addSessionKey(sessionKey) {
     this.sessionKeys.push(sessionKey);
     User.updateUser(this);
   }
+
   removeSessionKey(sessionKey) {
     const {sessionKeys} = this;
     const ind = sessionKeys.indexOf(sessionKey);
     sessionKeys.splice(ind, 1);
-
     User.updateUser(this);
   }
 }
 
 export const UserRouter = express.Router();
 
+// get logged-in user first name
 UserRouter.get('/logged-user', (req, res) => {
   if(req.loggedInUser) {
     return res.json({
@@ -91,6 +98,7 @@ UserRouter.get('/logged-user', (req, res) => {
   return res.json(null);
 });
 
+// log in user
 UserRouter.post('/login', (req, res) => {
   const user = User.login(req.body);
   if (!user) {
@@ -104,6 +112,7 @@ UserRouter.post('/login', (req, res) => {
   });
 });
 
+// log out user
 UserRouter.get('/logout', (req, res) => {
   const {sessionUserKey} = req.cookies;
   const loggedInUser = req.loggedInUser;
@@ -119,5 +128,3 @@ UserRouter.post('/', (req, res) => {
   }
   res.status(201).json(User.createUser(req.body));
 });
-
-

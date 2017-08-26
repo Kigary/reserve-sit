@@ -117,6 +117,7 @@ export class Organization {
 
 export const OrgRouter = express.Router();
 
+// organization log in
 OrgRouter.post('/login', (req, res) => {
   const org = Organization.login(req.body);
   if (!org) {
@@ -130,14 +131,17 @@ OrgRouter.post('/login', (req, res) => {
   res.status(200).send({success: 'ok'});
 });
 
+// organization logged-in status
 OrgRouter.get('/is-logged-in', (req, res) => {
   res.json(!!req.loggedInOrg);
 });
 
+// logged-in organization info
 OrgRouter.get('/logged-org', (req, res) => {
   res.json(req.loggedInOrg);
 });
 
+// organization log out
 OrgRouter.get('/logout', (req, res) => {
   const {sessionKey} = req.cookies;
   const loggedInOrg = req.loggedInOrg;
@@ -146,24 +150,29 @@ OrgRouter.get('/logout', (req, res) => {
   return res.status(200).end();
 });
 
+// all organization names for user (filter search)
 OrgRouter.get('/org-names', (req, res) => {
   const orgNames = Organization.getOrgNames();
   orgNames.unshift({name: 'All', orgID: 'allID'});
   res.json(orgNames);
 });
 
+// reserved seats' orders of organization
 OrgRouter.get('/reserved', (req, res) => {
   res.json(Order.getOrgReservations(req.loggedInOrg.orgID, req.query.search));
 });
 
+// archived orders of organization (finished)
 OrgRouter.get('/archive', (req, res) => {
   res.json(Order.getOrgArchive(req.loggedInOrg.orgID, req.query));
 });
 
+// archive order & release reserved seat
 OrgRouter.get('/finish/:orderID', (req, res) => {
   res.json(Order.finishOrder(req.params.orderID));
 });
 
+// create organization
 OrgRouter.post('/', (req, res) => {
   if (Organization.doesExistOrgLogin(req.body)) {
     return res.status(404).send({message: 'Pick another login'});

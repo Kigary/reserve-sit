@@ -76,7 +76,7 @@ export class Order {
   }
 
   static getOrdersByUser(loggedUserID: string): Order[] {
-    return  Order.getAllOrders()
+    return Order.getAllOrders()
       .filter(order => order.userID === loggedUserID)
       .map (data => new Order(data));
   }
@@ -123,6 +123,7 @@ export class Order {
 
 export const OrderRouter = express.Router();
 
+// granting access to logged in user
 OrderRouter.use(function (req, res, next) {
   const sessionKey = req.cookies.sessionUserKey;
   const {userID} = User.getUserBySessionKey(sessionKey) || {userID: null};
@@ -134,6 +135,7 @@ OrderRouter.use(function (req, res, next) {
   next();
 });
 
+// order list for user
 OrderRouter.get('/order-list', (req, res) => {
      res.json(Order.getOrdersByUser(req.loggedInUser.userID));
 });
