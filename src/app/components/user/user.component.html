@@ -1,7 +1,7 @@
-<div md-button [mdMenuTriggerFor]="menu" >
-  <span [innerText] = "user.firstName[0] | capitalize"></span>
+<div md-button [mdMenuTriggerFor]="menu">
+  <span [innerText]="user.firstName[0] | capitalize"></span>
   <md-menu #menu="mdMenu" xPosition="before" yPosition="below"
-           [overlapTrigger]="false" >
+           [overlapTrigger]="false">
     <button md-menu-item routerLink="orders">Orders</button>
     <button md-menu-item (click)="signOut()">Sign Out</button>
   </md-menu>

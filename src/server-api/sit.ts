@@ -91,7 +91,7 @@ export class Sit {
   }
 
   static applySearch(filterData): Sit[] {
-    let sits = Sit.getAllSits();
+    let sits = Sit.getSits();
     if(!Object.keys(filterData).length) {
       return sits;
     }

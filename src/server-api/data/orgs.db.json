@@ -1,7 +1,9 @@
 [
   {
     "orgID": "57614132-0eea-4078-2508-72347fdd791d",
-    "sessionKeys": [],
+    "sessionKeys": [
+      "3e49e797-d374-bfe2-2747-ad2ede0232d3"
+    ],
     "login": "login",
     "name": "Tashir Pizza",
     "password": "password",

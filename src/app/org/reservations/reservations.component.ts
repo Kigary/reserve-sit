@@ -12,13 +12,15 @@ import { dateTimeFormat } from '../../defines/common';
 @Component({
   selector: 'org-reservations',
   templateUrl: './reservations.component.html',
-  styleUrls: ['./reservations.component.css']
+  styleUrls: ['./reservations.component.scss']
 })
 export class ReservationsComponent implements OnInit {
   @ViewChild('search')
   search: ElementRef;
 
-  get dateFormat() { return dateTimeFormat.format; }
+  get dateFormat() {
+    return dateTimeFormat.format;
+  }
 
   displayedColumns = ['name', 'reserveDate', 'user', 'action'];
   dataSource: OrderDataSource;
@@ -47,7 +49,7 @@ export class ReservationsComponent implements OnInit {
   }
 
   details(order) {
-    this.dialog.open(OrderDialogComponent , {
+    this.dialog.open(OrderDialogComponent, {
       data: order
     });
   }
@@ -63,32 +65,36 @@ export class OrderDataSource extends DataSource<IOrder> {
   orderSubject = new BehaviorSubject<IOrder[]>(null);
   searchValue = '';
 
-  constructor(
-    activatedRoute: ActivatedRoute,
-    searchChange: Observable<string>,
-    private orderService: OrderService
+  constructor(activatedRoute: ActivatedRoute,
+              searchChange: Observable<string>,
+              private orderService: OrderService
   ) {
     super();
 
     const {orderSubject} = this;
 
-    activatedRoute.data
-      .subscribe((resolvedData: { reservations: IOrder[] }) => {
-        orderSubject.next(resolvedData.reservations);
-      });
+    activatedRoute.data.subscribe(
+      (resolvedData: { reservations: IOrder[] }) =>
+        orderSubject.next(resolvedData.reservations)
+      );
 
-    searchChange.subscribe(value => {
-      this.searchValue = value;
-      this.updateOrders();
-    });
+    searchChange.subscribe(
+      value => {
+        this.searchValue = value;
+        this.updateOrders();
+      });
   }
 
   connect() {
     return this.orderSubject;
   }
-  disconnect() {}
+
+  disconnect() {
+  }
 
   updateOrders() {
-    this.orderService.getOrgReservations(this.searchValue).subscribe(data => this.orderSubject.next(data));
+    this.orderService.getOrgReservations(this.searchValue).subscribe(
+      data => this.orderSubject.next(data)
+    );
   }
 }

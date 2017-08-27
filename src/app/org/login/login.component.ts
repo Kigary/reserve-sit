@@ -16,10 +16,6 @@ export class LoginComponent implements OnInit{
               private accountService: AccountService,
               private router: Router,
               ) {
-    this.formBuild();
-  }
-
-  ngOnInit() {
   }
 
   formBuild() {
@@ -31,9 +27,8 @@ export class LoginComponent implements OnInit{
 
   login() {
     this.sentLogin = true;
-    this.accountService.login(this.loginForm.value).subscribe(() => {
-        this.router.navigate(['org/home']);
-      },
+    this.accountService.login(this.loginForm.value).subscribe(
+      () => this.router.navigate(['org/home']),
       (error) => {
         this.sentLogin = false;
         this.formBuild();
@@ -45,5 +40,8 @@ export class LoginComponent implements OnInit{
     return control.invalid && (control.dirty || control.touched);
   }
 
+  ngOnInit() {
+    this.formBuild();
+  }
 }
 

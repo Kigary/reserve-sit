@@ -8,7 +8,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 @Injectable()
 export class SitService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   reserveSit(sitID, reserveDate) {
     return this.http.get(`/api/sit/reserve/${sitID}`, {
@@ -17,14 +18,12 @@ export class SitService {
   }
 
   getAllSits() {
-    return this.http.get('api/sit/sit-list');
+    return this.http.get('api/sit/sit-list') as Observable<ISit[]>;
   }
 
   filterSits(data: IFilterData): Observable<ISit[]> {
-    const query = Object.keys(data)
-      .map(key => `${key}=${data[key]}`)
-      .join('&');
-    const params = new HttpParams({fromString: query});
+    const params = Object.keys(data)
+      .reduce((params, key) => params.set(key, data[key]), new HttpParams());
     return this.http.get('api/sit/sit-filter', {params});
   }
 }

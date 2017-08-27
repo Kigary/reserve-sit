@@ -12,5 +12,4 @@ import { MdButtonModule, MdDialogModule } from '@angular/material';
     MdDialogModule
   ]
 })
-
 export class AppCommonMaterialModule { }

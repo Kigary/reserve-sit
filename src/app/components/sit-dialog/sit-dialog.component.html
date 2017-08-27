@@ -1,11 +1,13 @@
 <h1 md-dialog-title [innerText]="sit.org.name"></h1>
 <md-chip-list>
-  <md-chip [color]="sit.reserved?'warn':'accent'" selected="true" [innerText]="(sit.reserved?'':'Not ')+'Reserved'"></md-chip>
+  <md-chip [color]="reservedColor"
+           selected="true" [innerText]="reservedText">
+  </md-chip>
 </md-chip-list>
 
 <md-dialog-content>
   <div class="imgCtr">
-    <img [src]=sit.image />
+    <img [src]="sit.image"/>
   </div>
   <br/>
   <md-list>
@@ -13,11 +15,14 @@
       <span [innerText]="sit.numOfSeats"></span>
     </md-list-item>
     <md-list-item><strong>Cost:</strong>
-      <span [innerText]="sit.cost ? (sit.cost|currency:'JPY':true):'Free'"></span>
+      <span [innerText]="sit.cost
+      ? (sit.cost | currency: 'JPY' : true) : 'Free' "></span>
     </md-list-item>
   </md-list>
 </md-dialog-content>
 
 <md-dialog-actions>
-  <button md-raised-button [md-dialog-close]="null">Close</button>
+  <button md-raised-button
+          [md-dialog-close]="null"> Close
+  </button>
 </md-dialog-actions>

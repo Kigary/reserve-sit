@@ -25,9 +25,8 @@ export class UserRegisterAccountComponent implements OnInit {
 
   UserRegister() {
     this.loading = true;
-    this.userService.createUser(this.regForm.value).subscribe(() => {
-        this.router.navigate(['', {outlets: {'account': 'login'}}]);
-      },
+    this.userService.createUser(this.regForm.value).subscribe(
+      () => this.router.navigate(['', {outlets: {'account': 'login'}}]),
       (error) => {
         this.loading = false;
         this.error = error.error.message;

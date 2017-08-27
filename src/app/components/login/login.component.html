@@ -5,25 +5,23 @@
            formControlName="login"
            [errorStateMatcher]="errorStateMatcher">
     <md-error *ngIf="loginForm.get('login').hasError('required')"
-              [innerHTML]="'Login is <strong>required</strong>'">
+              [innerText]="'Login is required '">
     </md-error>
   </md-input-container>
-
   <md-input-container>
     <input mdInput type="password"
            placeholder="Password"
            formControlName="password"
            [errorStateMatcher]="errorStateMatcher">
     <md-error *ngIf="loginForm.get('password').hasError('required')"
-              [innerHTML]="'Password is <strong>required</strong>'">
+              [innerText]="'Password is required'">
     </md-error>
   </md-input-container>
-
   <div fxLayout="row" class="footer">
     <button type="submit"
             class=" mat-raised-button mat-accent"
-            [disabled]='!loginForm.valid'
-            [innerText]="'Sign In'" >
+            [disabled]='loginForm.invalid'
+            [innerText]="'Sign In'">
     </button>
     <md-spinner *ngIf="loading"></md-spinner>
     <div fxFlex="60"></div>

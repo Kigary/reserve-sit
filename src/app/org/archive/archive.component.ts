@@ -8,7 +8,7 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
 import { dateTimeFormat } from '../../defines/common';
-import { OrderDataSource } from "app/org/data-sources/order.data-source";
+import { OrderDataSource } from 'app/org/data-sources/order.data-source';
 
 
 @Component({

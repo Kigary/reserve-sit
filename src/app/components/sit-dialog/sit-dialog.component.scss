@@ -1,29 +1,36 @@
 div {
   width: 400px;
 }
+
 h1 {
   display: inline-block;
 }
-img{
+
+img {
   max-height: 100%;
   max-width: 100%;
   display: block;
   margin: auto;
 }
+
 md-chip {
   cursor: default;
   user-select: none;
   outline: none;
 }
+
 md-chip-list {
   float: right;
 }
+
 md-dialog-actions {
   justify-content: flex-end;
 }
+
 md-dialog-content {
   width: 400px;
 }
+
 span {
   margin: 5px;
 }

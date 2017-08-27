@@ -10,9 +10,16 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     CommonModule,
     AppCommonMaterialModule
   ],
-  declarations: [ConfirmDialogComponent, NotFoundComponent],
-  exports: [ConfirmDialogComponent],
-  entryComponents: [ConfirmDialogComponent]
+  declarations: [
+    ConfirmDialogComponent,
+    NotFoundComponent
+  ],
+  exports: [
+    ConfirmDialogComponent
+  ],
+  entryComponents: [
+    ConfirmDialogComponent
+  ]
 })
-
-export class AppCommonModule { }
+export class AppCommonModule {
+}

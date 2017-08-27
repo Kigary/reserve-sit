@@ -12,7 +12,9 @@
         <span [innerText]="order.sit.numOfSeats"></span>
       </md-list-item>
       <md-list-item><strong>Cost:</strong>
-        <span [innerText]="order.sit.cost ? (order.sit.cost|currency:'JPY':true):'Free'"></span>
+        <span
+          [innerText]="order.sit.cost ? (order.sit.cost|currency:'JPY':true):'Free'">
+        </span>
       </md-list-item>
       <md-list-item><strong>Created:</strong>
         <span [innerText]="order.createdAt | date:dateFormat"></span>
@@ -20,4 +22,3 @@
     </md-list>
   </md-card-content>
 </md-card>
-

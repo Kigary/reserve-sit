@@ -3,35 +3,38 @@ img {
   width: 50px;
   border-radius: 20%;
 }
+
 md-list {
   display: flex;
   align-items: center;
   flex-flow: wrap;
 }
+
 md-list-item {
   display: flex !important;
   flex-grow: 1;
+  &:first-child {
+    width: 5%;
+  }
+  &:nth-child(2) {
+    width: 10%;
+  }
+  &:nth-child(3) {
+    width: 15%;
+  }
+  &:nth-child(4) {
+    width: 30%;
+  }
+  &:nth-child(5) {
+    width: 40%;
+    flex-grow: 15;
+    justify-content: flex-end;
+    & button {
+      margin: 10px;
+    }
+  }
 }
-md-list-item:first-child {
-  width: 5%;
-}
-md-list-item:nth-child(2) {
-  width: 10%;
-}
-md-list-item:nth-child(3) {
-  width: 15%;
-}
-md-list-item:nth-child(4) {
-  width: 30%;
-}
-md-list-item:nth-child(5) {
-  width: 40%;
-  flex-grow:15;
-  justify-content: flex-end;
-}
-md-list-item:nth-child(5) button{
-  margin: 10px;
-}
-.finished_order{
+
+.finished_order {
   opacity: 0.5;
 }

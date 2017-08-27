@@ -4,17 +4,23 @@
       <h3 md-subheader>Order</h3>
       <md-list-item>
         <md-icon md-list-icon>event</md-icon>
-        <p md-line [innerText]="'Order Date: ' + (order.orderDate|date:dateFormat)"></p>
+        <p md-line
+           [innerText]="'Order Date: ' + (order.orderDate | date : dateFormat)">
+        </p>
       </md-list-item>
       <md-list-item [ngStyle]="{'display': order.releaseDate?'block':'none'}">
         <md-icon md-list-icon>date_range</md-icon>
-        <p md-line [innerText]="'Release Date: ' + (order.releaseDate|date:dateFormat)"></p>
+        <p md-line
+           [innerText]="'Release Date: ' + (order.releaseDate | date : dateFormat)">
+        </p>
       </md-list-item>
       <md-divider></md-divider>
       <h3 md-subheader>User</h3>
       <md-list-item>
         <md-icon md-list-icon>account_box</md-icon>
-        <p md-line [innerText]="order.user.firstName + ' ' + order.user.lastName"></p>
+        <p md-line
+           [innerText]="order.user.firstName + ' ' + order.user.lastName">
+        </p>
       </md-list-item>
       <md-list-item>
         <md-icon md-list-icon>phone</md-icon>

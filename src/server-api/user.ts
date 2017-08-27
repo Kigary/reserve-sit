@@ -21,7 +21,11 @@ export class User {
   }
 
   static getUser(id: string): User {
-    return this.getAllUsers().find((u) => u.userID === id);
+    return this.getAllUsers()
+      .find((user: User) =>
+        user.userID === id &&
+        delete user.password &&
+        delete user.sessionKeys);
   }
 
   static getAllUsers (): User[] {
@@ -102,7 +106,7 @@ UserRouter.get('/logged-user', (req, res) => {
 UserRouter.post('/login', (req, res) => {
   const user = User.login(req.body);
   if (!user) {
-        return res.status(404).send({message: 'login or password is incorrect'});
+        return res.status(404).send({message: 'user-login or password is incorrect'});
   }
   const sessionKey = createGUID();
   res.cookie('sessionUserKey', sessionKey, {maxAge: new Date(2024, 0, 1)});

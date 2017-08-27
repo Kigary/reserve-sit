@@ -9,7 +9,6 @@ import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms'
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-
 export class UserLoginComponent implements OnInit {
   loginForm: FormGroup;
   loading: boolean;
@@ -29,9 +28,8 @@ export class UserLoginComponent implements OnInit {
 
   logIn() {
     this.loading = true;
-    this.accountUserService.logIn(this.loginForm.value).subscribe((data) => {
-        this.dialogRef.close();
-      },
+    this.accountUserService.logIn(this.loginForm.value).subscribe(
+      () => this.dialogRef.close(),
       (error) => {
         this.loading = false;
         this.error = error.error.message;

@@ -12,9 +12,9 @@ export class OrderGuard implements CanActivate {
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     const loggedIn = this.accountUserService.isLoggedUser()
       .map(loggedIn => {
-       return loggedIn
-         ? !!loggedIn
-         : this.router.navigate(['/']) && !!loggedIn;
+        return loggedIn
+          ? !!loggedIn
+          : this.router.navigate(['home']) && !!loggedIn;
       } );
     return loggedIn;
   }

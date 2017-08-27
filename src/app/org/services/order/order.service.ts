@@ -22,7 +22,8 @@ export class OrderService {
     pageSizeOptions: [5, 10, 20]
   } as IPagingConfig;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   finishOrder(orderID) {
     return this.http.get(`/api/org/finish/${orderID}`) as Observable<IOrder>;

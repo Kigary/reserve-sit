@@ -28,7 +28,7 @@ export class Order {
   sit: Sit;
   orderDate: Date;
   createdAt: Date;
-  releaseDate: Date|null = null;
+  releaseDate: Date | null = null;
 
   constructor(data) {
     Object.assign(this, data);

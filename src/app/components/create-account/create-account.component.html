@@ -1,29 +1,32 @@
 <md-toolbar class="mat-accent">Sign Up</md-toolbar>
 <form [formGroup]="regForm" fxLayout="column" (ngSubmit)="UserRegister()">
-
   <br/>
+
   <md-input-container>
     <input mdInput placeholder="Login"
            formControlName="login"
-           [errorStateMatcher]="errorStateMatcher" required>
+           [errorStateMatcher]="errorStateMatcher"
+            required>
     <md-error *ngIf="regForm.get('login').hasError('required')"
-              [innerHTML]="'Login is <strong>required</strong>'">
+              [innerText]="'Login is required'">
     </md-error>
   </md-input-container>
 
   <md-input-container>
     <input mdInput placeholder="First Name"
            formControlName="firstName"
-           [errorStateMatcher]="errorStateMatcher" required>
+           [errorStateMatcher]="errorStateMatcher"
+           required>
     <md-error *ngIf="regForm.get('firstName').hasError('required')"
-              [innerHTML]="' First Name is <strong>required</strong>'">
+              [innerText]="'First Name is required'">
     </md-error>
   </md-input-container>
 
   <md-input-container>
     <input mdInput placeholder="Last Name"
            formControlName="lastName"
-           [errorStateMatcher]="errorStateMatcher" required>
+           [errorStateMatcher]="errorStateMatcher"
+           required>
     <md-error *ngIf="regForm.get('lastName').hasError('required')"
               [innerHTML]="' Last Name is <strong>required</strong>'">
     </md-error>
@@ -32,7 +35,8 @@
   <md-input-container>
     <input mdInput placeholder="Email"
            formControlName="email"
-           [errorStateMatcher]="errorStateMatcher" required>
+           [errorStateMatcher]="errorStateMatcher"
+           required>
     <md-error *ngIf="regForm.get('email').hasError('required')"
               [innerHTML]="'Email is <strong>required</strong>'">
     </md-error>
@@ -84,7 +88,7 @@
     <div fxFlex="2"></div>
     <button type="submit"
             md-button class="mat-raised-button mat-accent"
-            [disabled]="!regForm.valid"
+            [disabled]="regForm.invalid"
             [innerText]="'Sign Up'">
     </button>
     <md-spinner *ngIf="loading"></md-spinner>

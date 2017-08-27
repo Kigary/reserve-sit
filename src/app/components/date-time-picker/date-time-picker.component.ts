@@ -6,9 +6,7 @@ import { MdDialogRef } from '@angular/material';
   selector: 'app-date-time-picker',
   templateUrl: './date-time-picker.component.html',
   styleUrls: ['./date-time-picker.component.scss'],
-  providers: []
 })
-
 export class DateTimePickerComponent {
   minDate: Date;
   time: string;

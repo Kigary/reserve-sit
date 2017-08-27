@@ -17,7 +17,6 @@ export class Organization {
   city: string;
   address: string;
   phone: string;
-  fax?: string;
   email?: string;
   sessionKeys: string[] = [];
 
@@ -175,7 +174,7 @@ OrgRouter.get('/finish/:orderID', (req, res) => {
 // create organization
 OrgRouter.post('/', (req, res) => {
   if (Organization.doesExistOrgLogin(req.body)) {
-    return res.status(404).send({message: 'Pick another login'});
+    return res.status(404).send({message: 'Pick another user-login'});
   }
   if (Organization.doesExistOrgName(req.body)) {
     return res.status(404).send({message: 'Name is registered'});

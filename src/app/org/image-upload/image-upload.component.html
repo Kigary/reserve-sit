@@ -1,8 +1,11 @@
-<div class="placeholder" [ngStyle]="{'background-image': 'url(' + value + ')'}"></div>
+<div class="placeholder"
+     [ngStyle]="{'background-image': 'url(' + value + ')'}">
+</div>
 <br/>
 <label class="mdl-button mdl-js-button mdl-button--icon mdl-button--file"
        mdTooltip="Image size must be less than 300 KB">
-  <md-icon>insert_photo</md-icon><input type="file" id="file" (change)="onChange($event)"/>
+  <md-icon>insert_photo</md-icon>
+  <input type="file" id="file" (change)="onChange($event)"/>
   <br/>
   Upload image *
 </label>

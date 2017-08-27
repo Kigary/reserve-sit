@@ -1,18 +1,23 @@
-<div class="filter">
-  <md-select placeholder="Organization" [(ngModel)]="filterData.orgID">
+<div class="filter" [formGroup]="filterData">
+  <md-select placeholder="Organization" formControlName="orgID">
     <md-option *ngFor="let org of orgs" [value]="org.orgID">
       {{org.name}}
     </md-option>
   </md-select>
   <md-input-container>
-    <input mdInput placeholder="Sits" type="number" min="0" [(ngModel)]="filterData.sits">
+    <input mdInput placeholder="Sits"
+           [errorStateMatcher]="errorStateMatcher"
+           formControlName="sits">
   </md-input-container>
   <md-input-container>
-    <input mdInput placeholder="Min price" type="number" min="0" [(ngModel)]="filterData.minPrice" >
+    <input mdInput placeholder="Min price"
+           [errorStateMatcher]="errorStateMatcher"
+           formControlName="minPrice">
   </md-input-container>
   <md-input-container>
-    <input mdInput placeholder="Max price" type="number" [(ngModel)]="filterData.maxPrice">
+    <input mdInput placeholder="Max price"
+           [errorStateMatcher]="errorStateMatcher"
+           formControlName="maxPrice">
   </md-input-container>
-  <button  md-button class="mat-raised-button mat-accent" (click)="applySearch()">Apply</button>
 </div>
 

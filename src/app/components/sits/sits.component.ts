@@ -1,4 +1,4 @@
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { ISit } from '../../defines/ISit';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -18,14 +18,16 @@ export class SitsComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
               private sitService: SitService,
               private router: Router) {
-    this.router.navigate([{outlets: {account: null}}]);
   }
 
   applySearch(data: IFilterData) {
-    this.sitService.filterSits(data).subscribe((sits: ISit[]) => this.sits = sits);
+    this.sitService.filterSits(data).subscribe(
+      (sits: ISit[]) => this.sits = sits
+    );
   }
 
   ngOnInit() {
+    this.router.navigate([{outlets: {account: null}}]);
     this.sits = this.activatedRoute.snapshot.data['sits'];
   }
 }

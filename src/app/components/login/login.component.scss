@@ -1,11 +1,13 @@
-:host  {
+:host {
   height: auto;
   width: 400px;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
 form md-input-container, form div {
   padding: 5px;
 }
+
 md-spinner {
   height: 35px;
   width: 19px;
@@ -13,7 +15,8 @@ md-spinner {
   left: 100px;
   margin: 0;
 }
-.footer{
+
+.footer {
   position: relative;
 }
 

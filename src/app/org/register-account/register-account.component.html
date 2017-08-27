@@ -49,8 +49,7 @@
       Please enter a valid email address
     </md-error>
   </md-input-container>
-  <div>
-    <md-input-container>
+     <md-input-container>
       <input mdInput placeholder="Phone" formControlName="phone"
              [errorStateMatcher]="errorStateMatcher" required>
       <md-error *ngIf="regForm.get('phone').hasError('required')">
@@ -61,11 +60,6 @@
         Phone number is not valid
       </md-error>
     </md-input-container>
-
-    <md-input-container>
-      <input mdInput placeholder="Fax Number" formControlName="fax">
-    </md-input-container>
-  </div>
   <md-input-container>
     <input mdInput type="password" placeholder="Password"
            formControlName="password" [errorStateMatcher]="errorStateMatcher" required>

@@ -1,8 +1,7 @@
 import { Router } from '@angular/router';
 import { ISit } from '../../defines/ISit';
-import { IUser } from '../../defines/IUser';
 import { MdDialog } from '@angular/material';
-import { Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SitService } from '../../services/sit.service';
 import { AccountUserService } from '../../services/auth.service';
 import { SitDialogComponent } from '../sit-dialog/sit-dialog.component';
@@ -19,26 +18,27 @@ import { DateTimePickerComponent } from '../date-time-picker/date-time-picker.co
 export class SitComponent {
   @Input()
   sit: ISit;
-
-  loggedInUser: IUser | boolean = false;
+  loggedInUser = false;
 
   constructor(private dialog: MdDialog,
               public router: Router,
               private sitService: SitService,
-              private accountUserService: AccountUserService) {
-    this.accountUserService.getLoggedUser()
-      .subscribe((user) => this.loggedInUser = user);
+              private accountUserService: AccountUserService,) {
+    this.accountUserService.isLoggedUser().subscribe(
+      (loggedInUser) => this.loggedInUser = loggedInUser
+    );
   }
 
   private reserve() {
     const dialogRef = this.dialog.open(DateTimePickerComponent);
-    dialogRef.afterClosed().subscribe((reserveDate: string) => {
-      if (!reserveDate) {
-        return;
-      }
-      this.sitService.reserveSit(this.sit.sitID, reserveDate)
-        .subscribe(() => this.sit.reserved = !this.sit.reserved);
-    });
+    dialogRef.afterClosed().subscribe(
+      (reserveDate: string) => {
+        if (!reserveDate) {
+          return;
+        }
+        this.sitService.reserveSit(this.sit.sitID, reserveDate)
+          .subscribe(() => this.sit.reserved = !this.sit.reserved);
+      });
   }
 
   reserveSit() {
@@ -46,8 +46,10 @@ export class SitComponent {
       this.reserve();
     } else {
       const ref = this.dialog.open(UserLoginPageComponent);
-      ref.afterClosed().subscribe(() =>
-        this.router.navigate(['/']) && this.loggedInUser && this.reserve()
+      ref.afterClosed().subscribe(
+        () =>
+          this.router.navigate([{outlets: {account: null}}]) &&
+          this.loggedInUser && this.reserve()
       );
     }
   }

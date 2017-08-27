@@ -2,13 +2,13 @@
   <button routerLink="/" class="logo">
     <img src="../../../media/logo.ico">
   </button>
- <div fxFlex="flex" fxLayoutAlign="end" >
-   <button md-button="" (click)="openLoginDialog()"  *ngIf="!userLogged; else logged">
-     <md-icon>person_pin</md-icon>
-     Sign In
-   </button>
-   <ng-template #logged>
-     <app-user [user] = "userLogged"></app-user>
-   </ng-template>
- </div>
+  <div fxFlex="flex" fxLayoutAlign="end">
+    <button md-button="" (click)="openLoginDialog()" *ngIf="!userLogged; else logged">
+      <md-icon>person_pin</md-icon>
+      Sign In
+    </button>
+    <ng-template #logged>
+      <app-user [user]="userLogged"></app-user>
+    </ng-template>
+  </div>
 </md-toolbar>

@@ -1,14 +1,22 @@
-<md-list [ngClass]="{'finished_order': !!order.releaseDate}">
-  <md-list-item [innerText]="index+1"></md-list-item>
-  <md-list-item><img md-card-image [src]="order.sit.image"></md-list-item>
+<md-list [ngClass]="{'finish_order': !!order.releaseDate}">
+  <md-list-item [innerText]="index + 1"></md-list-item>
+  <md-list-item>
+    <img md-card-image [src]="order.sit.image">
+  </md-list-item>
   <md-list-item [innerText]="order.org.name"></md-list-item>
   <md-list-item>
     <md-input-container class="example-full-width">
-      <input mdInput type="text" [value]="order.orderDate | date:dateFormat" disabled>
+      <input mdInput
+             [value]="order.orderDate | date : dateFormat"
+             disabled>
     </md-input-container>
   </md-list-item>
   <md-list-item>
-    <button md-button class="mat-accent mat-raised-button" (click)="openDialog()">Details</button>
-    <button md-button class="mat-accent mat-raised-button" disabled *ngIf="!!order.releaseDate">Finished</button>
+    <button md-button class="mat-accent mat-raised-button"
+            (click)="openOrderDetails()">Details
+    </button>
+    <button md-button class="mat-accent mat-raised-button"
+            *ngIf="!!order.releaseDate" disabled>Finished
+    </button>
   </md-list-item>
 </md-list>

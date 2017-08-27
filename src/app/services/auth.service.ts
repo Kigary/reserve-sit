@@ -21,28 +21,32 @@ export class AccountUserService {
   userSubject: BehaviorSubject<IUser>;
 
   constructor(private http: HttpClient) {
-    this.userSubject =  new BehaviorSubject(getCookieValue('sessionUserKey') ? {} as IUser : null);
-    this.http.get('/api/user/logged-user')
-      .subscribe((loggedInUser: IUser) => this.userSubject.next(loggedInUser));
+    this.userSubject = new BehaviorSubject(getCookieValue('sessionUserKey') ? {} as IUser : null);
+    this.http.get('/api/user/logged-user').subscribe(
+      (loggedInUser: IUser) => this.userSubject.next(loggedInUser)
+    );
   }
 
   logIn(data) {
-    return this.http.post('api/user/login', data)
-      .do((user: IUser) => this.userSubject.next(user))
-      .catch((error: HttpErrorResponse) => Observable.throw(error));
+    return this.http.post('api/user/login', data).do(
+      (user: IUser) => this.userSubject.next(user)
+    ).catch(
+      (error: HttpErrorResponse) => Observable.throw(error)
+    );
   }
 
   logOut() {
-    const logOut$ = this.http.get('api/user/logout');
-    logOut$.subscribe(() => this.userSubject.next(null));
+    this.http.get('api/user/logout').subscribe(
+      () => this.userSubject.next(null)
+    );
     return this.userSubject;
   }
 
   getLoggedUser() {
-   return this.userSubject;
+    return this.userSubject;
   }
 
   isLoggedUser() {
-   return this.userSubject.map((user: IUser) => !!user);
+    return this.userSubject.map((user: IUser) => !!user);
   }
 }

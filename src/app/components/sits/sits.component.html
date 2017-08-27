@@ -1,7 +1,7 @@
 <app-filter (search)="applySearch($event)"></app-filter>
 <div class="sits">
-    <ng-container *ngFor="let sit of sits"
-                  [style.opacity]="sit.reserved? 0.5:1">
-      <app-sit [sit]="sit"></app-sit>
-    </ng-container>
+  <ng-container *ngFor="let sit of sits">
+    <app-sit [sit]="sit" [style.opacity]="sit.reserved ? 0.5 : 1">
+    </app-sit>
+  </ng-container>
 </div>
